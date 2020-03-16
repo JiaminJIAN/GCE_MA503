@@ -1,0 +1,178 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ GCE May, 2017}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\textbf{Exercise 1:}$
+
+Let $(X, \mathcal{A}, \mu)$ be a measure space. Let $A_{n}$ be a sequence in $\mathcal{A}$ such that $\mu(A_{n})$ converges to zero.
+
+(i) Prove or disprove: if $f : X \rightarrow [0, + \infty)$ is a measurable function and $\mu(X) < + \infty$, then $\int_{A_{n}}^{} f$ converges to zero.
+
+(ii) Let $g$ be in $L^{1}(X)$. Show that $\int_{A_{n}}^{} g$ converges to zero.
+
+\vspace{8pt}
+
+$\textbf{Solution:}$
+
+(i) The statement is not true. We suppose $X = (0, 1]$ and $f(x) = \frac{1}{x^{2}}$, then we know that $\mu(X) < + \infty$ and $f(x)$ is measurable on $X$. We set $A_{n} = [\frac{1}{n^{2}}, \frac{1}{n}], n \in \mathbb{N}$. Thus we have for all $n \in \mathbb{N}$, $A_{n} \subset X$. And
+\begin{equation*}
+   \mu(A_{n}) = \frac{1}{n} - \frac{1}{n^{2}} = \frac{n - 1}{n^{2}} \to 0
+\end{equation*}
+as $n$ goes to infinity. But for the $\int_{A_{n}}^{} f$, we have
+\begin{equation*}
+   \int_{A_{n}}^{} f \, d \mu = \int_{\frac{1}{n^{2}}}^{\frac{1}{n}} \frac{1}{x^{2}} \, d x = n^{2} - n \to + \infty
+\end{equation*}
+as $n \to + \infty$. So, we know that $\int_{A_{n}}^{} f$ does not converges to zero.
+
+\vspace{8pt}
+
+(ii) We denote
+\begin{equation*}
+   g_{n}(x) = g(x) \mathbb{I}_{A_{n}} (x),
+\end{equation*}
+where $\mathbb{I}_{A_{n}} (\cdot)$ is a indicator function on $A_{n}$. Since $A_{n}$ is a sequence in $\mathcal{A}$ such that $\mu(A_{n}) \to 0$ as $n \to + \infty$, then we know that $g_{n}(x)$ converges to $0$ almost everywhere. As
+\begin{equation*}
+   |g_{n}(x)| = |g(x) \mathbb{I}_{A_{n}} (x)| \leq |g(x)|
+\end{equation*}
+and $g \in L^{1}(X)$, we know that $g$ is a dominate function of $g_{n}$. By the dominate convergence theorem, we have
+\begin{equation*}
+   \lim_{n \to \infty} \int_{X}^{} g_{n}(x) \, d \mu = \int_{X}^{} 0 \, d \mu = 0,
+\end{equation*}
+thus we have
+\begin{equation*}
+   \lim_{n \to \infty} \int_{X}^{} g_{n}(x) \, d \mu = \lim_{n \to \infty} \int_{A_{n}}^{} g \, d \mu = 0.
+\end{equation*}
+So, we know that $\int_{A_{n}}^{} g$ converges to zero.
+
+\newpage
+
+
+$\textbf{Exercise 2:}$
+
+Let $(x, d)$ be a bounded metric space. For any non empty subset $S$ of $X$ and $x$ in $X$ we define:
+\begin{equation*}
+   d(x, S) = \inf \{d(x, s): s \in S\}.
+\end{equation*}
+If $A$ and $B$ are two non empty subsets of $X$ we define:
+\begin{equation*}
+   d_{H}(A, B) = \max \{\sup_{x \in A} d(x, B), \sup_{x \in B} d(x, A) \}.
+\end{equation*}
+
+(i) Prove or disprove: If $d_{H}(A, B) = 0$, are $A$ and $B$ necessarily equal?
+
+(ii) Let $\mathcal{C}$ be the set of all non empty closed subsets of $X$. Show that $d_{H}$ defines a metric on $\mathcal{C}$.
+  
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) The statement is not true. By the definition of $d_{H}(A, B)$, since $d_{H}(A, B) = 0$, we have
+$$\max \{\sup_{x \in A} d(x, B), \sup_{x \in B} d(x, A) \} = 0,$$
+then we have $\sup_{x \in A} d(x, B) =  \sup_{x \in B} d(x, A) = 0$, so we know that $\forall x \in A, d(x, B) = 0$ and $\forall x \in B, d(x, A) = 0$. For any $x \in A$
+, since $d(x, B) = \inf \{d(x, y): y \in B \} = 0$, we can find a sequence $\{y_{n}\}$, and for any $x \in A$ this sequence converges to $x$. So we have $B \subset \bar{A}$, where $\bar{A}$ is the closure of $A$. Similarly, we have $A \subset \bar{B}$.
+
+We suppose $A = [0, 1)$ and $B = [0, 1]$, thus $A \neq B$. Since $A \subset B$, $\forall x \in A$, $\exists y \in B$ such that $x = y$ and $d(x, y) = 0$, we have $\sup_{x \in A} d(x, B) = 0$. On the other hand, when $x \in B$ and $x \in [0, 1)$, since $A = [0, 1)$, we know that foe any $x \in [0, 1)$, there exists a $y \in A$ such that $x = y$ and then $d(x, y) = 0$. And when $x \in B$ and $x = \{1\}$, since $y \in A = [0, 1)$, we have $d(x, A) = \inf \{d(x, y): y \in A \} = 0$. Thus it is also holds that $\sup_{x \in B} d(x, A) = 0$. Then we know that $d_{H}(A, B) = 0$ but $A \neq B$. So, $A$ and $B$ is not necessarily equal.
+
+\vspace{8pt}
+
+(ii) Since $\mathcal{C}$ is the set of all non empty closed subsets of $X$, for $A \in \mathcal{C}$ and $B \in \mathcal{C}$, $A, B$ are both closed sets. Next we need to verify the definition of the metric.
+
+(a) $d_{H}(A, B) \geq 0$: since $(X, d)$ is a metric space, then $d(x, B) \geq 0$ and $d(x, A) \geq 0$, thus we have $d_{H}(A, B) = \max \{\sup_{x \in A} d(x, B), \sup_{x \in B} d(x, A) \} \geq 0$.
+
+(b) $d_{H}(A, B) = 0 \iff A = B$: if A = B, then we have $d(x, B) = 0$ for any $x \in A$ and $d(x, A) = 0$ for any $x \in B$, thus we know that $d_{H}(A, B) = 0$. If $d_{H}(A, B) = 0$, by the result we get from (i), we know that $A \subset \bar{B}$ and $B \subset \bar{A}$. Since $A$ and $B$ are both closed sets, then we have $A \subset B$ and $B \subset A$, thus we can get $A = B$.
+
+(c) $d_{H}(A, B) = d_{H}(B, A)$: since $d_{H}(A, B) = \max \{\sup_{x \in A} d(x, B), \sup_{x \in B} d(x, A) \}$ and $d_{H}(B, A) = \max \{\sup_{x \in B} d(x, A), \sup_{x \in A} d(x, B) \}$, thus we have $d_{H}(A, B) = d_{H}(B, A)$.
+
+(d) For $A, B, C \in \mathcal{C}$, $d_{H}(A, B) \leq d_{H}(A, C) + d_{H}(C, B)$: since $d_{H}(A, C) + d_{H}(C, B) \geq $ $\sup_{x \in A} d(x, C) + \sup_{x \in C} d(x, B)$, then we know that $d_{H}(A, C) + d_{H}(C, B) \geq \sup_{x \in A} d(x, B)$. Similarly, we have $d_{H}(A, C) + d_{H}(C, B) \geq \sup_{x \in B} d(x, A)$, thus we can get $d_{H}(A, C) + d_{H}(C, B) \geq \max \{\sup_{x \in A} d(x, B), \sup_{x \in B} d(x, A) \} = d_{H}(A, B)$.
+
+\vspace{8pt}
+
+$\textbf{Exercise 3:}$
+
+Let $(X, \mathcal{A}, \mu)$ be a measure space and $\{f_{k}\}$ a sequence in $L^{p}(X)$ where $1 \leq p \leq + \infty$. Suppose that $\{f_{k}\}$ converges in $L^{p}(X)$ to $f$. Show that $f_{k}$ converges in measure to $f$ on $X$.
+
+$\textbf{Hint: }$ According to the definition f convergence in measure, you need to show that for any positive $\epsilon$, $\mu(\{x \in X: |f_{k}(x) - f(x)| \geq \epsilon \})$ converges to zero as $k$ tends to infinity.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+When $p = + \infty$, since the sequence $\{f_{k}\}$ converges to $f$ in $L^{\infty} (X)$, then $\forall \epsilon > 0$, $\exists N \in \mathbb{N}$, when $n > N$, we have $\|f_{n} - f\|_{\infty} < \epsilon$. It means that $|f_{n} - f|$ is less than $\epsilon$ almost everywhere. Thus we have $\mu(|f_{n} - f| > \epsilon) = 0$ when $n \to \infty$. So we get that $\mu(\{x \in X: |f_{n}(x) - f(x)| \geq \epsilon \})$ converges to zero as $n$ tends to infinity.
+
+When $1 \leq p < \infty$, for any $\epsilon > 0$, we have
+\begin{eqnarray*}
+\|f_{n} - f\|_{p}^{p} & = & \int_{X}^{} |f_{n} - f|^{p} \, d \mu \\
+& \geq & \int_{\{x \in X: |f_{n} - f|^{p} \geq \epsilon^{p}\}}^{} |f_{n} - f|^{p}  \, d \mu \\
+& \geq & \epsilon^{p} \mu(\{x \in X: |f_{n} - f|^{p} \geq \epsilon^{p} \})  \\
+& = & \epsilon^{p} \mu(\{x \in X: |f_{n} - f| \geq \epsilon \}),
+\end{eqnarray*}
+so we know that
+\begin{equation*}
+   \mu(\{x \in X: |f_{n} - f| \geq \epsilon \}) \leq \frac{1}{\epsilon^{p}} \| f_{n} - f \|_{p}^{p}.
+\end{equation*}
+Since $\{f_{n}\}$ converges in $L^{p}(X)$ to $f$, we have $\|f_{n} - f \|_{p}^{p} \to 0$ as $n \to \infty$. So, for any $\epsilon > 0$, $\mu(\{x \in X: |f_{n}(x) - f(x)| \geq \epsilon \})$ converges to zero as $n$ tends to infinity.
+
+
+\vspace{8pt}
+
+$\textbf{Exercise 4:}$
+
+Suppose $g_{n}, g \in L^{1}(\mathbb{R})$, $g_{n}$ converges to $g$ almost everywhere, and $\int_{}^{} g_{n} $ converges to $\int_{}^{} g$. Define $f_{n}(x) := g_{n}(x + n)$.
+
+(i) Prove or disprove: there exists an $f$ in $L^{1}(\mathbb{R})$ such that $f_{n}$ converges to $f$ almost everywhere.
+
+(ii) Prove or disprove: if there is an $f$ as in (i), then $\int_{}^{} f_{n}$ converges to $\int_{}^{} f$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) The statement is not true. We suppose $g_{n}(x) = (x + \frac{1}{n}) \mathbb{I}_{[0, 1]} (x)$ and $g(x) = x \mathbb{I}_{[0, 1]} (x)$, then we have
+\begin{equation*}
+   |g_{n} (x) - g(x) | = | (x + \frac{1}{n}) \mathbb{I}_{[0, 1]} (x) - x \mathbb{I}_{[0, 1]} (x) | = \frac{1}{n} \to 0
+\end{equation*}
+when $n$ tends to infinity. So, $g_{n}$ converges to $g$ almost everywhere. Since 
+\begin{equation*}
+   \int_{\mathbb{R}}^{} g_{n}(x) \, d x = \int_{0}^{1} (x + \frac{1}{n}) \, d x = \frac{1}{2} + \frac{1}{n} \to \frac{1}{2} 
+\end{equation*}
+as $n \to + \infty$ and
+\begin{equation*}
+   \int_{\mathbb{R}}^{} g (x) \, d x = \int_{0}^{1} x \, d x = \frac{1}{2},
+\end{equation*}
+we know that $\int_{}^{} g_{n} $ converges to $\int_{}^{} g$. As $f_{n}(x) := g_{n}(x + n)$, then $f_{n} (x) = (x + n + \frac{1}{n}) \mathbb{I}_{[0, 1]} (x)$, it is diverges as $f_{n} (x) > n$ for any $x \in [0, 1]$.
+
+(ii)
+
+
+
+
+
+
+\end{document}
