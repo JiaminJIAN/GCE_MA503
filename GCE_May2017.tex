@@ -168,9 +168,19 @@ as $n \to + \infty$ and
 \end{equation*}
 we know that $\int_{}^{} g_{n} $ converges to $\int_{}^{} g$. As $f_{n}(x) := g_{n}(x + n)$, then $f_{n} (x) = (x + n + \frac{1}{n}) \mathbb{I}_{[0, 1]} (x)$, it is diverges as $f_{n} (x) > n$ for any $x \in [0, 1]$.
 
-(ii)
-
-
+(ii) The statement is not true. We set $g_{n} (x) = \frac{1}{\sqrt{2 \pi}} e^{- \frac{x^{2}}{2}}$ for all $n \in \mathbb{N}$ and $g (x) = \frac{1}{\sqrt{2 \pi}} e^{- \frac{x^{2}}{2}}$ too. Since $\int_{- \infty}^{+ \infty} \frac{1}{\sqrt{2 \pi}} e^{- \frac{x^{2}}{2}} \, d x = 1$, then we have $g_{n} (x) \in L^{1}(\mathbb{R})$ and $g(x) \in L^{1}(\mathbb{R})$. As $g_{n} (x) = g(x)$, we know that $g_{n}$ converges to $g$ almost everywhere. By the definition of $f_{n}(x)$, we know that $f_{n}(x) = g_{n} (x + n) = \frac{1}{\sqrt{2 \pi}} e^{- \frac{(x+n)^{2}}{2}}$ and when $f(x) = 0$, for any fix $x \in \mathbb{R}$ we have,
+\begin{equation*}
+   |f_{n}(x) - f(x)| = |\frac{1}{\sqrt{2 \pi}} e^{- \frac{(x+n)^{2}}{2}} - 0| \to 0 
+\end{equation*}
+as $n \to + \infty$. So, we know that $f$ is in $L^{1}(\mathbb{R})$ and $f_{n}$ converges to $f$ almost everywhere. But for any $n \in \mathbb{N}$, we have
+\begin{equation*}
+   \int_{\mathbb{R}}^{} f_{n} (x) \, d x = \int_{\mathbb{R}}^{} \frac{1}{\sqrt{2 \pi}} e^{- \frac{(x+n)^{2}}{2}} \, d x = 1,
+\end{equation*}
+and we know that
+\begin{equation*}
+   \int_{\mathbb{R}}^{} f (x) \, d x = \int_{\mathbb{R}}^{} 0 \, d x = 0,
+\end{equation*}
+thus $\int_{}^{} f_{n}$ does not converges to $\int_{}^{} f$. 
 
 
 
