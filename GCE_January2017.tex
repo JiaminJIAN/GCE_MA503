@@ -46,9 +46,9 @@ Consider the sequence of functions $f_{n}$ defined on the non-negative reals by 
 
 $\textbf{Solution:}$
 
-(i) When $x = 0$, $f_{n} (x) = 0$ for any $n \in \mathbb{N}$. When $x > 0$, since
+(i) For any $x \in [0, \infty)$, as $P(x)$ is a polynomial function, by the L'Hospital's Rule, we have
 \begin{equation*}
-    \lim_{n \to \infty} f_{n} (x) = \lim_{n \to \infty} 2 n x P(x) e^{-n x^{2}} = \lim_{n \to \infty} \frac{2 n x P(x)}{e^{n x^{x}}} = 0,
+    \lim_{n \to \infty} f_{n} (x) = \lim_{n \to \infty} 2 n x P(x) e^{-n x^{2}} = \lim_{n \to \infty} \frac{2 n x P(x)}{e^{n x^{2}}} = 0,
 \end{equation*}
 then for any $\epsilon > 0$, there exist a $N \in \mathbb{N}$, such that $n > N$ we have 
 \begin{equation*}
@@ -151,17 +151,17 @@ Since $|g|^{2} \mathbb{I}_{[n, n+1]} (x) \leq |g(x)|^{2}$ and since $g \in L^{2}
 \lim_{n \to \infty} \Big{|} \int_{\mathbb{R}}^{} f_{n} g \, d x \Big{|}^{2} & \leq & \lim_{n \to \infty} \Big{(} \int_{\mathbb{R}}^{} |g|^{2} \mathbb{I}_{[n, n+1]} (x) \, d x \Big{)} \\
 & = & \int_{\mathbb{R}}^{} \lim_{n \to \infty} \big{(} |g|^{2} \mathbb{I}_{[n, n+1]} (x)  \big{)} \, d x.
 \end{eqnarray*}
-Since $f_{n} = \mathbb{I}_{[n, n+1]} (x)$ converges to $f(x) = 0$ pointwisely on $\mathbb{R}$, we can show that $|g|^{2} \mathbb{I}_{[n, n+1]} (x)$ also converges to $f(x) = 0$ pointwisely on $\mathbb{R}$, then we have
+Since $f_{n} = \mathbb{I}_{[n, n+1]} (x)$ converges to $f(x) = 0$ pointwise on $\mathbb{R}$, we can show that $|g|^{2} \mathbb{I}_{[n, n+1]} (x)$ also converges to $f(x) = 0$ pointwise on $\mathbb{R}$, then we have
 \begin{equation*}
     \lim_{n \to \infty} \Big{|} \int_{\mathbb{R}}^{} f_{n} g \, d x \Big{|}^{2} \leq \int_{\mathbb{R}}^{} \lim_{n \to \infty} \big{(} |g|^{2} \mathbb{I}_{[n, n+1]} (x)  \big{)} \, d x = 0.
 \end{equation*}
 Thus we know that $\lim_{n \to \infty} \int_{\mathbb{R}}^{} f_{n}(x) g(x) \, d x = 0$.
 
-(ii) Since $f_{n} = \mathbb{I}_{[n, n+1]} (x)$ converges to $f(x) = 0$ pointwisely on $\mathbb{R}$, but 
+(ii) Since $f_{n} = \mathbb{I}_{[n, n+1]} (x)$ converges to $f(x) = 0$ pointwise on $\mathbb{R}$, but 
 \begin{equation*}
     \int_{\mathbb{R}}^{} |f_{n}(x) - 0|^{2} \, d x = \int_{\mathbb{R}}^{} f_{n}^{2} \, d x = \int_{n}^{n + 1} 1 \, d x = 1,
 \end{equation*}
-we know that $f_{n}$ does not converges to $f(x) = 0$ in $L^{2}(\mathbb{R})$. Since $f_{n} = \mathbb{I}_{[n, n+1]} (x)$ converges to $f(x) = 0$ pointwisely on $\mathbb{R}$, then we can know that the sequence $f_{n}$ does not converge in $L^{2}(\mathbb{R})$.
+we know that $f_{n}$ does not converges to $f(x) = 0$ in $L^{2}(\mathbb{R})$, then we can get that the sequence $f_{n}$ does not converge in $L^{2}(\mathbb{R})$.
 
 \vspace{8pt}
 
@@ -173,7 +173,7 @@ Let $X$ be a matrix space. For any subset $A$ of $X$, we denote by $\bar{A}$ the
 
 (ii) Show that $A$ is open if and only if $\partial A \cap A = \emptyset$.
 
-(iii) Is the identity $\partial (\partial B) = \partial B$ valid for all subsets $B$ of $X$.
+(iii) Is the identity $\partial (\partial B) = \partial B$ valid for all subsets $B$ of $X$?
   
 (iv) Show that if $A$ is closed then $\partial(\partial A) = \partial A$.
 
@@ -219,7 +219,7 @@ Then we can get that
 & \leq & \liminf_{n \to \infty} \int_{}^{} (|f_{n}| + |f|) - \limsup_{n \to \infty}  \int_{}^{} (|f_{n} - f|) \\
 & = & \int_{}^{} 2 |f| - \limsup_{n \to \infty}  \int_{}^{} (|f_{n} - f|),
 \end{eqnarray*}
-so we have
+as $f \in L^{1}(X)$, then $\int_{}^{} |f| < + \infty$, we have
 \begin{equation*}
     \limsup_{n \to \infty}  \int_{}^{} (|f_{n} - f|) \leq 0.
 \end{equation*}
