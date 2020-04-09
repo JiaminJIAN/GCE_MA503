@@ -1,0 +1,225 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ GCE May, 2016}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\textbf{Exercise 1:}$
+
+A real-valued function $f$ is increasing on a closed interval $[a, b] \subset \mathbb{R}$ if and only if $f(x_{2}) \geq f(x_{1})$ whenever $x_{2} > x_{1}$.
+
+(i) Using the definition of measurable, show that $f$ is measurable on $[a, b]$.
+
+(ii) Show that $f$ is continuous, except perhaps a countable number of points.
+
+\vspace{8pt}
+
+$\textbf{Solution:}$
+
+(i) For any $c \in \mathbb{R}$, we denote $S = f^{-1} ([c, +\infty])$, by the definition of $S$, we know that $S = \{x \in [a, b] | f(x) \geq c \}$. For any $x \in S$, if $y > x$ and $y \in [a, b]$, as $f$ is increasing, we have $f(y) \geq f(x) \geq c$. So, we have $y \in S$. It is equivalent to that if $x \in S$, for any $y \in [a, b]$ and $y \geq x$, we have $y \in S$. This means $S$ can only be $\empty$, $[a, b]$, $(a, b]$, $[\inf S, b]$ and $(\inf S, b]$, all of the sets are measurable, thus we know that $f$ is measurable.
+
+\vspace{4pt}
+
+(ii) Let $f(x^{-})$ and $f(x^{+})$ denote the left and the right hand limits of $f$ respectively. Let $A$
+be the set of points where $f$ is not continuous. Then for any $x \in A \subset [a, b]$, we can find a rational number $f^{*}(x) \in \mathbb{Q}$, such that $f(x^{-}) < f(x^{*}) < f(x^{+})$. Since $f$ is increasing function, then for $x_{1}, x_{2} \in A$ and $x_{1} < x_{2}$, we have $f(x_{1}) \leq f(x_{2})$, also we have $f(x_{1}^{+}) \leq f(x_{2}^{-})$. Thus we have $f(x_{1}^{*}) < f(x_{1}^{+}) \leq f(x_{2}^{-}) < f(x_{2}^{*})$, then we know that $f(x_{1}^{*}) < f(x_{2}^{*})$. Then there exists a injection between $A$ and a subsets of rational number $\mathbb{Q}$. Since $\mathbb{Q}$ is countable, then we know that $A$ is also countable. Thus $f$ is continuous except perhaps a countable number of points.
+
+
+\noindent\rule[0.25\baselineskip]{\textwidth}{0.5pt}
+
+\vspace{8pt}
+$\textbf{Exercise 2:}$
+
+If $f$ is Lebesgue integrable on $\mathbb{R}$, define
+\begin{equation*}
+    F(x) = \int_{0}^{x} f \, d \mu
+\end{equation*}
+where $\mu(E)$ is the Lebesgue measurable set $E \subset \mathbb{R}$. Show that
+
+(i) $F$ is continuous.
+
+(ii) If $\mu(E) = 0$, then $\mu(F(E)) = 0$. 
+ 
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) Suppose $\{x_{n}\}$ is a sequence and $x_{n} \to x_{0}$ as $n$ goes to infinity. Then we need to show that $F(x_{n})$ converges to $F(x_{0})$, i.e.
+\begin{equation*}
+    \lim_{n \to + \infty} \int_{0}^{x_{n}} f \, d \mu = \int_{0}^{x_{0}} f \, d \mu.
+\end{equation*}
+Since we have
+\begin{equation*}
+    \lim_{n \to + \infty} \int_{0}^{x_{n}} f \, d \mu = \lim_{n \to + \infty} \int_{0}^{\infty} f \, \mathbb{I}_{[0, x_{n}]} (x) \, d \mu
+\end{equation*}
+and
+\begin{equation*}
+    |f \, \mathbb{I}_{[0, x_{n}]} (x) | \leq |f| \in L^{1}(\mathbb{R}),
+\end{equation*}
+by the dominate convergence theorem, we have
+\begin{equation*}
+     \lim_{n \to + \infty} \int_{0}^{\infty} f \, \mathbb{I}_{[0, x_{n}]} (x) \, d \mu =  \int_{0}^{\infty}  \lim_{n \to + \infty} f \, \mathbb{I}_{[0, x_{n}]} (x) \, d \mu.
+\end{equation*}
+Next we need to show that
+\begin{equation*}
+    \lim_{n \to + \infty} \, \mathbb{I}_{[0, x_{n}]} (x) = \mathbb{I}_{[0, x_{0}]} (x).
+\end{equation*}
+If $x_{n} \to x_{0}$, then for any $0 < t < x_{0}$, there exists a $N_{1} \in \mathbb{N}$, such that $t < x_{n}$ for any $n > N_{1}$, and hence we have $\mathbb{I}_{[0, x_{n}]} (t) = 1$ for all $n > N_{1}$. Similarly, for $t > x_{0}$, there exists a $N_{2} \in \mathbb{N}$ such that $\mathbb{I}_{[0, x_{n}]} (t) = 0$ for all $n > N_{2}$. Since $\{x_{0}\}$ is a singleton, which has zero measure,, thus we have 
+\begin{equation*}
+    \lim_{n \to + \infty} \, \mathbb{I}_{[0, x_{n}]} (x) = \mathbb{I}_{[0, x_{0}]} (x) \, a.e.
+\end{equation*}
+Then we have
+\begin{equation*}
+     \lim_{n \to + \infty} \int_{0}^{\infty} f \, \mathbb{I}_{[0, x_{n}]} (x) \, d \mu =  \int_{0}^{\infty} f \, \mathbb{I}_{[0, x_{0}]} (x) \, d \mu = \int_{0}^{x_{0}} f \, d \mu,
+\end{equation*}
+from which we know $F$ is continuous.
+
+(ii) We need to show that the continuous image of a zero measure set is also a zero measure set. For $E \in \mathbb{R}$ and $\mu(E) = 0$, we can find a disjoint sequence ${E_{n}}$ such that $E \subset \cup_{n=1}^{\infty} E_{n}$ and for any $\epsilon > 0$ we have $\mu(\cup_{n=1}^{\infty} E_{n}) < \epsilon$. And then we have $F(E) \subset F(\cup_{n=1}^{\infty} E_{n}) $. Then we know that
+\begin{equation*}
+    \mu(F(E)) \leq \mu(F(\cup_{n=1}^{\infty} E_{n})) .
+\end{equation*}
+Since $F$ is continuous, if $f$ is lipchitz continuous or $f$ is absolutely continuous, then there exists a constant $K > 0$ and we have $\mu(F(\cup_{n=1}^{\infty} E_{n}))  \leq K \mu(\cup_{n=1}^{\infty} E_{n}) < K \epsilon$. So, we know that $\mu(F(E)) = 0$.
+ 
+\noindent\rule[0.25\baselineskip]{\textwidth}{0.5pt}
+
+\vspace{8pt}
+
+$\textbf{Exercise 3:}$
+
+Let $f$ be in $L^{1}(\mathbb{R})$ such that $f \geq 0$ almost everywhere and $\int_{\mathbb{R}}^{} f = 1$. Set $f_{n} (x) = n f(n x)$. Let $g$ be in $L^{\infty}(\mathbb{R})$.
+
+(i) Let $x_{0}$ be in $\mathbb{R}$. Assume that $g$ is continuous at $x_{0}$. show that
+\begin{equation*}
+   \lim_{n \to \infty} \int_{\mathbb{R}}^{} f_{n}(x_{0} - y) g(y) \, d y = g(x_{0}).
+\end{equation*}
+
+(ii) If $g$ is uniformly continuous, is this limit uniformly in $x_{0}$?
+
+(iii) If $h$ is in $L^{1}(\mathbb{R})$ show that the function in $x$
+\begin{equation*}
+    \int_{\mathbb{R}}^{} f_{n} (x - y) h(y) \, d y
+\end{equation*}
+converges to $h$ in $L^{1}(\mathbb{R})$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) We denote $z = x_{0} - y$, so we have
+\begin{equation*}
+    \int_{\mathbb{R}}^{} f_{n}(x_{0} - y) g(y) \, d y = \int_{\mathbb{R}}^{} f_{n}(z) g(x_{0} - z) \, d z = \int_{\mathbb{R}}^{} n f(n z) g(x_{0} - z) \, d z,
+\end{equation*}
+and then we denote $u = n z$,
+\begin{equation*}
+    \int_{\mathbb{R}}^{} n f(n z) g(x_{0} - z) \, d z = \int_{\mathbb{R}}^{}  f(u) g(x_{0} - \frac{u}{n}) \, d u.
+\end{equation*}
+Since $f \in L^{1} (\mathbb{R})$ and $g(x) \in L^{\infty}(\mathbb{R})$, there exists a $M > 0$ such that
+\begin{equation*}
+    |f(u) g(x_{0} - \frac{u}{n})| \leq M f(u) \in L^{1}(\mathbb{R}),
+\end{equation*}
+by the dominate convergence theorem, we have
+\begin{eqnarray*}
+    \lim_{n \to \infty} \int_{\mathbb{R}}^{} f_{n}(x_{0} - y) g(y) \, d y & = &  \lim_{n \to \infty} \int_{\mathbb{R}}^{}  f(u) g(x_{0} - \frac{u}{n}) \, d u \\
+    & = & \int_{\mathbb{R}}^{} \lim_{n \to \infty} f(u) g(x_{0} - \frac{u}{n}) \, d u \\
+    & = & \int_{\mathbb{R}}^{} f(u) g(x_{0}) \, d u \\
+    & = & g(x_{0})
+\end{eqnarray*}
+as $g$ is continuous at $x_{0}$.
+
+\vspace{4pt}
+
+(ii) We need to show that $\int_{\mathbb{R}}^{} f_{n}(x - y) g(y) \, d y$ is uniformly converges to $g(x)$ when $g$ is uniformly continuous on $\mathbb{R}$. By the definition of $f_{n}(x)$, we have
+\begin{equation*}
+    \int_{\mathbb{R}}^{} f_{n}(x) \, d x = \int_{\mathbb{R}}^{} n f(n x) \, d x = \int_{\mathbb{R}}^{} f(n x) \, d (n x) = 1.
+\end{equation*}
+For any $x \in \mathbb{R}$,
+\begin{eqnarray*}
+    \Big{|} \int_{\mathbb{R}}^{} f_{n}(x - y) g(y) \, d y - g(x) \Big{|} & = &  \Big{|} \int_{\mathbb{R}}^{}  f_{n}(z) g(x - z) \, d z - g(x) \Big{|} \\
+    & = & \Big{|} \int_{\mathbb{R}}^{}  f_{n}(z) g(x - z) \, d z - \int_{\mathbb{R}}^{}  f_{n}(z) g(x) \, d z \Big{|} \\
+    & \leq &  \int_{\mathbb{R}}^{}  f_{n}(z) | g(x - z) - g(x) | \, d z \\
+    & = & \int_{\mathbb{R}}^{} n f(n z) | g(x - z) - g(x) | \, d z,
+\end{eqnarray*}
+we denote $ u = n z$, then we have
+\begin{equation*}
+    \Big{|} \int_{\mathbb{R}}^{} f_{n}(x - y) g(y) \, d y - g(x) \Big{|} \leq \int_{\mathbb{R}}^{}  f(u) \Big{|} g \Big{(} x - \frac{u}{n} \Big{)} - g(x) \Big{|} \, d u.
+\end{equation*}
+As $f \in L^{1}(\mathbb{R})$ and $g \in L^{\infty}(\mathbb{R})$, there exists a $M > 0$ such that
+\begin{equation*}
+    \Big{|} f(u) \Big{(} g(x - \frac{u}{n}) - g(x)\Big{)} \Big{|} \leq 2M f(u) \in L^{1}(\mathbb{R}),
+\end{equation*}
+by the dominate convergence theorem, we have
+\begin{equation*}
+    \lim_{n \to \infty} \Big{|} \int_{\mathbb{R}}^{} f_{n}(x - y) g(y) \, d y - g(x) \Big{|} \leq \int_{\mathbb{R}}^{}  \lim_{n \to \infty} f(u) \Big{|} g \Big{(} x - \frac{u}{n} \Big{)} - g(x) \Big{|} \, d u.
+\end{equation*}
+Since $g$ is uniformly continuous on $\mathbb{R}$, for any $x \in \mathbb{R}$, and for any $\epsilon > 0$, there exists a $N \in \mathbb{N}$, which is independent of $x$, such that when $n > N$, we have $g ( x - \frac{u}{n} ) - g(x) < \epsilon $. So, for the above $\epsilon$ and $N$, when $n > N$ we have
+\begin{equation*}
+    \int_{\mathbb{R}}^{} f(u) \Big{|} g \Big{(} x - \frac{u}{n} \Big{)} - g(x) \Big{|} \, d u \leq \int_{\mathbb{R}}^{} f(u) \epsilon \, d u = \epsilon
+\end{equation*}
+thus we know that $\int_{\mathbb{R}}^{} f_{n}(x - y) g(y) \, d y$ is uniformly converges to $g(x)$.
+
+\vspace{4pt}
+
+(iii) As $h \in L^{1}(\mathbb{R})$ and $C_{c} (\mathbb{R})$ is dense in $L^{1} (\mathbb{R})$, for any $\epsilon > 0$, there exists  a function $g \in C_{c}(\mathbb{R})$, such that
+\begin{equation*}
+    \|g - h\|_{1} < \epsilon.
+\end{equation*}
+We denote $\int_{\mathbb{R}}^{} f_{n} (x - y) h(y) \, d y = h_{n}(x)$ and $\int_{\mathbb{R}}^{} f_{n} (x - y) g(y) \, d y = g(x)$, then we have
+\begin{equation*}
+    \|h(x) - h_{n}(x)\|_{1} \leq \|h(x) - g(x)\| + \|g(x) - g_{n}(x)\| + \|g_{n}(x) - h_{n}(x)\|.
+\end{equation*}
+For the above $\epsilon$, as $\|g - h\|_{1} < \epsilon$ and by the result we get from (ii), $g_{n}(x)$ is uniformly converges to $g(x)$, we have $\|g_{n}(x) - g(x)\| < \epsilon$, then we have
+\begin{equation*}
+    \lim_{n \to \infty} \|h(x) - h_{n}(x)\|_{1} = \lim_{n \to \infty} \|g_{n}(x) - h_{n}(x)\|.
+\end{equation*}
+Next we need to verify the term $\|g_{n}(x) - h_{n}(x)\|$, since
+\begin{eqnarray*}
+    \|g_{n}(x) - h_{n}(x)\| & = & \Big{\|} \int_{\mathbb{R}}^{} f_{n} (x - y) h(y) \, d y - \int_{\mathbb{R}}^{} f_{n} (x - y) g(y) \, d y \Big{\|} \\
+    & = & \int_{\mathbb{R}}^{} \Big{|}  \int_{\mathbb{R}}^{} f_{n} (x - y) ( h(y) - g(y)) \, d y \Big{|} \, d x \\
+    & \leq & \int_{\mathbb{R}}^{} \int_{\mathbb{R}}^{} f_{n} (x - y) | h(y) - g(y)| \, d y \, d x \\
+    & = & \int_{\mathbb{R}}^{} \int_{\mathbb{R}}^{} f (u) \Big{|} h \Big{(} x - \frac{u}{n} \Big{)} - g \Big{(} x - \frac{u}{n} \Big{)} \Big{|} \, d u \, d x,
+\end{eqnarray*}
+by Fubini's theorem, we have
+\begin{equation*}
+    \|g_{n}(x) - h_{n}(x)\| \leq \int_{\mathbb{R}}^{} f (u)  \int_{\mathbb{R}}^{}  \Big{|} h \Big{(} x - \frac{u}{n} \Big{)} - g \Big{(} x - \frac{u}{n} \Big{)} \Big{|} \, d x \, d u.
+\end{equation*}
+Since $f \in L^{1}(\mathbb{R})$, $h \in L^{1}(\mathbb{R})$ and $g \in C_{c}(\mathbb{R})$, there exists a $M > 0$ such that 
+\begin{equation*}
+    f (u) \Big{|} h \Big{(} x - \frac{u}{n} \Big{)} - g \Big{(} x - \frac{u}{n} \Big{)} \Big{|} \leq 2 M f(u) \in L^{1}(\mathbb{R}),
+\end{equation*}
+by the dominate convergence theorem, we have
+\begin{eqnarray*}
+    \lim_{n\to \infty} \|g_{n}(x) - h_{n}(x)\| & \leq & \int_{\mathbb{R}}^{} f (u) \lim_{n\to \infty}  \int_{\mathbb{R}}^{}  \Big{|} h \Big{(} x - \frac{u}{n} \Big{)} - g \Big{(} x - \frac{u}{n} \Big{)} \Big{|} \, d x \, d u \\ & = & \int_{\mathbb{R}}^{} f (u) \lim_{n\to \infty}  \Big{\|} h \Big{(} x - \frac{u}{n} \Big{)} - g \Big{(} x - \frac{u}{n} \Big{)} \Big{\|} \, d u = 0.
+\end{eqnarray*}
+Thus we know that
+\begin{equation*}
+    \lim_{n \to \infty} \|h(x) - h_{n}(x)\|_{1} = 0,
+\end{equation*}
+which means $\int_{\mathbb{R}}^{} f_{n} (x - y) h(y) \, d y$ converges to $h$ in $L^{1}(\mathbb{R})$.
+
+\end{document}
