@@ -8,3 +8,4 @@
 - [May 2017](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_May2017.pdf)
 - [January 2017](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_January2017.pdf)
 - [August 2016](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_August2016.pdf)
+- [May 2016](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_May2016.pdf)
