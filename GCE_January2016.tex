@@ -180,7 +180,25 @@ thus we know that
     \lim_{p \to 0^{+}} \int_{}^{} f^{p} = \mu(\{x \in X:  f(x) > 0\}).
 \end{equation*}
 
-(ii) We denote $S = \{x \in X: f > 0\}$, then
+(ii) 
+\textbf{Method 1:}
+
+As $\mu(X) = 1$ and $f \in L^{1}(X)$, we know that $f \in L^{\infty} (X)$. We denote $S = \{x \in X: f > 0\}$, then
+\begin{eqnarray*}
+    \int_{X}^{} f^{p} \, d \mu & = & \int_{\{x \in X: f > 0\}}^{} f^{p} \, d \mu + \int_{\{x \in X: f = 0\}}^{} f^{p} \, d \mu \\
+    & = & \int_{S}^{} f^{p} \, d \mu \\
+    & \leq & \int_{S}^{} \|f\|_{\infty}^{p} \, d \mu \\
+    & = & \|f\|_{\infty}^{p} \mu(S),
+\end{eqnarray*}
+thus we have
+\begin{equation*}
+    \lim_{p \to 0^{+}} \Big{(} \int_{}^{} f^{p} \Big{)}^{\frac{1}{p}} \leq \lim_{p \to 0^{+}} \|f\|_{\infty} (\mu(S))^{\frac{1}{p}} = 0
+\end{equation*}
+as $\mu(S) < 1$. 
+
+\textbf{Method 2:}
+
+We denote $S = \{x \in X: f > 0\}$, then
 \begin{eqnarray*}
     \int_{X}^{} f^{p} \, d \mu & = & \int_{\{x \in X: f > 0\}}^{} f^{p} \, d \mu + \int_{\{x \in X: f = 0\}}^{} f^{p} \, d \mu \\
     & = & \int_{S}^{} f^{p} \, d \mu.
