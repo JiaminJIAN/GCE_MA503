@@ -1,0 +1,232 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ GCE May, 2015}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\textbf{Exercise 1:}$
+
+Give an example of $f_{n}, f \in L^{1}(\mathbb{R})$ such that $f_{n} \to f$ uniformly, but $\|f_{n}\|_{1}$ does not converge to $\|f\|_{1}$.
+
+
+\vspace{8pt}
+
+$\textbf{Solution:}$
+
+Example 1: We suppose that $f_{n}(x) = \frac{1}{n} \mathbb{I}_{[1, n]} (x)$ and $f(x) = 0$. Since
+\begin{equation*}
+    |f_{n}(x) - 0| = |\frac{1}{n} \mathbb{I}_{[1, n]} (x) - 0| \leq \frac{1}{n},
+\end{equation*}
+we know that $f_{n} \to f$ uniformly. As $\|f(x)\|_{1} = 0$ and 
+\begin{equation*}
+    \|f_{n}\|_{1} = \int_{\mathbb{R}}^{} |f_{n}(x)| \, d x = \int_{1}^{n} \frac{1}{n} \, d x = \frac{n-1}{n} \to 1
+\end{equation*}
+as $n \to \infty$. So we have $\|f_{n}\|_{1}$ does not converge to $\|f\|_{1}$.
+
+Example 2: We set $f(x) = 0$ and 
+\begin{equation*}
+    f_{n}(x) = \Big{(} - \frac{1}{2^{2n}} + \frac{1}{2^{n}} \Big{)} \cdot \mathbb{I}_{[0, 2^{2n}]} (x).
+\end{equation*}
+Since $|f_{n}(x) - f(x)| < \frac{1}{2^{n}}$, we know that $f_{n} \to f$ uniformly. And as
+\begin{equation*}
+    \|f_{n}(x)\|_{1} = \int_{0}^{2^{2n}}  - \frac{1}{2^{2n}} + \frac{1}{2^{n}} \, d x = 2^{n} - 1 \to + \infty,
+\end{equation*}
+we have $\|f_{n}\|_{1}$ does not converge to $\|f\|_{1}$.
+
+
+\noindent\rule[0.25\baselineskip]{\textwidth}{0.5pt}
+
+\vspace{8pt}
+
+$\textbf{Exercise 2:}$
+
+Show that for all $\epsilon > 0$ and all $f \in L^{1}(\mathbb{R}), \exists n \in \mathbb{N}$ such that $\|f - f_{n}\|_{1} < \epsilon$ for some $f_{n}$ with $|f_{n}| \leq n$ and $f_{n} = 0$ on $\mathbb{R} \setminus [-n, n]$.
+ 
+\vspace{8pt}
+$\textbf{Solution:}$
+
+We suppose that
+\begin{equation*}
+    f_{n} (x) = f \cdot \mathbb{I}_{\{x: |f(x)| \leq n\} \cap \{x \in [-n, n]\}} (x),
+\end{equation*}
+so we know that $f_{n} = 0$ on $\mathbb{R} \setminus [-n, n]$ and $|f_{n}| \leq n$. Next we need to show that $\exists n \in \mathbb{N}$ such that $\|f - f_{n}\|_{1} < \epsilon$. We know that
+\begin{eqnarray*}
+    \|f_{n} - f\|_{1} &=& \int_{\mathbb{R}}^{} |f_{n} - f| \, d x \\
+    &=& \int_{\{|f| \geq n\} \cup \{x \in \mathbb{R} \setminus [-n, n]\}}^{} |f| \, d x  \\
+    & \leq &  \int_{\{|f| \geq n\}}^{} |f| \, d x + \int_{-\infty}^{-n} |f| \, d x + \int_{n}^{+\infty} |f| \, d x .
+\end{eqnarray*}
+Since 
+\begin{equation*}
+    \int_{\{|f| \geq n\}}^{} |f| \, d x = \int_{\mathbb{R}}^{} |f| \mathbb{I}_{\{|f|>n\}} (x) \, d x
+\end{equation*}
+and $|f| \mathbb{I}_{\{|f|>n\}} (x)$ goes to $0$ pointwise and $|f| \mathbb{I}_{|f|>n} (x) < |f| \in L^{1}(\mathbb{R})$, by the dominate convergence theorem, we have
+\begin{equation*}
+    \lim_{n \to \infty} \int_{\mathbb{R}}^{} |f| \mathbb{I}_{|f|>n} \, d x = \int_{\mathbb{R}}^{}  \lim_{n \to \infty} |f| \mathbb{I}_{|f|>n} (x) \, d x = 0.
+\end{equation*}
+Similarly, since 
+\begin{equation*}
+    \int_{n}^{+ \infty} |f| \, d x = \int_{\mathbb{R}}^{} |f| \mathbb{I}_{[n, +\infty)} (x) \, d x,
+\end{equation*}
+and $|f| \mathbb{I}_{[n, +\infty)} (x) \to 0$ as $n \to \infty$ pointwise and $|f| \mathbb{I}_{[n, +\infty)} (x) \leq |f| \in L^{1}(\mathbb{R})$, by the dominate convergence theorem, we can get
+\begin{equation*}
+  \lim_{n \to \infty} \int_{\mathbb{R}}^{} |f| \mathbb{I}_{[n, +\infty)} (x) \, d x = \int_{\mathbb{R}}^{}  \lim_{n \to \infty} |f| \mathbb{I}_{[n, +\infty)} (x) \, d x = 0.
+\end{equation*}
+Then we also can get
+\begin{equation*}
+    \lim_{n \to \infty} \int_{-\infty}^{-n} |f| \, d x = 0.
+\end{equation*}
+Thus we have
+\begin{equation*}
+    \lim_{n \to \infty} \|f_{n} - f\|_{1} \leq \lim_{n \to \infty} \Big{(} \int_{\{|f| \geq n\}}^{} |f| \, d x + \int_{-\infty}^{-n} |f| \, d x + \int_{n}^{+\infty} |f| \, d x \Big{)} = 0,
+\end{equation*}
+hence we know that $\exists n \in \mathbb{N}$ such that $\|f - f_{n}\|_{1} < \epsilon$.
+
+\noindent\rule[0.25\baselineskip]{\textwidth}{0.5pt}
+
+\vspace{8pt}
+
+$\textbf{Exercise 3:}$
+
+Let $(X, \mathcal{A}, \mu)$ be a measure space.
+
+(i) If $f$ is in $L^{1}(X) \cap L^{\infty}(X)$, show that $|f|^{p} \in L^{1}(X)$ for all $p$ in $(1, \infty)$.
+
+(ii) If $f$ is in $L^{1}(X) \cap L^{\infty}(X)$, show that
+\begin{equation*}
+    \lim_{p \to \infty} \Big{(} \int_{}^{} |f|^{p} \Big{)}^{\frac{1}{p}} = \|f\|_{\infty}.
+\end{equation*}
+
+(iii) Set $A = \{x \in X: |f(x)| > 0\}$. If $f$ is in $L^{\infty} (X), \mu(A) < \infty$, and $\mu(A) \neq 1$, find
+\begin{equation*}
+    \lim_{p \to 0^{+}} \Big{(} \int_{}^{} |f|^{p} \Big{)}^{\frac{1}{p}}.
+\end{equation*}
+
+(iv) We now assume that the set $A$ defined in (iii) satisfies $\mu(A) = 1$, that $f$ is in $L^{\infty}(X)$, and $\ln |f|$ is in $L^{1}(X)$, find
+\begin{equation*}
+    \lim_{p \to 0^{+}} \Big{(} \int_{}^{} |f|^{p} \Big{)}^{\frac{1}{p}}.
+\end{equation*}
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) We need to show $|f|^{p} \in L^{1}(X)$, so we just need to show that for any $p \in (1, \infty)$, $f \in L^{p}(X)$. For any $p \in (1, \infty)$, since $f \in L^{1}(X) \cap L^{\infty}(X)$, we have
+\begin{eqnarray*}
+    \|f\|_{p} &=& \Big{(} \int_{X}^{} |f|^{p} \, d \mu \Big{)}^{\frac{1}{p}} \\
+    &=& \Big{(} \int_{X}^{} |f| |f|^{p-1} \, d \mu \Big{)}^{\frac{1}{p}} \\
+    & \leq &  (\|f\|_{\infty})^{\frac{p-1}{p}} (\|f\|_{1})^{\frac{1}{p}} < \infty,
+\end{eqnarray*}
+thus we know that $f \in L^{p}(X)$. So, we know that $|f|^{p} \in L^{1}(X)$ for all $p$ in $(1, \infty)$.
+
+\vspace{8pt}
+
+(ii) We denote $t \in [0, \|f \|_{\infty})$, then the set 
+\begin{equation*}
+   A = \{x \in X: |f(x)| \geq t \}
+\end{equation*}
+has positive and bounded measure. Since
+\begin{eqnarray*}
+\|f\|_{p} & = & \Big{(} \int_{(0, 1)}^{} |f|^{p} \, d \mu \Big{)}^{\frac{1}{p}} \geq \Big{(} \int_{A}^{} |f|^{p} \, d \mu \Big{)}^{\frac{1}{p}} \\
+& \geq & \Big{(} t^{p} \mu(A)\Big{)}^{\frac{1}{p}} = t (\mu(A))^{\frac{1}{p}},
+\end{eqnarray*}
+if $\mu(A)$ is finite, then when $p \to + \infty$, we have $(\mu(A))^{\frac{1}{p}} \to 1$ and if $\mu(A) = \infty$, then $(\mu(A)^{\frac{1}{p}}) = \infty$, in both cases we have
+\begin{equation*}
+   \liminf_{p \to + \infty} \|f\|_{p} \geq t.
+\end{equation*}
+Since $t$ is arbitrary and $t \in [0, \|f \|_{\infty})$, we have
+\begin{equation*}
+   \liminf_{p \to + \infty} \|f\|_{p} \geq \|f \|_{\infty} .
+\end{equation*}
+On the other hand, as $f(x)$ is in $L^{1}(X)$, we have
+\begin{eqnarray*}
+    \|f\|_{p} &=& \Big{(} \int_{X}^{} |f|^{p} \, d \mu \Big{)}^{\frac{1}{p}} \\
+    &=& \Big{(} \int_{X}^{} |f| |f|^{p-1} \, d \mu \Big{)}^{\frac{1}{p}} \\
+    & \leq &  (\|f\|_{\infty})^{\frac{p-1}{p}} (\|f\|_{1})^{\frac{1}{p}} .
+\end{eqnarray*}
+Since $\|f\|_{1} < + \infty$, then when $p \to + \infty$, we know that
+\begin{equation*}
+   \limsup_{p \to + \infty} \|f\|_{p} \leq \|f \|_{\infty} .
+\end{equation*}
+Thus we have
+\begin{equation*}
+   \limsup_{p \to + \infty} \|f\|_{p} \leq \|f \|_{\infty} \leq \liminf_{p \to + \infty} \|f\|_{p},
+\end{equation*}
+then we know that $\|f \|_{p} \rightarrow \|f \|_{\infty}$ as $p \rightarrow \infty$.
+
+
+(iii) When $\mu(A)<1$, we have
+\begin{eqnarray*}
+    \int_{X}^{} |f|^{p} \, d \mu &=& \int_{A}^{} |f|^{p} \, d \mu \\
+    & \leq & \|f\|_{\infty}^{p} \mu(A).
+\end{eqnarray*}
+Since $f \in L^{\infty}(X)$ and $\mu(A) < 1$, we know that
+\begin{equation*}
+    \lim_{p \to 0^{+}} \Big{(} \int_{}^{} |f|^{p} \Big{)}^{\frac{1}{p}} \leq \lim_{p \to 0^{+}} \|f\|_{\infty} (\mu(A))^{\frac{1}{p}} = 0
+\end{equation*}
+But if we set $f = 1$ and $\mu(X) < \infty$, we know that $f \in L^{\infty}(X)$, if $\mu(A) > 1$, we have
+\begin{equation*}
+    \lim_{p \to 0^{+}} \Big{(} \int_{}^{} |f|^{p} \Big{)}^{\frac{1}{p}} = \lim_{p \to 0^{+}} (\mu(A))^{\frac{1}{p}} = \infty.
+\end{equation*}
+Thus the limit is not exist.
+
+(iv) Since we have $A = \{x \in X: |f| > 0\}$, then
+\begin{eqnarray*}
+    \int_{X}^{} |f|^{p} \, d \mu & = & \int_{\{x \in X: |f| > 0\}}^{} |f|^{p} \, d \mu + \int_{\{x \in X: |f| = 0\}}^{} |f|^{p} \, d \mu \\
+    & = & \int_{A}^{} |f|^{p} \, d \mu.
+\end{eqnarray*}
+And we denote that $F(p) = \log (\int_{A}^{} |f|^{p} \, d \mu)$, then we know that
+\begin{equation*}
+    \lim_{p \to 0^{+}} \Big{(} \int_{}^{} |f|^{p} \Big{)}^{\frac{1}{p}} = \lim_{p \to 0^{+}} e^{\frac{F(p)}{p}}.
+\end{equation*}
+As $F(0) = \log(\mu(A)) = 0$ and $e^{x}$ is continuous, then we have
+\begin{eqnarray*}
+    \lim_{p \to 0^{+}} \Big{(} \int_{}^{} |f|^{p} \Big{)}^{\frac{1}{p}} & = & \lim_{p \to 0^{+}} \exp \Big{\{} \frac{F(p) - F(0)}{p - 0} \Big{\}} \\
+    & = & \exp \Big{\{} \lim_{p \to 0^{+}} \frac{F(p) - F(0)}{p - 0} \Big{\}} \\
+    & = & e^{F^{'}(0)}.
+\end{eqnarray*}
+As $F(p) = \log (\int_{A}^{} |f|^{p} \, d \mu)$ and $\ln |f|$ is in $L^{1}(X)$, we have 
+\begin{equation*}
+    F^{'}(p) = \frac{\int_{A}^{} |f|^{p} \cdot \log |f| \, d \mu}{\int_{A}^{} |f|^{p} \, d \mu},
+\end{equation*}
+thus we have $F^{'}(0) = \frac{\int_{A}^{} \log |f| \, d \mu}{\mu(A)} = \int_{A}^{} \log |f| \, d \mu$ . Then we know that
+\begin{eqnarray*}
+    \lim_{p \to 0^{+}} \Big{(} \int_{}^{} f^{p} \Big{)}^{\frac{1}{p}} & = & e^{F^{'}(0)} \\
+    & = & \exp (\int_{A}^{} \log |f| \, d \mu).
+\end{eqnarray*}
+
+
+
+
+
+
+
+ 
+
+\end{document}
