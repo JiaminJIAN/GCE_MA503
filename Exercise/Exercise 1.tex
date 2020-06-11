@@ -1,0 +1,108 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{Analysis Exercise}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\textbf{Exercise 1:}$
+
+Let $X$ and $Y$ be two Banach spaces. $C(X, Y)$ is the set of all continuous mappings $f: X \mapsto Y$. For $f, g \in C(X, Y)$, we define
+\begin{equation*}
+    \|f - g\| = \sup_{x \in X} \|f(x) - g(x)\|.
+\end{equation*}
+
+(i) Prove that $C(X, Y)$ is a Banach space.
+
+(ii) If $X$ and $Y$ are compact, is $C(X, Y)$ compact?
+
+\vspace{8pt}
+
+$\textbf{Solution:}$
+
+(i) We need to show that $C(X, Y)$ is a complete normed vector space. Firstly we show that $C(X, Y)$ is a normed space. 
+\begin{itemize}
+    \item For any $f \in C(X, Y)$, $\|f\| = \sup_{x \in X} \|f(x)\| \geq 0$. And if $\|f\| = 0$, we have $\sup_{x \in X} \|f\| = 0$, then for any $x \in X$, $f(x) = 0$, thus $f \equiv 0$.
+    \item For any $\lambda \in \mathbb{R}$, $\| \lambda f\| = \sup_{x \in X} \|\lambda f(x)\| = |\lambda| \sup_{x \in X} \|f(x)\| = |\lambda| \|f\|$.
+    \item For any $f, g \in C(X, Y)$, for any $x \in X$, we have $\|f(x) + g(x)\| \leq \|f(x)\| + \|g(x)\|$, and by the definition of the norm in $C(X, Y)$, we have $\|f(x) + g(x)\| \leq \sup_{x \in X} \|f(x)\| + \sup_{x \in X} \|g(x)\| = \|f\| + \|g\|$. By the arbitrary of $x$, we can get $\|f + g\| = \sup_{x \in X} \|f(x) + g(x)\| \leq \|f\| + \|g\|$.
+\end{itemize}
+
+Next we need to show that $C(X, Y)$ is complete. Suppose $\{f_{n}\}$ is a Cauchy sequence in $C(X, Y)$, then $\forall \epsilon > 0, \exists N \in \mathbb{N}, \forall p > q > N$,
+\begin{equation*}
+    \sup_{x \in X} \|f_{p}(x) - f_{q} (x) \| < \epsilon.
+\end{equation*}
+For any $y \in X$, we have
+\begin{equation*}
+    \|f_{p}(y) - f_{q} (y) \| \leq \sup_{x \in X} \|f_{p}(x) - f_{q} (x) \| < \epsilon,
+\end{equation*}
+thus $f_{n}(y)$ is a Cauchy sequence in $Y$. As $Y$ is a Banach space, $Y$ is complete, then $f_{n}(y)$ converges to some $f(y)$ in $Y$. From this we can define a function
+\begin{equation*}
+    f: X \mapsto Y.
+\end{equation*}
+Next we show that $f$ is also continuous. Since
+\begin{equation*}
+    \|f(x) - f(y)\| \leq \|f(x) - f_{n}(x)\| + \|f_{n}(x) - f_{n}(y)\| + \|f_{n}(y) - f(y)\|,
+\end{equation*}
+and $\{f_{n}\}$ is a continuous function sequence, for the above $\epsilon$, there exists a $N^{*} \in \mathbb{N}$ and $\delta > 0$, for any $x \in B(y, \delta)$ and $n > N^{*}$, we have
+\begin{equation*}
+    \|f(x) - f(y)\| < 3 \epsilon.
+\end{equation*}
+Hence $f \in C(X, Y)$. And for the above $\epsilon$ and $p > q > N$, since $\|f_{p}(y) - f_{q} (y) \| < \epsilon$, let $p \to \infty$, we have $\|f(y) - f_{q}(y)\| \leq \epsilon$. By the arbitrary of $y \in X$, for $q > N$, we can get
+\begin{equation*}
+    \sup_{y \in X} \|f(y) - f_{q}(y)\| \leq \epsilon,
+\end{equation*}
+which shows that $f_{n} \to f$ in $C(X, Y)$. Thus $C(X, Y)$ is complete.
+
+\vspace{4pt}
+
+(ii) The statement is not true. We can give a counter example as follows. Set $X = [0, 1]$ and $Y = [0, 1]$, and we define a function sequence $f_{n}: X \mapsto Y$ by
+\begin{equation*}
+f_{n}(x) =
+\left\{
+             \begin{array}{cl}
+             0, & x \in [0, \frac{1}{2} - \frac{1}{n}) \\
+             n x - \frac{n}{2} + 1, & x \in [\frac{1}{2} - \frac{1}{n}, \frac{1}{2}) \\
+             1, & x \in [\frac{1}{2}, 1]
+             \end{array}
+\right.
+\end{equation*}
+then we know that $X$ and $Y$ are compact and $\{f_{n}\}$ is a continuous function sequence from $X$ to $Y$. And we define
+\begin{equation*}
+f (x) =
+\left\{
+             \begin{array}{cl}
+             0, & x \in [0, \frac{1}{2}) \\
+             1, & x \in [\frac{1}{2}, 1]
+             \end{array}
+\right.
+\end{equation*}
+thus when $n \to \infty$, $f_{n}(x)$ converges to $f(x)$ almost everywhere. But $f(x)$ is not a continuous function on $X$, $f(x) \notin C(X, Y)$,
+thus for any subsequence $\{f_{n_{k}}\}$ of $\{f_{n}\}$, we know that $\{f_{n_{k}}\}$ is not converges in $C(X, Y)$. Hence we know $C(X, Y)$ is not compact.
+\end{document}
