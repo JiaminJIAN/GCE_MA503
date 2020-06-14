@@ -1,0 +1,122 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{Analysis Exercise}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\textbf{Exercise 2:}$
+
+Let $(X, \eta)$ and $(Y, \rho)$ be two Polish spaces. $C(X, Y)$ is the set of all continuous mappings $f: X \mapsto Y$. For $f, g \in C(X, Y)$, we define
+\begin{equation*}
+    d(f, g) = \sup_{x \in X} \rho(f(x), g(x)).
+\end{equation*}
+
+(i) Prove that $(C(X, Y), d)$ is a Polish space.
+
+(ii) If $K \subset Y$ is compact, is $C(X, K)$ compact in $C(X, Y)$?
+
+\vspace{8pt}
+
+$\textbf{Solution:}$
+
+(i) We need to show that $C(X, Y)$ is separable and completely metrizable. Firstly we show that $C(X, Y)$ is complete. Suppose $\{f_{n}\}$ is a Cauchy sequence in $C(X, Y)$, then $\forall \epsilon > 0, \exists N \in \mathbb{N}, \forall p > q > N$,
+\begin{equation*}
+    \sup_{x \in X} \rho(f_{p}(x), f_{q} (x) ) < \epsilon.
+\end{equation*}
+For any $y \in X$, we have
+\begin{equation*}
+    \rho(f_{p}(y), f_{q} (y)) \leq \sup_{x \in X} \rho(f_{p}(x), f_{q} (x)) < \epsilon,
+\end{equation*}
+thus $f_{n}(y)$ is a Cauchy sequence in $Y$. As $Y$ is a Polish space, $Y$ is complete, then $f_{n}(y)$ converges to some $f(y)$ in $Y$. From this we can define a function
+\begin{equation*}
+    f: X \mapsto Y.
+\end{equation*}
+Next we show that $f$ is also continuous. Since
+\begin{equation*}
+    \rho(f(x), f(y)) \leq \rho(f(x), f_{n}(x)) + \rho(f_{n}(x) , f_{n}(y)) + \rho(f_{n}(y), f(y)),
+\end{equation*}
+and $\{f_{n}\}$ is a continuous function sequence, for the above $\epsilon$, there exists a $N^{*} \in \mathbb{N}$ and $\delta > 0$, for any $x \in B(y, \delta)$ and $n > N^{*}$, we have
+\begin{equation*}
+    \rho(f(x), f(y)) < 3 \epsilon.
+\end{equation*}
+Hence $f \in C(X, Y)$. And for the above $\epsilon$ and $p > q > N$, since $\rho(f_{p}(y), f_{q} (y)) < \epsilon$, let $p \to \infty$, we have $\rho(f(y), f_{q}(y)) \leq \epsilon$. By the arbitrary of $y \in X$, for $q > N$, we can get
+\begin{equation*}
+    \sup_{y \in X} \rho(f(y), f_{q}(y)) \leq \epsilon,
+\end{equation*}
+which shows that $f_{n} \to f$ in $C(X, Y)$. Thus $C(X, Y)$ is complete.
+
+Next we need to show that $C(X, Y)$ is separable. Let
+\begin{equation*}
+    C_{m,n} = \{f \in C(X, Y): \forall x, y \in X, \eta(x, y) < \frac{1}{m} \implies \rho(f(x), f(y)) < \frac{1}{n} \}.
+\end{equation*}
+As $X$ is a Polish space, it is separable. Choose a countable set $X_{m} \subset X$ such that
+\begin{equation*}
+    X \subset \bigcup_{x \in X_{m}} B(x, \frac{1}{m}). 
+\end{equation*}
+And let $D_{m,n} \subset C_{m,n}$ be countable such that for every $f \in C_{m,n}$ and for every $\epsilon > 0$, there is a $g \in D_{m,n}$ with
+\begin{equation*}
+    \rho(f(y), g(y)) < \epsilon
+\end{equation*}
+for $y \in X_{m}$. We claim that $D = \bigcup_{m,n \in \mathbb{N}} D_{m,n}$ is dense in $C(X, Y)$. If $f \in C(X, Y)$ and for every $\epsilon > 0$, let $n > \frac{3}{\epsilon}$ and let $m$ satisfies that $f \in C_{m,n}$. Let $g \in C_{m,n}$ such that $\rho(f(y), g(y)) < \frac{1}{n}$ for all $y \in X_{m}$. For any fixed $x \in X$, let $y \in X_{m}$ such that $\eta(x, y) < \frac{1}{m}$, then
+\begin{equation*}
+    \rho(f(x), g(x)) \leq \rho(f(x), f(y)) + \rho(f(y), g(y)) + \rho(g(y), g(x)) < \epsilon. 
+\end{equation*}
+By the arbitrary of $x$, we have
+\begin{equation*}
+    d(f, g) = \sup_{x \in X} \rho(f(x), g(x)) \leq \epsilon.
+\end{equation*}
+Hence  $D$ is dense in $C(X, Y)$ and $C(X, Y)$ is separable.
+  
+\vspace{4pt}
+
+(ii) The statement is not true. We can give a counter example as follows. Set $K = [0, 1],Y = \mathbb{R}$ and $X = [0, 1]$, and we define a function sequence $f_{n}: X \mapsto K$ by
+\begin{equation*}
+f_{n}(x) =
+\left\{
+             \begin{array}{cl}
+             0, & x \in [0, \frac{1}{2} - \frac{1}{n}) \\
+             n x - \frac{n}{2} + 1, & x \in [\frac{1}{2} - \frac{1}{n}, \frac{1}{2}) \\
+             1, & x \in [\frac{1}{2}, 1]
+             \end{array}
+\right.
+\end{equation*}
+then we know that $K \subset Y$ and $K$ is compact and $\{f_{n}\}$ is a continuous function sequence from $X$ to $K$. And we define
+\begin{equation*}
+f (x) =
+\left\{
+             \begin{array}{cl}
+             0, & x \in [0, \frac{1}{2}) \\
+             1, & x \in [\frac{1}{2}, 1]
+             \end{array}
+\right.
+\end{equation*}
+thus when $n \to \infty$, $f_{n}(x)$ converges to $f(x)$ almost everywhere. But $f(x)$ is not a continuous function on $X$, $f(x) \notin C(X, K)$, thus for any subsequence $\{f_{n_{k}}\}$ of $\{f_{n}\}$, we know that $\{f_{n_{k}}\}$ is not converges in $C(X, K)$. Hence we know $C(X,K)$ is not compact in $C(X, Y)$.
+\end{document}
