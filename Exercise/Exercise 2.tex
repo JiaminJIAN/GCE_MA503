@@ -26,8 +26,6 @@
 \begin{center}
 \textbf{Analysis Exercise}
 \vspace{8pt}
-
-Jiamin JIAN
 \end{center}
 
 \vspace{12pt}
@@ -47,7 +45,14 @@ Let $(X, \eta)$ and $(Y, \rho)$ be two Polish spaces. $C(X, Y)$ is the set of al
 
 $\textbf{Solution:}$
 
-(i) We need to show that $C(X, Y)$ is separable and completely metrizable. Firstly we show that $C(X, Y)$ is complete. Suppose $\{f_{n}\}$ is a Cauchy sequence in $C(X, Y)$, then $\forall \epsilon > 0, \exists N \in \mathbb{N}, \forall p > q > N$,
+(i) We need to show that $C(X, Y)$ is separable and completely metrizable. Firstly we show that $(C(X, Y), d)$ is a metric space. 
+\begin{itemize}
+    \item For any $f, g \in C(X, Y)$, if $d(f, g) = 0$, we have $\sup_{x \in X} \rho(f(x), g(x)) = 0$, thus $f(x) = g(x)$ for any $x \in X$. We know that $f \equiv g$. If $f = g$, $d(f, g) = \sup_{x \in X} \rho(f(x), g(x)) = 0$. Hence $d(f, g) = 0 \iff f = g$.
+    \item For any $f, g \in C(X, Y)$, $$d(f, g) = \sup_{x \in X} \rho(f(x), g(x)) = \sup_{x \in X} \rho(g(x), f(x)) = d(g, f).$$
+    \item For any $f, g, h \in C(X, Y)$, and for any $x \in X$, we have $\rho(f(x), g(x)) \leq \rho(f(x), h(x)) + \rho(h(x), g(x))$. Then we know that $$\rho(f(x), g(x)) \leq \sup_{x \in X} \rho(f(x), h(x)) + \sup_{x \in X} \rho(h(x), g(x)).$$ By the arbitrary of $x \in X$, $d(f, g) = \sup_{x \in X} \rho(f(x), g(x)) \leq d(f, h) + d(h, g)$.
+\end{itemize}
+
+Next we show that $C(X, Y)$ is complete. Suppose $\{f_{n}\}$ is a Cauchy sequence in $C(X, Y)$, then $\forall \epsilon > 0, \exists N \in \mathbb{N}, \forall p > q > N$,
 \begin{equation*}
     \sup_{x \in X} \rho(f_{p}(x), f_{q} (x) ) < \epsilon.
 \end{equation*}
@@ -73,28 +78,40 @@ Hence $f \in C(X, Y)$. And for the above $\epsilon$ and $p > q > N$, since $\rho
 \end{equation*}
 which shows that $f_{n} \to f$ in $C(X, Y)$. Thus $C(X, Y)$ is complete.
 
-Next we need to show that $C(X, Y)$ is separable. Let
+Next we need to show that $C(X, Y)$ is separable. As $X$ and $Y$ are polish space, we can take a countable dense set $\hat{X}$, $\hat{Y}$ from $X, Y$. And we define $M(\hat X, \hat Y)$ be the set of all mappings $\hat X \mapsto \hat Y$ with the metric
 \begin{equation*}
-    C_{m,n} = \{f \in C(X, Y): \forall x, y \in X, \eta(x, y) < \frac{1}{m} \implies \rho(f(x), f(y)) < \frac{1}{n} \}.
+    \hat d (f, g) = \sup_{x \in \hat X} \rho(f(x), g(x)), \quad \forall f, g \in M(\hat X, \hat Y).
 \end{equation*}
-As $X$ is a Polish space, it is separable. Choose a countable set $X_{m} \subset X$ such that
+For $f \in C(X, Y)$, we define
 \begin{equation*}
-    X \subset \bigcup_{x \in X_{m}} B(x, \frac{1}{m}). 
+    B(f, \delta) = \{g \in C(X, Y): d(f, g) < \delta \},
 \end{equation*}
-And let $D_{m,n} \subset C_{m,n}$ be countable such that for every $f \in C_{m,n}$ and for every $\epsilon > 0$, there is a $g \in D_{m,n}$ with
+where $\delta > 0$ is a constant. To prove that $C(X, Y)$ is separable, we need to show that: $\forall \epsilon > 0$, there exists a sequence of functions $\{f_{n}\}_{n = 1}^{\infty}$ such that
 \begin{equation*}
-    \rho(f(y), g(y)) < \epsilon
+    \bigcup_{n = 1}^{\infty} B(f_{n}, \epsilon) = C(X, Y).
 \end{equation*}
-for $y \in X_{m}$. We claim that $D = \bigcup_{m,n \in \mathbb{N}} D_{m,n}$ is dense in $C(X, Y)$. If $f \in C(X, Y)$ and for every $\epsilon > 0$, let $n > \frac{3}{\epsilon}$ and let $m$ satisfies that $f \in C_{m,n}$. Let $g \in C_{m,n}$ such that $\rho(f(y), g(y)) < \frac{1}{n}$ for all $y \in X_{m}$. For any fixed $x \in X$, let $y \in X_{m}$ such that $\eta(x, y) < \frac{1}{m}$, then
+Define the projector $P: M(X, Y) \mapsto M(\hat X, Y)$ as
 \begin{equation*}
-    \rho(f(x), g(x)) \leq \rho(f(x), f(y)) + \rho(f(y), g(y)) + \rho(g(y), g(x)) < \epsilon. 
+    P f(x) = f(x), \quad \forall f \in M(X, Y), \forall x \in \hat X,
 \end{equation*}
-By the arbitrary of $x$, we have
+where $M(X, Y)$ is the set of all mappings from $X$ to $Y$. Since $\hat X$ is countable, by the Axiom of Choice, $\forall \epsilon > 0$, $\forall f \in C(X, Y)$, there exists $h \in M(\hat X, \hat Y)$ such that
 \begin{equation*}
-    d(f, g) = \sup_{x \in X} \rho(f(x), g(x)) \leq \epsilon.
+    \hat{d} (Pf, h) < \frac{\epsilon}{3}.
 \end{equation*}
-Hence  $D$ is dense in $C(X, Y)$ and $C(X, Y)$ is separable.
-  
+As $M(\hat X, \hat Y)$ is countable, we index it as $M(\hat X, \hat Y) = \{h_{n}: n \in \mathbb{N}\}$. For the above $\epsilon$, setting
+\begin{equation*}
+    A_{n} = \{f \in C(X, Y): \hat d (Pf, h_{n}) < \frac{\epsilon}{3}\},
+\end{equation*}
+and we have $\bigcup_{n = 1}^{\infty} A_{n} = C(X, Y)$. By the Axiom of Choice, for any $n \in \mathbb{N}$, we can take a $f_{n} \in A_{n}$. Now we can prove that for the above $\epsilon$, $$\bigcup_{n = 1}^{\infty} B(f_{n}, \epsilon) = C(X, Y).$$
+By the definition of $B(f_{n}, \epsilon)$, we have
+\begin{equation*}
+    \bigcup_{n = 1}^{\infty} B(f_{n}, \epsilon) \subset C(X, Y).
+\end{equation*}
+And for any $f \in C(X, Y)$, as $C(X, Y) = \bigcup_{n = 1}^{\infty} A_{n}$, there exists $k \in \mathbb{N}$ such that $f \in A_{k}$, then we have
+\begin{equation*}
+    d(f, f_{k}) \leq \hat d(Pf, h_{k}) + \hat d (h_{k}, P f_{k}) < \frac{2 \epsilon}{3} < \epsilon.
+\end{equation*}
+Thus we also have $C(X, Y) \subset \bigcup_{n = 1}^{\infty} B(f_{n}, \epsilon)$. Then we know that $C(X, Y)$ is separable.
 \vspace{4pt}
 
 (ii) The statement is not true. We can give a counter example as follows. Set $K = [0, 1],Y = \mathbb{R}$ and $X = [0, 1]$, and we define a function sequence $f_{n}: X \mapsto K$ by
