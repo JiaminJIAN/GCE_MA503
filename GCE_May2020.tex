@@ -1,0 +1,276 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ GCE May, 2020}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\underline{\textbf{Exercise 1:}}$
+
+Let $X$ be a measurable space $f_n: X \mapsto \mathbb R$ a sequence of measurable functions, and $f: X \mapsto \mathbb R$ a measurable function. By definition we say that $f_n$ converges to $f$ in measure if for all $\epsilon > 0$,
+\begin{equation*}
+    \mu(\{x \in X: |f_n(x) - f(x)| > \epsilon\}),
+\end{equation*}
+converges to zero, as $n \to \infty$, where $\mu$ is the measure on $X$.
+
+(i) Find a measure space $X$, a sequence of measurable functions $f_n: X \to \mathbb R$, and $f: X \to \mathbb R$ a measurable function such that $f_n$ converges to $f$ almost everywhere but not in measure.
+
+(ii) Find a measure space $Y$, a sequence of measurable functions $g_n: Y \to \mathbb R$, and $g: Y \to \mathbb R$ a measurable function such that $g_n$ converges to $g$ in measure but not almost everywhere.
+ 
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) Let $X = [1, \infty]$, $f_n(x) = 1_{[n, n+1]}(x), n \in \mathbb N$ and $f(x) = 0$. Firstly we prove that $f_n$ converges to $f$ almost everywhere. Let $\epsilon > 0$ be given, for each $x \in X$, choose $N = [x] + 1$, where $[x]$ is the largest integer which is less than x, then
+\begin{equation*}
+    |f_n(x) - f(x)| = |1_{[n, n+1]}(x) - 0| = 0 < \epsilon, \quad \forall n \geq N.
+\end{equation*}
+Thus $f_n \to f$ pointwise on $X$, which implies $f_n \to f$ pointwise almost everywhere on $X$.
+
+Next we show that $f_n$ does not converge to $f$ in measure. When $0 < \epsilon < 1$, for each $n \in \mathbb N$,
+\begin{equation*}
+    \mu(\{x \in X : |f_n (x) - f(x)| > \epsilon \}) = \mu([n, n+1]) = 1,
+\end{equation*}
+which yields that $f_n$ does not converge to $f$ in measure.
+
+\vspace{6pt}
+
+(ii) Let $Y = [0,1]$, 
+\begin{equation*}
+    g_n(y) = 1_{[\frac{n-2^k}{2^k}, \frac{n-2^k+1}{2^k}]}(y), \, \text{$k \geq 0$ and $2^k \leq n < 2^{k+1}$},
+\end{equation*}
+and let $g(y) =0, \forall y \in Y$. Firstly we prove that $g_n$ converges to $g$ in measure. Let $\epsilon > 0$ be given, then for each $n \in \mathbb N$,
+\begin{equation*}
+    \mu(\{y \in Y: |g_n(y) - g(y)| > \epsilon\}) \leq \mu \Big{(} \Big{[} \frac{n-2^k}{2^k}, \frac{n-2^k+1}{2^k} \Big{]} \Big{)} = \frac{1}{2^k} < \frac{2}{n},
+\end{equation*}
+since $2^k \leq n < 2^{k+1}$. Choose $N = [2/\epsilon] + 1$, then 
+\begin{equation*}
+    \mu(\{y \in Y: |g_n(y) - g(y)| > \epsilon\}) < \frac{2}{n} < \epsilon, \quad \forall n \geq N,
+\end{equation*}
+thus $g_n$ converges to $g$ in measure.
+
+Next we argue that $g_n$ does not converges to $g$ almost everywhere on $Y$. Let $0 < \epsilon < 1$, for any $y \in Y$, since 
+\begin{equation*}
+    \sum_{k = 0}^{\infty} \frac{2^k}{2^k} = \sum_{k = 0}^{\infty} 1 = \infty, 
+\end{equation*}
+for any $N \in \mathbb N$, there exists $n \geq N$ such that
+\begin{equation*}
+    |g_n(y) - g(y)| = 1 > \epsilon.
+\end{equation*}
+Therefore $g_n$ is nowhere converge to $g$ on $Y = [0,1]$.
+
+We can give another example. Let $Y = [0,1]$
+and the sequence of $g_n$ as follows
+\begin{equation*}
+    g_1 = 1_{[0,1]}, g_2 = 1_{[0,\frac{1}{2}]}, g_3 = 1_{[\frac{1}{2}, \frac{5}{6}]},
+    g_4 = 1_{[\frac{5}{6},1]} + 1_{[0, \frac{1}{12}]}, \cdots
+\end{equation*}
+where $\mu(\{y \in Y: |g_n(y) - 0| \neq 0\}) = \frac{1}{n}, \forall n \in \mathbb N$. Let $g(y) = 0$ for all $y \in Y$. By the definition of $g_n$ and $g$, let $\epsilon > 0$ be given, choose $N = [1/\epsilon] +1$, then
+\begin{equation*}
+    \mu(\{y \in Y: |g_n(y) - g(y)| > \epsilon \}) \leq \frac{1}{n} < \epsilon, \forall n \geq N.
+\end{equation*}
+Thus $g_n$ converges to $g$ in measure. Similarly, when $0 < \epsilon < 1$, for any $y \in Y$ and $N \in \mathbb N$, there exist $n \geq N$ such that
+\begin{equation*}
+    |g_n(y) - g(y)| = 1 > \epsilon
+\end{equation*}
+since $\sum_{n=1}^{\infty} \frac{1}{n} = \infty$. Therefore $g_n$ is nowhere converge to $g$ on $Y = [0,1]$.
+
+
+\newpage 
+
+$\underline{\textbf{Exercise 2:}}$
+
+Let $X$ be a metric space such that $X$ is a finite set.
+
+(i) Show that any convergent sequence in $X$ is eventually constant.
+
+(ii) Find (with proof) all subsets of $X$ that are compact.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) Let $(X, \rho)$ be the metric space. Denote $X = \{x_1, x_2, \cdots, x_m \}$, where $m$ is a finite constant. Let
+\begin{equation*}
+    a = \inf \{\rho(x_i, x_j): i, j \in 1, 2, \cdots, m, i \neq j\}.
+\end{equation*}
+Thus $a > 0$. Suppose $\{y_n\}$ is a convergent sequence in $X$, and $y \in X$ is the limit of $y_n$. For any $\epsilon > 0$, there exists $N \in \mathbb N$ such that
+$$\rho(y_n, y) < \epsilon, \quad \forall n \geq N.$$
+When $\epsilon < a$, by the definition of $a$, we have $y_n = y, \forall n \geq N$.
+
+\vspace{6pt}
+
+(ii) We claim that any subset of $X$ is compact. Let $Y$ be a nonempty subset of $X$, we want to prove that any open cover of $Y$ has a finite subcover. Suppose $Y = \{y_1, y_2, \cdots, y_k \}$, where $y_i \in X, i = 1, 2, \cdots, k$. Let $O = \bigcup_{n = 1}^{\infty} O_{n}$ is an open cover of $Y$. Then for each $y_i \in Y, i = 1, 2, \cdots, k$, since $Y \subset O$, there exists $O_{i}$ such that $y_i \in O_i$. Thus $\bigcup_{i = 1}^{k} O_{i} \subset O$ is an finite open cover of $Y$. Hence $Y$ is compact. If $Y = \emptyset$, $Y$ is also compact. Therefore any subset of $X$ is compact.
+
+
+\newpage 
+
+$\underline{\textbf{Exercise 3:}}$
+
+Define $f: [0,1] \to \mathbb R$ by
+\begin{equation*}
+f(x) =
+\left\{
+             \begin{array}{cl}
+             0, &  \text{if $x = 0$ or $x \in [0,1] \setminus \mathbb Q$}  \\
+             1/q, & \text{if $x \in \mathbb Q \bigcap (0,1]$ and $x = p/q$ in lowest terms}.
+             \end{array}
+\right.
+\end{equation*}
+For instance, $f(0.75) =1/4$ due to $0.75 = 3/4$ in lowest term; $f(1/\sqrt{2}) = 0$ due to $1/ \sqrt{2} \notin \mathbb Q$.
+
+(i) Is $f$ a Lebesgue measurable function? Justify your answer.
+
+(ii) Find $\int_{0}^{1} f(x) \, d x$.
+
+(iii) Prove that $f(x) \leq x$ for all $x \in [0,1]$.
+
+(iv) Find the set of points of discontinuity of $f$ in $[0,1]$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) $f$ is a Lebesgue measurable function. Let $c \in \mathbb R$. If $c < 0$, since $f(x) \geq 0, \forall x \in [0,1]$, then $\{x \in [0,1] : f(x) > c\} = [0,1]$ is measurable. If $c \geq 0$, by the definition of $f$, $\{x \in [0,1] : f(x) > c\} \subset (0,1] \bigcap \mathbb Q$. Thus $m^{*}(\{x \in [0,1]: f(x) > c \}) \leq m^{*}((0,1] \bigcap \mathbb Q) = 0$, where $m^{*}$ is the outer measure. We have $\{x \in [0,1]: f(x) > c\}$ is measurable. Therefore for any $c \in \mathbb R$, the set $\{x \in [0,1]: f(x) > c\}$ is measurable, we know that $f$ is a Lebesgue measurable function.
+
+\vspace{6pt}
+
+(ii) Firstly, for $x \in (0,1] \bigcap \mathbb Q$, $f(x) \leq 1$,  we have
+\begin{eqnarray*}
+    \int_{0}^{1} f(x)\, d x & = & \int_{[0,1] \setminus \mathbb Q} f + \int_{(0,1] \bigcap \mathbb Q} f \\
+    & \leq & 0 + 1 \times m((0,1] \bigcap \mathbb Q) = 0.
+\end{eqnarray*}
+And since $f(x) \geq 0, \forall x \in [0,1]$, then $\int_{0}^{1} f(x) \, d x \geq 0$. Therefore
+\begin{equation*}
+    \int_{0}^{1} f(x) \, d x = 1.
+\end{equation*}
+
+\vspace{6pt}
+
+(iii) When $x = 0$ or $x \in [0,1] \setminus \mathbb Q$, $f(x) = 0 \leq x$. When $x \in (0,1] \bigcap \mathbb Q$, $x = p/q$ and $f(x) = 1/q$. Since $p \geq 1$, we have $f(x) \leq x$. Thus for any $x \in [0,1]$, $f(x) \leq x$.
+
+\vspace{6pt}
+
+(iv) We claim that $(0,1] \bigcap \mathbb Q$ is the set of points of discontinuity of $f$ in $[0,1]$. Suppose $x = p/q \in (0,1] \bigcap \mathbb Q$, then $f(x) = 1/q > 0$. For every $\delta > 0$, the interval $(x-\delta, x+\delta)$ contains irrational point $y$ such that $f(y) = 0$ and $|f(x) - f(y)| = 1/q > 0$. If $0 < \epsilon < 1/q$, then for every $\delta > 0$, we can choose $y \in (x - \delta, x + \delta)$ such that $|f(x) - f(y)| > \epsilon$. Therefore $f$ is discontinuous at $x$. By the arbitrary of $x \in (0,1] \bigcap \mathbb Q$, we know that $(0,1] \bigcap \mathbb Q$ is the set of points of discontinuity of $f$ in $[0,1]$.
+
+
+\newpage 
+
+$\underline{\textbf{Exercise 4:}}$ 
+
+Find (with proof)
+\begin{equation*}
+    \lim_{n \to \infty} \int_{0}^{1} \frac{\sin (x^n)}{x^n} \, d x.
+\end{equation*}
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+For any $x \in (0,1)$, and for each $n \in \mathbb N$, we have $x^n \in (0,1)$, then
+$$0 < \frac{\sin (x^n)}{x^n} < 1.$$
+For the fixed $x \in (0,1)$,
+$$\lim_{n \to \infty} \frac{\sin (x^n)}{x^n} = 1.$$
+Thus $\frac{\sin (x^n)}{x^n} \to 1$ almost everywhere on $[0,1]$. And since $1 \in L^1([0,1])$, by the dominate convergence theorem, we have
+\begin{equation*}
+    \lim_{n \to \infty} \int_{0}^{1} \frac{\sin (x^n)}{x^n} \, d x = \int_{0}^{1} \lim_{n \to \infty} \frac{\sin (x^n)}{x^n} \, d x = \int_{0}^{1} 1 \, d x = 1.
+\end{equation*}
+
+
+\newpage 
+
+$\underline{\textbf{Exercise 5:}}$
+
+Let $f_n \in L^2([0,1])$ and $f \in L^2([0,1])$.
+
+(i) Prove that $\|f_n - f \|_2 \to 0$ implies that $\|f_n\|_2 \to \|f\|_2$.
+
+(ii) Does $\|f_n\|_2 \to \|f\|_2$ imply $\|f_n - f\|_2 \to 0$? Justify your answer.
+
+(iii) Suppose $\|f_n\|_2 \to \|f\|_2$ and $f_n \to f$ almost everywhere on $[0,1]$. Show that $\|f_n -f \|_2 \to 0$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) For each $n \in \mathbb N$, as $f_n \in L^2([0,1]), f \in L^2([0,1])$, then $\|f_n\|_2 < \infty$ and $\|f\|_2 < \infty$. By the Minkowski inequality, we have
+\begin{equation*}
+    \|f_n - f\|_2 + \|f\|_2 \geq \|f_n\|_2 \Rightarrow \|f_n - f\|_2 \geq  \|f_n\|_2 - \|f\|_2,
+\end{equation*}
+and 
+\begin{equation*}
+    \|f_n - f\|_2 + \|f_n\|_2 \geq \|f\|_2 \Rightarrow \|f_n - f\|_2 \geq  \|f\|_2 - \|f_n\|_2.
+\end{equation*}
+Thus $|\|f\|_2 - \|f_n\|_2| \leq \|f_n - f\|_2$. Therefore $\|f_n - f \|_2 \to 0$ implies that $\|f_n\|_2 \to \|f\|_2$.
+
+\vspace{6pt}
+
+(ii) No, we can give a counter example. Let
+$$f_n(x) = \sqrt{n} 1_{[0, \frac{1}{n}]}(x) + 1, \quad f(x) = \sqrt{2}.$$
+Then
+\begin{eqnarray*}
+    \|f_n\|_2^2  & = & \int_{0}^{1} f_n^2(x) \, d x \\
+    & = & \int_{0}^{1} \Big{(} n 1_{[0,\frac{1}{n}]}(x) + 2 \sqrt{n} 1_{[0, \frac{1}{n}]}(x) + 1 \Big{)} \, d x \\
+    & = & 2 + \frac{2}{\sqrt{n}} \to 2
+\end{eqnarray*}
+as $n \to \infty$. And since
+$$\|f\|_2^2 = \int_{0}^{1} f^2{x} \, d x = \int_{0}^{1} 2 \, d x = 2,$$
+we have $\|f_n\|_2 \to \|f\|_2$. But
+\begin{eqnarray*}
+    \|f_n - f \|_2^2  & = & \int_{0}^{1} (f_n(x) - f(x))^2 \, d x \\
+    & = & \int_{0}^{1} \Big{(} n 1_{[0,\frac{1}{n}]}(x) + 2(1 - \sqrt{2}) \sqrt{n} 1_{[0, \frac{1}{n}]}(x) + (\sqrt{2} - 1)^2 \Big{)} \, d x \\
+    & = & 1 + (\sqrt{2} - 1)^2 + \frac{2(1 - \sqrt{2})}{\sqrt{n}} \\
+    & \to & 1 + (\sqrt{2} - 1)^2
+\end{eqnarray*}
+as $n \to \infty$. Thus $\|f_n - f\|_2$ does not converge to $0$.
+
+(iii) Let $g_n = 2(f_n^2 + f^2) - |f_n - f|^2$. Then we have $g_n = (f + f_n)^2 \geq 0$. By Fatou's lemma,
+\begin{equation*}
+    \int \liminf_{n} g_n \leq \liminf_{n} \int 2(f_n^2 + f^2) - |f_n - f|^2.
+\end{equation*}
+Since $f_n \to f$ almost everywhere on $[0,1]$, $g_n \to 4 f^2$ almost everywhere on $[0,1]$. Thus
+\begin{equation*}
+   4 \int  f^2 \leq \liminf_{n} \int 2(f_n^2 + f^2) - |f_n - f|^2.
+\end{equation*}
+As $f_n \in L^2([0,1]), f \in L^2([0,1])$ and $\|f_n\|_2 \to \|f\|_2$, then
+\begin{equation*}
+    \lim_{n \to \infty} \int 2 f_n^2 = \int 2 f^2.
+\end{equation*}
+Thus
+\begin{equation*}
+   4 \int  f^2 = 4 \|f\|_2^2 \leq  4 \|f\|_2^2 - \limsup_{n} \int |f_n - f|^2,
+\end{equation*}
+which yields
+\begin{equation*}
+    \limsup_{n} \int |f_n - f|^2 = \limsup_{n} \|f_n - f\|_2^2 \leq 0.
+\end{equation*}
+Since $\liminf_{n} \|f_n - f\|_2^2 \geq 0$, we have
+\begin{equation*}
+    \limsup_{n} \|f_n - f\|_2^2  = \liminf_{n} \|f_n - f\|_2^2 = 0.
+\end{equation*}
+Therefore $\|f_n - f\|_2 \to 0$ as $n \to \infty$.
+
+
+\end{document}
