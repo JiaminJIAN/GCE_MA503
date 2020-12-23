@@ -1,0 +1,120 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ GCE August, 2020}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\underline{\textbf{Exercise 1:}}$
+
+Let $(X, \rho)$ be a metric space and $S$ and $T$ two non-empty subsets of $X$. Define
+\begin{equation*}
+    d(S, T) = \max \{\sup_{x \in S} \inf_{y \in T} \rho(x, y), \sup_{y \in T} \inf_{x \in S} \rho(x, y)\}.
+\end{equation*}
+Show that $d(S, T) = 0$ if and only if $S$ and $T$ have the same closure.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Firstly we show that if $d(S, T) = 0$, $S$ and $T$ have the same closure. By the definition of $d(S, T)$, if $d(S, T) = 0$, then
+$$\max \{\sup_{x \in S} \inf_{y \in T} \rho(x, y), \sup_{y \in T} \inf_{x \in S} \rho(x, y)\} = 0.$$
+For any $x \in S, y \in T$, we have $\sup_{x \in S} \inf_{y \in T} \rho(x, y) \geq 0$ and $\sup_{y \in T} \inf_{x \in S} \rho(x, y) \geq 0$, then
+$$\sup_{x \in S} \inf_{y \in T} \rho(x, y) = 0 \quad  \text{and}  \quad \sup_{y \in T} \inf_{x \in S} \rho(x, y) = 0.$$
+Thus we have
+$$\forall x \in S, \inf_{y \in T} \rho(x, y) = 0 \quad  \text{and}  \quad \forall y \in T, \inf_{x \in S} \rho(x, y) = 0.$$
+Let $\epsilon > 0$ be given. For fixed $x \in S$, if $\inf_{y \in T} \rho(x, y) = 0$, there exists $y \in T$ such that $\rho(x, y) - \epsilon < 0$, which implies $x$ is a point of closure of $T$, i.e. $x \in \bar{T}$, where $\bar{T}$ is the closure of $T$. By the arbitrary of $x \in S$, we have $S \subset \bar{T}$, thus $\bar{S} \subset \bar{T}$. Similarly, $\forall y \in T$, $\inf_{x \in S} \rho(x, y) = 0$, we also have $T \subset \bar{S}$, thus $\bar{T} \subset \bar{S}$. Therefore $\bar{S} = \bar{T}$, $S$ and $T$ have the same closure.
+
+Next we want to prove that if $S$ and $T$ have the same closure, then $d(S, T) = 0$. If $\bar{S} = \bar{T}$, $\bar{S} \subset \bar{T}$, and then $S \subset \bar{S} \subset \bar{T}$. Let $\epsilon > 0$ be given. For any fixed $x \in S$, there exists $y \in T$ such that $\rho(x, y) < \epsilon$. By the arbitrary of $\epsilon$, $\forall x \in S$, we have $\inf_{y \in T} \rho(x, y) = 0$. Thus $\sup_{x \in S} \inf_{y \in T} \rho(x, y) = 0$. Similarly, since $T \subset \bar{T} \subset \bar{S}$, we have $\sup_{y \in T} \inf_{x \in S} \rho(x, y) = 0$. Therefore,
+$$d(S, T) = \max \{\sup_{x \in S} \inf_{y \in T} \rho(x, y), \sup_{y \in T} \inf_{x \in S} \rho(x, y)\} = 0.$$
+
+\newpage 
+
+$\underline{\textbf{Exercise 2:}}$
+
+Show that for every set $S \subset \mathbb R$ there exists a Borel set $B$ such that $S \subset B$ and $m^{*}(S) = m^{*}(B)$, where $m^*$ is the Lebesgue outer measure. Then show that for such $S$ and $B$ with $m^{*}(S) < \infty$, $S$ is measurable if and only if $m^{*} (B \setminus S) = 0$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Firstly we show that for every set $S \subset \mathbb R$ there exists a Borel set $B$ such that $S \subset B$ and $m^{*}(S) = m^{*}(B)$. If $m^{*}(S) = \infty$, choose $B = \mathbb R$. Then $B$ is a Borel set, $S \subset B = \mathbb R$ and $m^{*}(S) = m^{*}(B) = \infty$. If $m^{*}(S) < \infty$. Let $\epsilon > 0$ be given. By the definition of $m^{*}(S)$, there exists a countable collection $\{I_{k}\}$ of open intervals such that 
+$$S \subset \bigcup_{k = 1}^{\infty} I_{k} \quad \text{and} \quad \sum_{k = 1}^{\infty} \ell(I_{k}) < m^{*}(S) + \epsilon.$$
+Let $O = \bigcup_{k = 1}^{\infty} I_{k}$, then $O$ is an open set, $S \subset O$ and
+$$m^{*}(O \setminus S) \leq m^{*}(O) - m^{*}(S) = m^{*}(\bigcup_{k = 1}^{\infty} I_{k}) - m^{*}(S) \leq \sum_{k = 1}^{\infty} \ell(I_{k}) - m^{*}(S) < \epsilon.$$
+Thus for each $n \in \mathbb N$, there exists an open set $O_n$ such that
+$$S \subset O_n \quad \text{and} \quad m^{*}(O_n \setminus S) < \frac{1}{n}.$$
+Let $B = \bigcap_{n = 1}^{\infty} O_n$, then $S \subset B$, $B$ is a Borel set and
+$$m^{*}(B) - m^{*}(S) \leq m^{*}(B \setminus S) \leq m^{*}(O_n \setminus S) < \frac{1}{n}, \quad \forall n \in \mathbb N.$$
+Let $n \to \infty$, then $m^{*}(B) - m^{*}(S) = 0$.
+
+Next we show that for such $S$ and $B$ with $m^{*}(S) < \infty$, $S$ is measurable if and only if $m^{*} (B \setminus S) = 0$. If $S$ is measurable and $m^{*}(S) < \infty$, by the construction of $B$ and the arguement on the above, we have
+$$m^{*}(B \setminus S) \leq m^{*}(O_n \setminus S) < \frac{1}{n}, \quad \forall n \in \mathbb N.$$
+Thus $m^{*}(B \setminus S) = 0$. If $m^{*}(S) < \infty$ and $m^{*} (B \setminus S) = 0$, we want to prove that $S$ is measurable. $B$ is a Borel set, thus $B$ is measurable. Since $m^{*} (B \setminus S) = 0$, we have $B \setminus S$ is measurable. Therefore $S = B \setminus (B \setminus S)$ is measurable as the family of measurable sets is a $\sigma$-algebra.
+
+
+
+
+
+
+
+\newpage 
+
+$\underline{\textbf{Exercise 3:}}$
+
+Suppose $f_n, g_n$ are Lebesgue measurable function on $\mathbb R$, with $f_n, g_n \geq 0, \forall n \in \mathbb N$. Suppose also that $f_n \to f$ a.e., $g_n \to g$ a.e.,
+$$\int f_n \to \int f < \infty,$$
+and
+$$\int g_n \to \int g < \infty.$$
+Prove or give a counterexample: if $\{f_n g_n\}$ is bounded in $L^1$, then
+$$\int f_n g_n \to \int f g.$$
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+We can give a counterexample as follows: for each $n \in \mathbb N$, let
+$$f_n (x) = g_n (x) = \sqrt{n} 1_{[0, \frac{1}{n}]}(x) + 1_{[0,1]}(x)$$
+and let $f(x) = g(x) = 1_{[0,1]}(x)$. Then we have $f_n, g_n$ are Lebesgue measurable function on $\mathbb R$, with $f_n, g_n \geq 0, \forall n \in \mathbb N$. And we have $f_n \to f$ a.e., $g_n \to g$ a.e.. And since
+$$\int f_n = \int g_n = \int_{0}^{1} \Big{(} \sqrt{n} 1_{[0, \frac{1}{n}]}(x) + 1 \Big{)} \, d x = \frac{1}{\sqrt{n}} + 1 \to 1$$
+as $n \to \infty$ and 
+$$\int f = \int g = \int_{0}^{1} 1 \, d x = 1,$$
+then $\int f_n \to \int f < \infty$ and $\int g_n \to \int g < \infty$. For each $n \in \mathbb N$,
+\begin{eqnarray*}
+    \int f_n g_n  & = & \int_{0}^{1} f_n^2(x) \, d x \\
+    & = & \int_{0}^{1} \Big{(} n 1_{[0,\frac{1}{n}]}(x) + 2 \sqrt{n} 1_{[0, \frac{1}{n}]}(x) + 1 \Big{)} \, d x \\
+    & = & 2 + \frac{2}{\sqrt{n}} \leq 4 < \infty,
+\end{eqnarray*}
+thus $\{f_n g_n\}$ is bounded in $L^1$, and we know that
+\begin{equation*}
+    \int f_n g_n = 2 + \frac{2}{\sqrt{n}} \to 2
+\end{equation*}
+as $n \to \infty$. But
+$$\int f g = \int (1_{[0,1] (x)})^2 \, d x = \int_{0}^{1} 1 \, d x = 1,$$
+then we have $\int f_n g_n$ does not converge to $\int f g$.
+
+\end{document}
