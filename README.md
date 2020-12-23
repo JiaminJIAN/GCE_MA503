@@ -1,5 +1,6 @@
 ## GCE_MA503
 
+- [August 2020](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2020%20August.pdf)
 - [May 2020](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2020%20May.pdf)
 - [May 2019](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_May2019.pdf)
 - [January 2019](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_January2019.pdf)
