@@ -1,0 +1,205 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ GCE January, 2020}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\underline{\textbf{Exercise 1:}}$
+
+Let $E$ be measurable subset of $\mathbb R$ and $f: E \to \mathbb R$ a measurable function. For $a$ in $\mathbb R$, set $\omega_{f}(a) = m(\{x \in E: f(x) > a\})$, where $m(\cdot)$ denotes the Lebesgue measure.
+
+(i) If $f_k: E \to \mathbb R$ is a sequence of Lebesgue measurable, real-valued functions, such that $f_k \leq f_{k+1}$ and $f_k \to f$ almost everywhere, show that $\omega_f \leq \omega_{f_{k+1}}$ and $\omega_{f_k} \to \omega_{f}$. 
+
+(ii) Recall that $f_k$ converges in measure to $f$ if for all positive $\epsilon$, $m(\{x \in E: |f_k(x) - f(x)| > \epsilon \})$ tends to zero as $k$ tends to infinity. If $f_k$ converges in measure to $f$ then show that $\limsup_{k \to \infty} \omega_{f_k}(a) \leq \omega_{f}(a -\epsilon)$, and $\liminf_{k \to \infty} \omega_{f_{k}}(a) \geq \omega_{f}(a + \epsilon)$, for every $\epsilon > 0$.
+
+(iii) If $f_k$ converges in measure to $f$, show that $\omega_{f_k}(a) \to \omega_f(a)$ if $\omega_f$ is continuous at point $a$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) Firstly we show that $\omega_f \leq \omega_{f_{k+1}}$. Let $a \in \mathbb R$ be given. By the definition of $\omega_{f}(a) = m(\{x \in E: f(x) > a\})$, since $f_{k+1} \geq f_k$, if $x \in \{x \in E: f_k(x) > a\}$, then $x \in \{x \in E: f_{k+1}(x) > a\}$, thus $\{x \in E: f_k(x) > a\} \subset \{x \in E: f_{k+1}(x) > a\}$. Therefore we have
+$$\omega_{f_{k}}(a) = m(\{x \in E: f_k(x) > a\}) \leq \omega_{f_{k+1}}(a) = m(\{x \in E: f_{k+1}(x) > a\}).$$
+By the arbitrary of $a \in \mathbb R$, we have $\omega_f \leq \omega_{f_{k+1}}$.
+
+Next we prove that $\omega_{f_k} \to \omega_{f}$. Let $a \in \mathbb R$ be given. To show that $\omega_{f_k}(a) \to \omega_{f}(a)$, we only need to show that
+$$\int 1_{\{x \in E: f_k(x) > a\}}  \to \int 1_{\{x \in E: f(x) > a\}}$$
+as $k \to \infty$. Since $f_k \leq f_{k+1}$ and $f_k \to f$ a.e., we have $f_k \leq f$ a.e., $\forall k \in \mathbb N$. Thus $1_{\{x \in E: f_k(x) > a\}} \leq 1_{\{x \in E: f(x) > a\}}$ a.e. and $1_{\{x \in E: f_k(x) > a\}} \to 1_{\{x \in E: f(x) > a\}}$ a.e.. By the monotone convergence theorem, we have $\int 1_{\{x \in E: f_k(x) > a\}}  \to \int 1_{\{x \in E: f(x) > a\}}$. Thus $\omega_{f_k}(a) \to \omega_{f}(a)$. Also by the arbitrary of $a \in \mathbb R$, $\omega_{f_k} \to \omega_{f}$.
+
+\vspace{6pt}
+
+(ii) Let $\epsilon > 0$ be given. Note that
+\begin{eqnarray*}
+    \{x \in E: f_{k}(x) > a\}  & = &  \{x \in E: f_{k}(x) > a, |f_k(x) - f(x)| > \epsilon \} \cup \\
+    & & \{x \in E: f_{k}(x) > a, |f_k(x) - f(x)| \leq \epsilon\}\\
+    & \subset & \{x \in E: |f_k(x) - f(x)| > \epsilon \} \cup \\
+    & & \{x \in E: f_{k}(x) > a, f_k(x) \leq f(x) + \epsilon\} \\
+    & \subset & \{x \in E: |f_k(x) - f(x)| > \epsilon \} \cup \{x \in E: f(x) > a - \epsilon\},
+\end{eqnarray*}
+by the subadditivity of Lebesgue measure, we have
+$$m(\{x \in E: f_{k}(x) > a \}) \leq m(\{x \in E: |f_k(x) - f(x)| > \epsilon \}) + m(\{x \in E: f(x) > a - \epsilon\}).$$
+Thus 
+\begin{eqnarray*}
+    \limsup_{k} \omega_{f_k}(a)  & \leq &  \limsup_{k} m(\{x \in E: |f_k(x) - f(x)| > \epsilon \}) + \omega_{f} (a- \epsilon) \\
+    & = & \omega_{f} (a- \epsilon)
+\end{eqnarray*}
+as $f_k$ converges to $f$ in measure. 
+
+Next we show that $\liminf_{k \to \infty} \omega_{f_{k}}(a) \geq \omega_{f}(a + \epsilon)$. Similarly,
+\begin{eqnarray*}
+    \{x \in E: f (x) > a + \epsilon \}  & = &  \{x \in E: f_(x) > a + \epsilon , |f_k(x) - f(x)| > \epsilon \} \cup \\
+    & & \{x \in E: f (x) > a +  \epsilon, |f_k(x) - f(x)| \leq \epsilon\}\\
+    & \subset & \{x \in E: |f_k(x) - f(x)| > \epsilon \} \cup \\
+    & & \{x \in E: f (x) > a + \epsilon, f(x) \leq f_{k}(x) + \epsilon\} \\
+    & \subset & \{x \in E: |f_k(x) - f(x)| > \epsilon \} \cup \{x \in E: f_{k}(x) > a \},
+\end{eqnarray*}
+by the subadditivity of Lebesgue measure, we have
+$$m(\{x \in E: f (x) > a + \epsilon \}) \leq m(\{x \in E: |f_k(x) - f(x)| > \epsilon \}) + m(\{x \in E: f_{k}(x) > a \}).$$
+Thus 
+\begin{eqnarray*}
+    \omega_{f}(a + \epsilon)  & \leq &  \liminf_{k} m(\{x \in E: |f_k(x) - f(x)| > \epsilon \}) + \liminf_{k} \omega_{f_k} (a) \\
+    & = & \liminf_{k} \omega_{f_k} (a)
+\end{eqnarray*}
+as $f_k$ converges to $f$ in measure. 
+
+\vspace{6pt}
+
+(iii) Let $\epsilon > 0$ be given. Since $\omega_f$ is continuous at $a$, there exists $\delta > 0$ such that $|\omega_{f}(a) - \omega_{f}(a - \delta)| \leq \epsilon$. As $f_k$ converges to $f$ in measure, by the result of (ii), we have
+$$\limsup_{k} \omega_{f_k}(a)   \leq \omega_{f} (a- \delta) \leq \omega_{f}(a) + \epsilon,$$
+and
+$$\liminf_{k} \omega_{f_k} (a) \geq \omega_{f}(a+ \delta) \geq \omega_{f}(a) - \epsilon.$$
+Therefore
+$$\omega_{f}(a) + \epsilon \geq \limsup_{k \to \infty} \omega_{f_k}(a)  \geq \liminf_{k \to \infty} \omega_{f_k} (a)  \geq \omega_{f}(a) - \epsilon.$$
+By the arbitrary of $\epsilon$, let $\epsilon \to 0$, we have
+$$\omega_{f}(a) = \limsup_{k \to \infty} \omega_{f_k}(a) = \liminf_{k \to \infty} \omega_{f_k} (a) .$$
+Hence $\omega_{f_k} (a) \to \omega_{f}(a)$.
+
+
+\newpage 
+
+$\underline{\textbf{Exercise 2:}}$
+
+(i) Define the sequence of functions $g_n: [0,1] \to \mathbb R$, $g_n(x) = n x^{n}$. Show that $g_n$ converges almost everywhere to zero. Is there a function $h$ in $L^1([0,1])$ such that $|g_n(x)| \leq h(x)$ for almost all $x$ in $[0,1]$?
+
+(ii) If $f$ is in $L^{\infty}([0,1])$ and $f$ is continuous at $1$, show that $\int_0^1 n x^n f(x) \, d x$ converges to $f(1)$.
+
+(iii) If we only assume that $f \in L^1([0,1])$ and $f$ is continuous at $1$, does
+$\int_0^1 n x^n f(x) \, d x$ converges to $f(1)$?
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) When $x = 0$, $n x^n = 0$ for any $n \in \mathbb N$. For the fixed $x \in (0,1)$, let $\epsilon > 0$ be given, there exists $N = \Big{[} \frac{2}{(\frac{1}{x} - 1)^2 \epsilon} \Big{]} + 2$ such that
+\begin{eqnarray*}
+    |n x^n -0| & = &  \frac{n}{(\frac{1}{x})^n} = \frac{n}{((\frac{1}{x}-1) + 1)^n} \leq \frac{n}{(\frac{1}{x}-1)^2 \frac{n(n-1)}{2}} \\
+    & = & \frac{2}{(\frac{1}{x}-1)^2} \frac{1}{n-1} < \epsilon, \quad \forall n \geq N,
+\end{eqnarray*}
+where $[x]$ is the largest integer which less than or equal to $x$. Thus we have $g_n$ converges to $0$ when $x \in[0,1)$, which yields that $g_n$ converges to $0$ on $[0,1]$ as $\{1\}$ is a Lebesgue zero measure set in $[0,1]$.
+
+We claim that there is no such $h$ in $L^1([0,1])$ with $|g_n(x)| \leq h(x)$ for almost all $x$ in $[0,1]$. We argue it by contradiction. Suppose there is a $h \in L^1([0,1])$ such that $|g_n(x)| \leq h(x)$ for almost all $x$ in $[0,1]$, by dominate convergence theorem, since $g_n \to 0$ a.e. on $[0,1]$, we have
+$$\lim_{n \to \infty} \int_{[0,1]} g_n  = \lim_{n \to \infty} \int_{[0,1]} n x^n = \int_{[0,1]} 0 = 0.$$
+But for each $n \in \mathbb N$,
+$$\int_{[0,1]} g_n  = \int_{[0,1]} n x^n \, d x = \frac{n}{n+1},$$
+thus $\int_{[0,1]} g_n$ converges to $1$ rather than $0$, which is a contradiction.
+
+\vspace{6pt}
+
+(ii) Note that
+\begin{eqnarray*}
+    \Big{|} \int_0^1 n x^n f(x) \, d x - f(1)  \Big{|} & = &  \Big{|} \int_0^1 n x^n f(x) \, d x - \int_0^1 (n+1) x^n f(1) \, d x  \Big{|} \\
+    & = & \Big{|} \int_0^1 n x^n (f(x) - f(1)) \, d x - \int_0^1 x^n f(1) \, d x  \Big{|} \\
+    & \leq & \int_0^1 n x^n |f(x) - f(1)| \, d x + \int_0^1 x^n |f(1)| \, d x \\  
+    & = & \int_0^1 n x^n |f(x) - f(1)| \, d x + \frac{|f(1)|}{n+1}. 
+\end{eqnarray*}
+Since $f(x)$ continuous at $1$, let $\epsilon > 0$ be given, there exists $\delta > 0$ such that for any $x \in (1 - \delta, 1)$, we have $|f(x) - f(1)| < \epsilon/3$. And since $f(x) \in L^{\infty}([0,1])$, we know that
+\begin{eqnarray*}
+    \Big{|} \int_0^1 n x^n f(x) \, d x - f(1)  \Big{|} & \leq &  \int_0^1 n x^n |f(x) - f(1)| \, d x + \frac{|f(1)|}{n+1} \\
+    & = & \int_{0}^{1- \delta} n x^n |f(x) - f(1)| \, d x + \int_{1 - \delta}^{1} n x^n |f(x) - f(1)| \, d x +  \frac{|f(1)|}{n+1} \\
+    & < & 2 \|f\|_{\infty} \int_{0}^{1- \delta} n x^n \, d x + \frac{\epsilon}{3}  \int_{1 - \delta}^{1} n x^n \, d x +  \frac{|f(1)|}{n+1} \\  
+    & = & 2 \|f\|_{\infty} \frac{n}{n+1} (1 - \delta)^{n+1} + \frac{\epsilon}{3} \frac{n}{n+1} \big{(} 1 - (1 - \delta)^{n+1} \big{)} + \frac{|f(1)|}{n+1} \\
+    & \leq &  2 \|f\|_{\infty} (1 - \delta)^{n+1} + \frac{\epsilon}{3} + \frac{|f(1)|}{n+1}.
+\end{eqnarray*}
+Since
+$$\lim_{n \to \infty}  2 \|f\|_{\infty} (1 - \delta)^{n+1} = 0 \quad \text{and} \quad \lim_{n \to \infty} \frac{|f(1)|}{n+1} = 0, $$
+there exists $N \in \mathbb N$ such that
+$$2 \|f\|_{\infty} (1 - \delta)^{n+1} < \frac{\epsilon}{3} \quad \text{and} \quad \frac{|f(1)|}{n+1} < \frac{\epsilon}{3}, \quad \forall n \geq N.$$
+Thus 
+$$\Big{|} \int_0^1 n x^n f(x) \, d x - f(1)  \Big{|} < \frac{\epsilon}{3} + \frac{\epsilon}{3} + \frac{\epsilon}{3} = \epsilon, \quad \forall n \geq N,$$
+which implies that $ \int_0^1 n x^n f(x) \, d x \to f(1)$.
+
+\vspace{6pt}
+
+(iii) Similarly with (ii), since $f(x)$ continuous at $1$, let $\epsilon > 0$ be given, there exists $\delta > 0$ such that for any $x \in (1 - \delta, 1)$, we have $|f(x) - f(1)| < \epsilon/4$.
+\begin{eqnarray*}
+    \Big{|} \int_0^1 n x^n f(x) \, d x - f(1)  \Big{|} & \leq &  \int_0^1 n x^n |f(x) - f(1)| \, d x + \frac{|f(1)|}{n+1} \\
+    & = & \int_{0}^{1- \delta} n x^n |f(x) - f(1)| \, d x + \int_{1 - \delta}^{1} n x^n |f(x) - f(1)| \, d x +  \frac{|f(1)|}{n+1} \\
+    & < &  \int_{0}^{1- \delta} n x^n |f(x)| \, d x + \int_{0}^{1- \delta} n x^n |f(1)| \, d x + \frac{\epsilon}{4}  +  \frac{|f(1)|}{n+1} \\  
+    & = & \int_{0}^{1- \delta} n x^n |f(x)| \, d x + \frac{n}{n+1} |f(1)| (1-\delta)^{n+1} + \frac{\epsilon}{4}  +  \frac{|f(1)|}{n+1}.
+\end{eqnarray*}
+Since $n x^n \to 0$ as $n \to \infty$ when $x \in (0, 1-\delta)$, there exists a $N_1 \in \mathbb N$ such that $n x^n < 1$ and $n x^n |f(x)| < |f(x)|$, $\forall n \geq N_1$. Since $f(x) \in L^1([0,1])$, then $|f(x)| \in L^1([0,1])$, and since $n x^n|f(x)| \to 0$ as $n \to \infty $ for each $x \in (0, 1- \delta)$, by dominate convergence theorem, we have
+$$\lim_{n \to \infty} \int_{0}^{1- \delta} n x^n |f(x)| \, d x  = \int_{0}^{1- \delta} 0 \,d x = 0.$$
+And by the result that 
+$$\lim_{n \to \infty} \frac{n}{n+1} |f(1)| (1 - \delta)^{n+1} = 0 \quad \text{and} \quad \lim_{n \to \infty} \frac{|f(1)|}{n+1} = 0, $$
+there exists $N \in \mathbb N$ such that
+$$\frac{n}{n+1} |f(1)| (1 - \delta)^{n+1} < \frac{\epsilon}{4} \quad \text{and} \quad \frac{|f(1)|}{n+1} < \frac{\epsilon}{4}, \quad \forall n \geq N.$$
+Therefore
+$$\Big{|} \int_0^1 n x^n f(x) \, d x - f(1)  \Big{|}  < \epsilon, \quad \forall n \geq N.$$ 
+Thus we also have $ \int_0^1 n x^n f(x) \, d x \to f(1)$.
+
+
+\newpage 
+
+$\underline{\textbf{Exercise 3:}}$
+
+Let $X$ be a metric space and $A$ and $B$ two subsets of $X$ such that $A \cap B = \emptyset$ and $A \cup B = X$. Show that the following statements are equivalent:
+
+(1) Any function $f: X \to \mathbb R$ is continuous if and only if the restriction of $f$ to $A$ and the restriction of $f$ to $B$ are continuous.
+
+(2) $A$ and $B$ are both open and closed in $X$.
+
+
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Firstly we show that $(2)$ implies $(1)$. Suppose $A$ and $B$ are both open and closed in $X$. If $f: X \to \mathbb R$ is continuous, then $f|_{A}$ is continuous and $f|_{B}$ is also continuous, where $f|_{A}$ is the restriction of $f$ to $A$. If $f|_{A}$ is continuous and $f|_{B}$ is continuous. Firstly we show that for all $x \in A$, $y \in B$, there exists a $\delta > 0$ such that
+$$B(x, \delta) \cap B = \emptyset, B(y, \delta) \cap A = \emptyset,$$
+where $B(x, \delta)$ is a open ball with center $x$ and radius $\delta$. Otherwise, there exists $x \in A$, $y \in B$, for all $\delta > 0$, $B(x, \delta) \cap B \neq \emptyset$ and $B(y, \delta) \cap A \neq \emptyset$, which imply that $x \in \bar{B}$ and $y \in \bar{A}$, where $\bar{B}$ is the closure of $B$. Since $A$ and $B$ are both closed in $X$, then we have $x \in \bar{B} = B$, $y \in \bar{A} = A$, thus $x \in A \cap B, y \in A \cap B$, which contradicts with $A \cap B = \emptyset$.
+
+For each $x \in X$, since $A \cap B = \emptyset$ and $A \cup B = X$, we suppose without lose of generality that $x \in A$. $f|_{A}$ is continuous and there exists $\delta > 0$ such that $B(x, \delta) \cap B = \emptyset$. Thus $f$ is continuous at $x$. By the arbitrary of $x$, we have $f$ is continuous on $X$.
+
+Next we prove that $(1)$ implies $(2)$. Suppose that any function $f: X \to \mathbb R$ is continuous if and only if the restriction of $f$ to $A$ and the restriction of $f$ to $B$ are continuous. Let
+$$f(x) = 1_{A}(x) - 1_{B}(x), \quad x \in X.$$
+Then we have
+$$f|_{A} (x) = 1_{A}(x) \quad \text{and} \quad f|_{B} (x) = -1_{B}(x).$$
+Thus both of $f|_{A}$ and $f|_{B}$ are continuous. We have $f(x) = 1_{A}(x) - 1_{B}(x)$ is continuous on $X$. $\{1\}$ is a closed subset of $\mathbb R$, then $f^{-1}(\{1\}) = A$ is closed in $X$ because $f$ is continuous on $X$. Thus $X \setminus A =B$ is open in $X$. Similarly, $\{-1\}$ is a closed subset of $\mathbb R$, then $f^{-1}(\{-1\}) = B$ is closed in $X$ because $f$ is continuous on $X$. Thus $X \setminus B = A$ is open in $X$. Therefore $A$ and $B$ are both open and closed in $X$.
+
+
+\end{document}
