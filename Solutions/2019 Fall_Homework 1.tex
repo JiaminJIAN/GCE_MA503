@@ -1,0 +1,194 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ Homework 1, 2019 Fall}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\underline{\textbf{Exercise 1:}}$
+
+Let $x$ and $y$ be in $\mathbb R^d$. Assume that $x \neq 0$. Set $e = \frac{x}{\|x\|}, P(y) = \langle y, e \rangle e$, and $z = y - P(y)$.
+
+(i) Show that $ \langle z, P(y) \rangle = 0$.
+
+(ii) Show that $\|P(y)\| \leq \|y\|$.
+
+(iii) Infer the Cauchy Schwartz inequality.
+ 
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) By calculation, we have
+\begin{eqnarray*}
+    \langle z, P(y) \rangle  & = & \langle y - P(y), P(y) \rangle \\
+    & = & \langle y, P(y) \rangle - \langle P(y) , P(y) \rangle \\
+    & = & \langle y, \langle y, e \rangle e \rangle - \langle \langle y, e \rangle e , \langle y, e \rangle e \rangle \\
+    & = & (\langle y, e \rangle)^2 - (\langle y, e \rangle)^2 \langle e, e \rangle \\
+    & = & (\langle y, e \rangle)^2 - (\langle y, e \rangle)^2 \\
+    & = & 0.
+\end{eqnarray*}
+
+(ii) Since $z = y - P(y)$, we have $y = z + P(y)$, then
+\begin{eqnarray*}
+    \|y\|^2 & = & \|z + P(y)\|^2 \\
+    & = & \|z\|^2 + \|P(y)\|^2 + 2 \langle z, P(y) \rangle \\
+    & = & \|z\|^2 + \|P(y)\|^2 \\
+    & \geq & \|P(y)\|^2.
+\end{eqnarray*}
+Thus $\|P(y)\| \leq \|y\|$.
+
+\vspace{6pt} 
+
+(iii) Since $e = \frac{x}{\|x\|}$ and $P(y) = \langle y, e \rangle e$, we have 
+$$\| \langle y, \frac{x}{\|x\|} \rangle  e \| = |\langle x, y \rangle| \frac{1}{\|x\|} \leq \|y\|.$$
+Thus for any $x, y \in \mathbb R^d$ and $x \neq 0$,
+$$|\langle x, y \rangle| \leq \|x\| \|y\|.$$
+If $x = 0$, we have $|\langle x, y \rangle| = 0 = \|x\| \|y\|$. Therefore for any $x, y \in \mathbb R^d$, $|\langle x, y \rangle| \leq \|x\| \|y\|$.
+
+
+\newpage 
+
+$\underline{\textbf{Exercise 2:}}$
+
+Set for $x = (x_1, x_2, \dots, x_d)$ in $\mathbb R^d$,
+$$\|x\|_1 = \sum_{i=1}^{d} |x_i|, \quad \|x\|_{\infty} = \max \{|x_i|: i = 1, \dots, d \}.$$
+Show that $\rho_1$ and $\rho_{\infty}$ define two distances on $\mathbb R^d$, where
+$$\rho_1 (x, y) = \|x - y\|_1, \quad \rho_{\infty}(x, y) = \|x-y\|_{\infty}.$$
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Firstly we show that $\rho_1$ defines a distance on $\mathbb R^d$. Suppose that $x = (x_1, x_2, \dots, x_d), y = (y_1, y_2, \dots, y_d)$ and $z = (z_1, z_2, \dots, z_d)$.
+\begin{itemize}
+    \item $\rho_1(x,y) \geq 0$, for all $x, y \in \mathbb R^d$.
+    \item $\rho_1(x,y) = \|x - y\|_1 = 0 \Leftrightarrow  \sum_{i=1}^{d} |x_i - y_i| = 0 \Leftrightarrow x_i = y_i, i = 1, 2, \dots, d \Leftrightarrow x = y$, for all $x, y \in \mathbb R^d$.
+    \item $\rho_1(x,y) = \sum_{i=1}^{d} |x_i - y_i| = \sum_{i=1}^{d} |y_i - x_i|= \rho_1(y,x)$, for all $x, y \in \mathbb R^d$. 
+    \item For all $x, y, z\in \mathbb R^d$,
+    \begin{eqnarray*}
+    \rho_1(x, y) + \rho_1(y, z) & = & \sum_{i=1}^{d} |x_i - y_i| + \sum_{i=1}^{d} |y_i - z_i|  \\
+    & = & \sum_{i=1}^{d} (|x_i - y_i| + |y_i - z_i|) \\
+    & \geq & \sum_{i=1}^{d} |x_i - z_i| \\
+    & = & \rho_1(x, z).
+\end{eqnarray*}
+\end{itemize}
+
+Next we show that $\rho_{\infty}$ defines a distance on $\mathbb R^d$. Suppose that $x = (x_1, x_2, \dots, x_d), y = (y_1, y_2, \dots, y_d)$ and $z = (z_1, z_2, \dots, z_d)$.
+\begin{itemize}
+    \item $\rho_{\infty}(x,y) \geq 0$, for all $x, y \in \mathbb R^d$.
+    \item $\rho_{\infty}(x,y) = \|x - y\|_{\infty} = 0 \Leftrightarrow  \max \{ |x_i - y_i|: i = 1, 2, \dots, d \} = 0 \Leftrightarrow |x_i - y_i| = 0, i = 1, 2, \dots, d \Leftrightarrow x_i = y_i, i = 1, 2, \dots, d \Leftrightarrow x = y$, for all $x, y \in \mathbb R^d$.
+    \item $\rho_{\infty}(x,y) = \max \{ |x_i - y_i|: i =1, 2, \dots, d \} = \max \{ |y_i - x_i|: i =1, 2, \dots, d \} = \rho_{\infty}(y,x)$, for all $x, y \in \mathbb R^d$. 
+    \item For all $x, y, z\in \mathbb R^d$,
+    \begin{eqnarray*}
+    & & \rho_{\infty}(x, y) + \rho_{\infty}(y, z) \\
+    & = & \max \{ |x_i - y_i|: i =1, 2, \dots, d \} + \max \{ |y_i - z_i|: i =1, 2, \dots, d \}  \\
+    & \geq & \max \{ |x_i - y_i| + |y_i - z_i| : i =1, 2, \dots, d \} \\
+    & \geq & \max \{ |x_i - z_i|: i =1, 2, \dots, d \}  \\
+    & = & \rho_{\infty}(x, z).
+\end{eqnarray*}
+\end{itemize}
+
+
+\newpage 
+
+$\underline{\textbf{Exercise 3:}}$
+
+Prove that if $(X, \rho)$ is a metric space and we set for all $x$ and $y$ in $X$,
+$$d(x, y) = \frac{\rho(x,y)}{1 + \rho(x,y)},$$
+then $d$ is a distance on $X$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+We have following properties:
+\begin{itemize}
+    \item $d(x, y) \geq 0$, for all $x, y \in X$.
+    \item $d(x, y) = 0 \Leftrightarrow \rho(x, y) = 0 \Leftrightarrow x = y$, for all $x, y \in X$.
+    \item Symmetric:
+    $$d(x, y) = \frac{\rho(x,y)}{1 + \rho(x,y)} = \frac{\rho(y,x)}{1 + \rho(y,x)} = d(y, x).$$
+    \item Triangle inequality: for all $x, y, z \in X$
+    \begin{eqnarray*}
+    d(x, y) + d(y, z) & = & \frac{\rho(x,y)}{1 + \rho(x,y)} + \frac{\rho(y,z)}{1 + \rho(y,z)}  \\
+    & = & \frac{\rho(x,y) + \rho(y,z) + 2 \rho(x,y) \rho(y,z)}{1 + \rho(x,y) + \rho(y,z) + \rho(x,y) \rho(y,z)} \\
+    & \geq & \frac{\rho(x,y) + \rho(y,z) + \rho(x,y) \rho(y,z)}{1 + \rho(x,y) + \rho(y,z) + \rho(x,y) \rho(y,z)} \\
+    & \geq & \frac{\rho(x,y) + \rho(y,z)}{1 + \rho(x,y) + \rho(y,z)} \\
+    & \geq & \frac{\rho(x,z)}{1 + \rho(x,z)}
+\end{eqnarray*}
+since $f(x) = \frac{x}{1+x}$ is a monotone increasing function when $x > 0$.
+    
+\end{itemize}
+
+
+\newpage 
+
+$\underline{\textbf{Exercise 4:}}$ 
+
+Let $x_n$ be a convergent sequence in the metric space $(X, \rho)$. Show that the limit of $x_n$ is unique.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Suppose that $x_n$ be a convergent sequence in the metric space $(X, \rho)$ to $x$ and $y$. Let $\epsilon > 0$ be given, there exists a $N \in \mathbb N$ such that
+$$\rho(x_n, x) < \frac{\epsilon}{2}, \quad \forall n \geq N$$
+and 
+$$\rho(x_n, y) < \frac{\epsilon}{2}, \quad \forall n \geq N.$$
+Thus
+$$\rho(x, y) \leq \rho(x, x_n) + \rho(x_n, y) < \epsilon, \quad  \forall n \geq N.$$
+By the arbitrary of $\epsilon$, we have $\rho(x,y) = 0$, thus $x = y$.
+
+\newpage 
+
+$\underline{\textbf{Exercise 5:}}$
+
+Let $(X, \rho)$ be a metric space. Suppose that $X$ is a finite set. Show that any subset of $X$ is both open and closed.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Suppose $X = \{x_1, x_2, \dots, x_m \}$, where $m$ is a finite constant. Let $\epsilon > 0$ be given. For each $x_i \in X$, $\{x_i\} \in B(x_i, \epsilon) \cap X$, where $B(x_i, \epsilon)$ is the open ball with the center $x_i$ and radius $\epsilon$, thus any singleton of $X$ is closed. By taking finite union, any subset of $X$ is closed.
+
+Let $\delta = \min \{ |x_i - x_j|: i, j = 1, 2, \dots, m, i \neq j \}$. For each $x_i \in X$, $B(x_i, \delta) = \{x_i\} \subset X$. Thus any singleton of $X$ is open. By taking finite union, any subset of $X$ is open.
+
+\newpage 
+
+$\underline{\textbf{Exercise 6:}}$
+
+Let $(X, \rho)$ be a metric space. Let $A$ be a subset of $X$. Show that $V$ is an open subset of $A$ if and only if there is an open subset $W$ of $X$ such that $V = A \cap W$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Assume that $V$ is an open subset of $A$. Then for some $\alpha_x$,
+$$V = \bigcup_{x \in V} B_{A}(x, \alpha_x) = \bigcup_{x \in V} \{y \in A: \rho(x,y) < \alpha_x \}.$$
+We set $W = \bigcup_{x \in V} \{y \in X: \rho(x,y) < \alpha_x \}$, then $W$ is an open subset of $X$ such that $V = A \cap W$.
+
+Conversely, assume that there is an open subset $W$ of $X$ such that $V = A \cap W$. Let $x \in V$, there exists $\alpha > 0$ such that $\{y \in X: \rho(x, y) < \alpha\} \subset W$. Thus 
+$$\{y \in A: \rho(x,y) < \alpha \} \subset W \cap A = V,$$
+which implies that $V$ is an open subset of $A$.
+\end{document}
