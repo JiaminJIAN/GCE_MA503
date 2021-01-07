@@ -1,0 +1,272 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ Homework 2, 2019 Fall}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\underline{\textbf{Exercise 1:}}$
+
+(i) Let $f: [0,1] \to \mathbb R, f(x) = \sqrt{x}$. Show that $f$ is uniformly continuous but not Lipschitz continuous.
+
+(ii) Let $g: (0,1) \to \mathbb R, g(x) = \frac{1}{x}$. Show that $g$ is not uniformly continuous.
+
+ 
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) Let $\epsilon > 0$ be given, choose $\delta = \epsilon^2$, for any $x, y \in [0,1]$ with $|x - y| < \delta$,
+$$|f(x) - f(y)|^2 = |\sqrt{x} - \sqrt{y}|^2 \leq |\sqrt{x} - \sqrt{y}| \cdot |\sqrt{x} + \sqrt{y}| = |x - y| < \epsilon^2$$
+as $|\sqrt{x} - \sqrt{y}| \leq |\sqrt{x} + \sqrt{y}|$ when $x, y \in [0,1]$. Thus $|f(x) - f(y)| < \epsilon$, which implies that $f$ is uniformly continuous.
+
+We argue by contradiction to show that $f$ is not Lipschitz continuous. Suppose there exists a constant $c>0$ such that $|f(x) - f(y)| \leq c |x-y|, \forall x, y \in [0,1]$. Let $y = 0$ and $x = \frac{1}{m^2}$ with $m \geq 1$, then
+$$|f(x) - f(y)| = \Big{|} \frac{1}{m} - 0 \Big{|} \leq c \Big{|} \frac{1}{m^2} - 0 \Big{|},$$
+thus $c \geq m$ for all $m \geq 1$, which is a contradiction.
+
+(ii) Choose $\epsilon = 1$, for any $1 > \delta >0$, we set $x = \delta$ and $y = \delta/2$, then $|x - y| = \delta / 2 < \delta$ and
+$$|g(x) - g(y)| = \Big{|} \frac{1}{\delta} - \frac{2}{\delta} \Big{|} = \frac{1}{\delta} > \epsilon = 1.$$
+Thus $g$ is not uniformly continuous.
+
+Or assume that $\forall \epsilon > 0, \exists \delta > 0$, $\forall x, y \in (0,1)$ with $|x - y| < \delta$, we have $|g(x) - g(y)| < \epsilon$. Choose $\epsilon = 1/2, x_m = \frac{1}{m+1}$ and $y = \frac{1}{m}$, then $|g(x_m) - g(y_m)| = 1 > \epsilon$, but for $m$ large enough, $|x_m - y_m| < \delta$ since $\lim_{m \to \infty} |x_m - y_m| = 0$. Contradiction.
+
+
+
+\newpage
+
+$\underline{\textbf{Exercise 2:}}$
+
+Find a function $f: \mathbb R \to \mathbb R$ which is continuous, bounded, but not uniformly continuous.
+ 
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Set $f(x) = \sin(x^2)$, then $f$ is continuous and bounded on $\mathbb R$. Next we show that $f$ is not uniformly continuous. Let $\epsilon = 1/2$, for any $\delta > 0$, choose
+$$x_n = \sqrt{2n \pi + \frac{\pi}{2}}, y_n = \sqrt{2n \pi}.$$
+Then 
+$$x_n - y_n = \sqrt{2n \pi + \frac{\pi}{2}} - \sqrt{2n \pi} = \frac{\frac{\pi}{2}}{\sqrt{2n \pi + \frac{\pi}{2}} + \sqrt{2n \pi}} \to 0$$
+as $n \to \infty$. Thus for $n$ large enough, $|x_n - y_n| < \delta$, but
+$$|f(x_n) - f(y_n)| = |\sin (2n \pi + \frac{\pi}{2}) - \sin (2n \pi)| = 1 > \epsilon.$$
+Thus $f$ is not uniformly continuous.
+
+
+
+\newpage
+
+$\underline{\textbf{Exercise 3:}}$
+
+Let $X$ be a non-empty set and $B(X)$ be the space of bounded functions from $X$ to $\mathbb R$ with the metric
+$$\rho(f, g) = \sup_{x \in X} |f(x) - g(x)|.$$
+Show that $B(X)$ is complete.
+ 
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Let $\{f_n\}_{n \geq 1}$ is a Cauchy sequence in $B(X)$. Let $\epsilon > 0$ be given, there exists a $N \in \mathbb N$ such that
+$$\sup_{x \in X} |f_n(x) - f_m(x)| < \epsilon, \quad \forall n, m \geq N.$$
+Thus for $y \in X$, $|f_n(y) - f_m(y)| < \epsilon$ when $n, m \geq N$. This shows that $\{f_m(y) \}_{m \geq 1}$ is a Cauchy sequence in $\mathbb R$. Since $\mathbb R$ is complete, there exists $f(y) \in \mathbb R$ such that $f_m(y) \to f(y)$ as $m \to \infty$. This define a function $f: X \to \mathbb R$.
+
+For $\epsilon > 0$ fixed and $n, m \geq N$, for $|f_n(y) - f_m(y)| < \epsilon$, let $m \to \infty$, then
+$$|f_n(y) - f(y)| \leq \epsilon, \quad n \geq N.$$
+In particular, $|f(y)| \leq \epsilon + |f_{N}(y)| \leq \epsilon + \sup_{x \in X} |f_N(x)|$, thus $f$ is bounded. By the arbitrary of $y \in X$,
+$$\sup_{y \in X} |f_n(y) - f(y)| \leq \epsilon, \quad n \geq N,$$
+which yields that $f_n \to f$ in $B(X)$. Therefore $B(X)$ is complete.
+
+
+
+\newpage
+
+$\underline{\textbf{Exercise 4:}}$ 
+
+Let $(X, \rho)$ be a metric space and $x_n$ be a sequence in $X$. Assume that there is a sequence $a_n$ in $\mathbb R$ such that $\rho(x_n, x_{n+1}) \leq a_n$ and $\sum a_n$ converges. Show that $x_n$ is a Cauchy sequence.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Let $\epsilon > 0$ be given. Since $\sum a_n$ converges, there exists a $N \in \mathbb N$ such that $\sum_{n = N}^{\infty} a_n < \epsilon$. For each $n \in \mathbb N$, $\rho(x_n, x_{n+1}) \leq a_n$, we have $a_n \geq 0$. Thus $\forall m \geq n \geq N$,
+\begin{eqnarray*}
+    \rho(x_n, x_m) & \leq & \rho(x_n, x_{n+1}) + \rho(x_{n+1}, x_{n+2}) + \cdots + \rho(x_{m-1}, x_{m})  \\
+    & \leq & a_n + a_{n+1} + \cdots + a_{m-1}  \\
+    & \leq &  \sum_{k = N}^{\infty} a_k  \\
+    & \leq & \epsilon,
+\end{eqnarray*}
+which shows that $x_n$ is a Cauchy sequence.
+
+
+\newpage
+
+$\underline{\textbf{Exercise 5:}}$
+
+Let $(X, \rho)$ be a metric space and $A$ a non-empty subset of $X$. Define 
+$$d(x, A) = \inf \{d(x, a) : a \in A \}.$$
+Show that $A$ is closed if and only if $A = \{x \in X: d(x, A) = 0 \}$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Suppose $A$ is closed. For any $x \in A$, $x \in X$, we have $d(x, A) = 0$, thus $A \subset \{x \in X: d(x, A) = 0 \}$. If $A$  is closed, for any $x \in \{x \in X: d(x, A) = 0 \}$, let $\epsilon > 0$ be given, there exists $y \in A$ such that $d(x, y) < \epsilon$. Thus $x \in \bar{A} = A$, we have $\{x \in X: d(x, A) = 0 \} \subset A$. Therefore we have $A = \{x \in X: d(x, A) = 0 \}$. Or let $y \in A = \{x \in X: d(x, A) = 0 \}$, we have $\inf \{d(y, a) : a \in A \} = 0$, there exists a sequence $a_m$ in $A$ such that $\lim_{m \to \infty} d(a_m, y) = 0$, thus $\lim_{m \to \infty} a_m = y$. Since $A$ is closed, we have $y \in \bar{A} = A$. We conclude that $\{x \in X: d(x, A) = 0 \} \subset A$.
+
+Conversely suppose that $A = \{x \in X: d(x, A) = 0 \}$. Let $y \in \bar{A}$, there is a sequence $a_m$ in $A$ such that $\lim_{m \to \infty} a_m = y$, so $\lim_{m \to \infty} d(a_m, y) = 0$, which implies that $\inf \{d(y, a) : a \in A \} = 0$. Thus $y \in \{x \in X: d(x, A) = 0 \}$. Since $A = \{x \in X: d(x, A) = 0 \}$, we have $y \in A$. Thus $A = \bar{A}$. $A$ is closed.
+
+
+\newpage
+
+$\underline{\textbf{Exercise 6:}}$
+
+Let $(X, \rho)$ be a metric space and $A$ a non-empty subset of $X$. Define 
+$$d(x, A) = \inf \{d(x, a) : a \in A \}.$$
+Show that $f: X \to \mathbb R^{+}, f(x) = d(x, A)$ is Lipschitz continuous.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Let $x, y$ be in $X$ and $a$ in $A$, then
+$$d(x,a) \leq d(x,y) + d(y, a).$$
+Thus $f(x) \leq d(x,y) + d(y,a)$ for all $a$ in $A$. Taking the inf of the right hand side for all $a \in A$, we have
+$$f(x) \leq d(x, y) + f(y),$$
+thus $f(x) - f(y) \leq d(x, y)$. As $x$ and $y$ are arbitrary in $X$, we also have
+$f(y) - f(x) \leq d(y,x) = d(x, y)$. Thus $|f(x) - f(y)| \leq d(x, y)$, for all $x$ and $y$ in $X$. Therefore $f$ is Lipschitz continuous.
+
+\newpage
+
+
+$\underline{\textbf{Exercise 7:}}$
+
+Show that a subset $E$ of a metric space $X$ is open if and only if there is a continuous real-valued function $f$ on $X$ for which $E = \{x \in X: f(x) > 0 \}$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Firstly, if there is a continuous real-valued function $f$ on $X$ for which $E = \{x \in X: f(x) > 0 \}$, we have $E = f^{-1}((0, \infty))$, which is the inverse image of $f$ on $(0, \infty)$. Since $(0, \infty)$ is the open subset of $\mathbb R$ and $f$ is continuous, $E = f^{-1}((0, \infty))$ is also open in $X$.
+
+Conversely, if $E$ is a open subset of a metric space $X$, we define
+$$f (x) = d(x, E^c) = \min \{d(x, y): y \in E^c \}.$$
+Since $E$ is open, $E^c$ is closed in $X$. For any fixed $x \in E$, we have
+$$f (x) = d(x, E^c) = \min \{d(x, y): y \in E^c \} > 0.$$
+Thus $E \subset \{x \in X: f(x) > 0 \}$. For any $x \in \{x \in X: f(x) > 0 \} = \{x \in X: d(x, E^c) > 0 \}$, we have $\min \{d(x, y): y \in E^c\} > 0$, thus $x \notin E^c$, $x \in E$. Hence we also have $\{x \in X: f(x) > 0 \} \subset E$. Therefore $E = \{x \in X: f(x) > 0 \}$.
+
+
+
+\newpage
+
+$\underline{\textbf{Exercise 8:}}$
+
+Let $L$ be a linear function between the two normed spaces $(V_1, N_1)$ and $(V_2, N_2)$. Show that the following conditions are equivalent:
+
+(i) $L$ is continuous at $0$.
+
+(ii) $L$ is Lipschitz continuous.
+
+(iii) $\exists C >0, \forall x \in V_1, N_2(L x) \leq C N_1(x)$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Firstly we show that (i) $\Rightarrow$ (iii). Since $L$ is continuous at $0$, let $\epsilon = 1$, there exists $\delta > 0$ such that for any $x \in V_1$ with $N_1(x) < \delta$, we have $N_2(L x) < 1$. Let $y \neq 0$ be in $V_1$, set $z = \frac{\delta}{2} \frac{y}{N_1(y)}$, thus
+$$N_1(z) = N_1 \Big{(} \frac{\delta}{2} \frac{y}{N_1(y)} \Big{)} = \frac{\delta}{2} < \delta ,$$
+then we have $N_2(L z) < 1$, which means
+$$N_2(L z) = N_2 \Big{(} \frac{\delta}{2} \frac{L y}{N_1(y)} \Big{)} = \frac{\delta}{2} \frac{N_2(L y)}{N_1(y)} < 1.$$
+Thus $N_2(L y) < \frac{2}{\delta} N_1(y)$. If $y = 0$, we have $N_2(L y) = 0 = N_1(y)$. Therefore if $L$ is continuous at $0$, $\exists C >0, \forall x \in V_1, N_2(L x) \leq C N_1(x)$.
+
+Next we show that (iii) $\Rightarrow$ (ii). Let $x, y \in V_1$, by (iii), there exists a constant $c$ such that
+$$N_2(L(x - y)) \leq c N_1(x-y).$$
+Since $L$ be a linear function between $(V_1, N_1)$ and $(V_2, N_2)$, we have $L(x - y) = L x - L y$, thus
+$$N_2(L x - L y)) \leq c N_1(x-y),$$
+which implies that $L$ is Lipschitz continuous.
+
+Finally we show that (ii) $\Rightarrow$ (i). Since $L$ is Lipschitz continuous, then $L$ is continuous on $V_1$, we have $L$ is continuous at $0$.
+
+
+\newpage
+
+$\underline{\textbf{Exercise 9:}}$
+
+Let $A$ and $B$ be two subsets of $\mathbb R^d$.
+
+(i) If $A$ is closed and $B$ is compact, show that $A + B$ is closed.
+
+(ii) If $A$ is closed and $B$ is closed, is $A + B$ is closed?
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) Let $\{a_m + b_m \}_{m}$ be a sequence in $A + B$, which converges to $\ell$ in $\mathbb R^d$. As $B$ is compact, there exists a subsequence $\{b_{m_k}\}_{k}$ which converges to some $b \in B$. Thus $a_{m_k}$ converges to $\ell - b$. Since $A$ is closed, we have $\ell - b \in A$. Then $\ell = (\ell - b) + b \in A + B$. Hence $A + B$ is closed.
+
+(ii) No, the counter example is as follows: we set
+$$A = \{(x, y) \in \mathbb R^2: x y = 1\} \cap \{x \geq 0\},$$
+$$B = \{(x, y) \in \mathbb R^2: x y = - 1\} \cap \{x \geq 0\}.$$
+The sequence $a_m = (\frac{1}{m}, m)$ is in $A$, and the sequence $b_m = (\frac{1}{m}, - m)$ is in $B$, where $m \in \mathbb N$. Then $a_m + b_m = (\frac{2}{m}, 0)$, which converges to $(0,0)$. But $(0,0) \notin A + B$ since for $(x, y) \in A$, we need $x > 0$ and for $(x', y') \in B$, we need $x' > 0$.
+
+
+
+\newpage
+
+$\underline{\textbf{Exercise 10:}}$
+
+Let $X$ be the space $[0,1)$ equipped with its usual metric. Find a cover of $X$ by open sets which does not have a finite subcover.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Let $V_m = [0, 1 - \frac{1}{m})$, $V_m$ is open in $X$ and $\bigcup_{m=2}^{\infty} V_m$ is an open cover of $X$. For all $x \in [0,1)$, there exists a $p$ such that 
+$$x < 1 - \frac{1}{p}$$
+for $p$ large enough. If a finite subcover exists, as $V_m \subset X$ for all $m$, then there exists some $k \in \mathbb N$ such that
+$$X = \bigcup_{m = 2}^{k} V_m.$$
+But we have $1 - \frac{1}{k+1} \in X$ and $1 - \frac{1}{k+1} \notin \bigcup_{m = 2}^{k} V_m$. 
+
+
+
+\newpage
+
+$\underline{\textbf{Exercise 11:}}$
+
+Let $S = \{x \in \ell_2: \|x\| = 1 \}$.
+
+(i) Show that $S$ is closed and bounded.
+
+(ii) Find with proof $\epsilon > 0$ such that $S$ cannot be covered by finitely many balls with radius $\epsilon$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) By the definition of $S$, we know that $S$ is bounded by 1. $\forall x, y \in S$, since $\|x\| \leq \|x - y \| + \|y\|$ and $\|y\| \leq \|x - y \| + \|x\|$, we have $| \|x\| - \|y\| | \leq \|x - y\|$, thus the norm is continuous from $\ell^{2}$ to $\mathbb{R}$. Since the image set $\{1\}$ is closed, then we know the inverse image of $\{1\}$ is also closed, which is actually $S$. So, $S$ is bounded and closed.
+
+(ii) Next, we verify that $\exists \epsilon > 0$, $S$ cannot be covered by finitely many balls with radius $\epsilon$. We define $e_{i}$ as follows:
+\begin{equation*}
+e_{i,m} =
+\left\{
+             \begin{array}{cl}
+             1, & m = i \\
+             0, & m \neq i
+             \end{array},
+\right.
+\end{equation*}
+thus $e_{i} \in \ell^{2}$. Clearly, $\forall i, j$, if $i \neq j$,  we have  $\|e_{i} - e_{j} \| = \sqrt{2}$. Suppose $S$ can be covered by the finite balls with radius $\frac{\sqrt{2}}{2}$. Since the sequence $\{e_{i}\}_{i = 1}^{\infty}$ is infinity many, at least one of such ball contains at least two elements $e_{j}$ and $e_{k}$ with $j \neq k$. Let $x$ be the center of this ball, then we have $\|e_{j}  - e_{k}\| \leq \|e_{j} - x\| + \|e_{k} - x\| < \frac{\sqrt{2}}{2} + \frac{\sqrt{2}}{2} =  \sqrt{2}$. It contradicts with the fact that $\forall k, j$, if $k \neq j$, $\|e_{i} - e_{j} \| = \sqrt{2}$. Hence $\exists \epsilon > 0$, $S$ cannot be covered by finitely many balls with radius $\epsilon$. Then we know  that $S$ is  not compact.
+
+\end{document}
