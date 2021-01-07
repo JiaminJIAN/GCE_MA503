@@ -21,3 +21,4 @@
 ## 2019 Fall
 
 - [Homework 1](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/2019%20Fall_Homework%201.pdf)
+- [Homework 2](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/2019%20Fall_Homework%202.pdf)
