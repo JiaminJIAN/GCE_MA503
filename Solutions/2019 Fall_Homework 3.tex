@@ -1,0 +1,323 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ Homework 3, 2019 Fall}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\underline{\textbf{Exercise 1:}}$
+
+Let $K$ be compact subset of the metric space $X$. For a point $x \in X \setminus K$, show that there is a open set $U$ containing $K$ and an open set $O$ containing $x$ for which $U \cap O = \emptyset$.
+ 
+ 
+\vspace{8pt}
+$\textbf{Solution:}$
+
+As $x \notin K$ and $K$ is closed, we have $d(x, K)  > 0$. Let $\alpha = d(x, K)$ and define 
+$$ U = \{y \in X: d(y, K) < \frac{\alpha}{2}\}.$$
+The function $f(y) = d(y, K)$ is a continuous function from $X$ to $\mathbb R$, and since $(- \alpha/2, \alpha/2)$ is an open subset of $\mathbb R$, we have $U = f^{-1}((- \alpha/2, \alpha/2))$ is open in $X$. And for each $y \in K$, $d(y, K) = 0 < \alpha/2$, $K \subset U$. Set $O = B(x, \alpha/4)$, which is an open ball in X with the center $x$ and radius $\alpha/4$. 
+
+Next we argue by contradiction to show that $U \cap O = \emptyset$. Assume that there exists $z \in U \cap O$, then $d(x, z) < \alpha/4$, and there exists $v \in K$ such that $d(z, v) < \alpha/4 + \alpha/2$. Thus we have
+$$d(x, v) \leq d(x, z) + d(z, v) < \frac{\alpha}{4} + \frac{3 \alpha}{4} = \alpha,$$
+which contradicts with $\alpha = d(x, K)$.
+
+
+\vspace{8pt}
+
+$\underline{\textbf{Exercise 2:}}$
+
+Let $A$ and $B$ be subsets of a metric space $(X, \rho)$. Define 
+$$\text{dist} (A, B) = \inf \{\rho(u, v): u \in A, v \in B \}.$$
+If $A$ is compact and $B$ is closed, show that $A \cap B = \emptyset$ if and only if $\text{dist} (A, B) > 0$. 
+ 
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Suppose $\text{dist} (A, B) > 0$. If $A \cap B \neq \emptyset$, then there exists $x \in A \cap B$. Since $d(x, x) = 0$, we have $\text{dist} (A, B) = \inf \{\rho(u, v): u \in A, v \in B \} = 0$, which contradicts with the fact $\text{dist} (A, B) > 0$.
+
+Suppose that $A \cap B = \emptyset$. Argue by contradiction. If $\text{dist} (A, B) = 0$, there exists a sequence $a_m$ in $A$ and a sequence $b_m$ in $B$ such that $\rho(a_m, b_m)$ converges to $0$. As $A$ is compact, there exists a subsequence $a_{m_{k}}$ of $a_m$ converges to some $a \in A$. Since $\rho(a_{m_k}, b_{m_k})$ converges to $0$ and $\rho(a_{m_k}, a)$ converges to $0$, we have
+$$\rho(b_{m_k}, a) \leq \rho(a_{m_k}, b_{m_k}) + \rho(a_{m_k}, a)$$
+also converges to $0$. Since $B$ is closed, $a \in B$. We have $a \in A \cap B$, which contradicts with $A \cap B = \emptyset$.
+
+
+\newpage
+
+$\underline{\textbf{Exercise 3:}}$
+
+Let $K$ be a compact subset of a metric space $X$ and $O$ an open set containing $K$. Use the proceeding problem to show that there is an open set $U$ for which $K \subset U \subset \bar{U} \subset O$.
+ 
+\vspace{8pt}
+$\textbf{Solution:}$
+
+If $O = X$, let $ U = O$, then $U$ is both open and closed, we have $K \subset U \subset \bar{U} \subset O$.
+
+Otherwise, we have $K \cap O^c = \emptyset$ and $O^c \neq \emptyset$. Since $O^c$ is closed in $X$ and $K$ is a compact subset of $X$, by the result of exercise 2, for $\alpha = \text{dist} (K, O^c) $, we have $\alpha > 0$. Define
+$$U = \{x \in X: d(x, O^c) > \frac{\alpha}{2} \}.$$
+Since for any subset $S$ of $X$ which is non-empty, the function $f(x) = d(x, S) = \inf \{d(x, s): s \in S\}$ is continuous, we have $U$ is open in $X$. But for all $x \in K$, $d(x, O^c) \geq \alpha > \alpha /2$, we can get $K \subset U$. Since $\bar U = \{x \in X: d(x, O^c) \geq \frac{\alpha}{2} \}$, we have $\bar U \cap O^c = \emptyset$. Thus $\bar U \subset O$ and then $K \subset U \subset \bar{U} \subset O$.
+
+
+\newpage
+
+$\underline{\textbf{Exercise 4:}}$ 
+
+Show that $\ell^1 \subset \ell^2 \subset \ell^{\infty}$, and that these inclusions are strict. Also show that the identity functions from $\ell^1$ to $\ell^2$ and from $\ell^2$ to $\ell^{\infty}$ are continuous.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Firstly we show that $\ell^1 \subset \ell^2 \subset \ell^{\infty}$. Let $x \in \ell^1$, for any $n \in \mathbb N$,
+\begin{eqnarray*}
+ \big{(} \sum_{i=1}^{n} |x_i| \Big{)}^2 & = & \sum_{i=1}^{n} |x_i|^2 + \sum_{1 \leq i, j \leq n} |x_i x_j| \\
+    & \geq & \sum_{i=1}^{n} |x_i|^2,
+\end{eqnarray*}
+thus 
+$$\Big{(} \sum_{i=1}^{n} |x_i|^2 \Big{)}^{\frac{1}{2}} \leq \sum_{i=1}^{n} |x_i|.$$
+Let $n \to \infty$, we obtain
+$$\Big{(} \sum_{i=1}^{\infty} |x_i|^2 \Big{)}^{\frac{1}{2}} \leq \sum_{i=1}^{\infty} |x_i|.$$
+Thus for all $x \in \ell^1$, $x \in \ell^2$ and $\|x\|_2 \leq \|x\|_1$. It shows that the identity function from $\ell^1$ to $\ell^2$ is continuous. Similarly, let $x \in \ell^2$, since $\sum_{i = 1}^{\infty} x_i^2$ converges, we have $\lim_{i \to \infty} x_i^2 = 0$, then $\lim_{i \to \infty} x_i = 0$. Thus $x_i$ must be bounded. If $x \neq 0$, since $\|x\|_{\infty} > 0$, there exists $N \in \mathbb N$ such that $|x_i| < \|x\|_{\infty} /2$, for all $i > N$. But there exists $p \in \mathbb N$ such that $|x_p| > \|x\|_{\infty} / 2$. Thus 
+$$\|x\|_{\infty} = \sup \{|x_i| : i \geq 1\} = \sup \{|x_m|:1 \leq i \leq N \} = |x_q|$$
+for some $q \in \{1, 2, \dots, N\}$. Clearly $|x_q|^2 \leq \sum_{i=1}^{\infty} x_i^2$, thus
+$$\|x\|_{\infty} = |x_q| \leq \Big{(} \sum_{i=1}^{\infty} x_i^2 \Big{)}^{\frac{1}{2}} = \|x\|_2.$$ 
+Thus $\ell^2 \subset \ell^{\infty}$ and it follows that the identity function from $\ell^2$ to $\ell^{\infty}$ is continuous.
+
+Next we give two examples. The constant sequence $a_i = 1, \forall i \in \mathbb N$ is in $\ell^{\infty}$, but it is not in $\ell^2$. The sequence $a_i = 1/i, \forall i \in \mathbb N$  is in $\ell^2$ as $\sum_{i = 1}^{\infty} 1/i^2 < \infty$, but it is not in $\ell^1$ as $\sum_{i = 1}^{\infty} 1/i = \infty$.
+
+
+\newpage
+
+$\underline{\textbf{Exercise 5:}}$
+
+Let $X$ be a set and $\mathcal A$ be a subset of $\mathcal P(X)$.
+
+(i) If $\mathcal A$ is closed under complementation and set difference, show that $\mathcal A$ is closed under finite union and finite intersection.
+
+(ii) If $\mathcal A$ contains $X$ and is closed under set difference and finite intersection, show that $\mathcal A$ is closed under finite union and set complementation.
+
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) If $A_1, A_2 \in \mathcal A$, as $\mathcal A$ is closed under set difference, we have $A_1 \setminus A_2 \in \mathcal A$. Thus
+$$ A_1 \cap A_2 = A_1 \setminus (A_1 \setminus A_2) \in \mathcal A.$$
+Since $\mathcal A$ is closed under complementation, $A_1^c$ and $A_2^c$ are in $\mathcal A$, thus $A_1^c \cap A_2^c \in \mathcal A$ and
+$$A_1 \cup A_2 = (A_1^c \cap A_2^c)^c \in \mathcal A.$$
+By induction, we have $\mathcal A$ is closed under finite union and finite intersection.
+
+(ii) If $X \in \mathcal A$ and $A \in \mathcal A$. since $\mathcal A$ closed under set difference, we have
+$$A^c = X \setminus A \in \mathcal A. $$
+For $A_1, A_2 \in \mathcal A$, we have $A_1^c$ and $A_2^c$ are in $\mathcal A$. And since $\mathcal A$ is closed under finite intersection, we have $A_1^c \cap A_2^c \in \mathcal A$. Therefore
+$$A_1 \cup A_2 = X \setminus (A_1^c \cap A_2^c) \in \mathcal A.$$
+Then by induction, we have $\mathcal A$ is closed under finite union and set complementation.
+
+
+
+\newpage
+
+$\underline{\textbf{Exercise 6:}}$
+
+(i) Let $V$ be an open subset of $\mathbb R$ which is neither empty nor equal to $\mathbb R$. Let $V^c$ be the complement of $V$. Show that
+$$V = \bigcup_{n=1}^{\infty} \{x \in \mathbb R: |x| \leq n \,\, \text{and} \,\, d(x, V^c) \geq \frac{1}{n} \}.$$
+
+(ii) Infer that every open subset of $\mathbb R$ is a countable union of open intervals.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) Let
+$$V_n = \{x \in \mathbb R: |x| \leq n \,\, \text{and} \,\, d(x, V^c) \geq \frac{1}{n} \}.$$
+For each $n \in \mathbb N$, if $x \in V_n$, assume $x \notin V$, then $x \in V^c$. Since  $V$ is an open subset of $\mathbb R$, $V^c$ is closed in $\mathbb R$, we have $d(x, V^c) = 0$, which is a contradiction. Thus $V_n \subset V$ for each $n \in \mathbb N$. Conversely, let $x \in V$, since $V$ is open in $\mathbb R$, there exists $\delta > 0$ such that $(x - \delta, x + \delta) \subset V$, thus $d(x, V^c) > \delta$. Let $p$ be in $\mathbb N$ such that $1/p < \delta$ and $q$ be in $\mathbb N$ such that $|x| \leq q$. Let $n = \max \{p, q\}$, we have $x \in V_n$. Therefore, we have 
+$$V = \bigcup_{n=1}^{\infty} \{x \in \mathbb R: |x| \leq n \,\, \text{and} \,\, d(x, V^c) \geq \frac{1}{n} \}.$$
+
+(ii) For $\emptyset$ and $\mathbb R$, the statement is straightforward. Otherwise, we denote $V$ is the open subset of $\mathbb R$. $\forall x \in V$, $\exists \delta_x > 0$ such that $B(x, \delta_x) \subset V$, thus
+$$ V = \bigcup_{x \in V} B(x, \delta_x).$$
+Note that the function $f(x) = d(x, V^c)$ is a continuous function from $\mathbb R$ to $\mathbb R$. Thus $\{x \in \mathbb R: d(x, V^c) \geq 1/n \}$ is closed. As $V_n$ is closed and bounded, it is compact in $\mathbb R$. Since $V \subset \bigcup_{x \in V} B(x, \delta_x)$, there exists finite subset $J_m$ of $V$ such that $V_m \subset \bigcup_{x \in J_m} B(x, \delta_x)$. It follows that
+$$V = \bigcup_{m = 1}^{\infty} \bigcup_{x \in J_m} B(x, \delta_x),$$
+which is countable union.
+
+
+
+\newpage
+
+
+$\underline{\textbf{Exercise 7:}}$
+
+Let $X$ be a set and $\mathcal A$ be a $\sigma$-algebra of subsets of $X$. Let $Y$ be a subset of $X$. Define a subset $\mathcal B$ of $\mathcal P(Y)$ by setting $\mathcal B := \{A \cap Y: A \in \mathcal A\}$. Show that $\mathcal B$ is a $\sigma$-algebra of subsets of $Y$.
+  
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) Since $\emptyset$ and $X$ are in $\mathcal A$, we have
+$$\emptyset \cap Y = \emptyset \in \mathcal B, \quad X \cap Y = Y \in \mathcal B.$$
+
+(ii) Let $B \in \mathcal B$, there exists $A \in \mathcal A$ such that $B = A \cap Y$. Since $A ^c = X \setminus A \in \mathcal A$, 
+$$B^c = Y \setminus B = Y \setminus (A \cap Y) = A^c \cap Y \in \mathcal B,$$
+thus $\mathcal B$ is closed under taking complements in $Y$.
+
+(iii) Let $\{B_m\}_{m}$ be a sequence in $B$, thus there is a sequence $\{A_m\}_{m}$ such that $B_m = A_m \cap Y$ for each $m \in \mathbb N$. Thus
+$$\bigcup_{m=1}^{\infty} B_m = \bigcup_{m=1}^{\infty} (A_m \cap Y) = \Big{(} \bigcup_{m=1}^{\infty} A_m \Big{)} \cap Y  \in \mathcal B$$
+as $\bigcup_{m=1}^{\infty} A_m$ is in $\mathcal A$. Therefore $\mathcal B$ is closed under countable union in $Y$.
+
+
+\vspace{8pt}
+
+$\underline{\textbf{Exercise 8:}}$
+
+Let $X$ be a set and $\mathcal A_i$ be a $\sigma$-algebra of subsets of $X$ for each $i$ in $I$. Show that $\bigcap_{i \in I} \mathcal A_i$ is $\sigma$-algebra of subsets of $X$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) As $\emptyset$ and $X$ are in $\mathcal A_i$ for each $i \in I$, then $\emptyset \in \bigcap_{i \in I} \mathcal A_i$ and $X \in \bigcap_{i \in I} \mathcal A_i$.
+
+(ii) Let $A \in \bigcap_{i \in I} \mathcal A_i$, then $A \in \mathcal A_i, \forall i \in I$. We have $A^c \in \mathcal A_i, \forall i \in I$, thus $A^c \in \bigcap_{i \in I} \mathcal A_i$. $\bigcap_{i \in I} \mathcal A_i$ is closed under taking complements in $X$.
+
+(iii) Let $\{A_m\}_{m}$ be a sequence in $\bigcap_{i \in I} \mathcal A_i$, thus $\{A_m\}_{m}$ is a sequence in $\mathcal A_i$, $\forall i \in I$. Then $\bigcup_{m=1}^{\infty} A_m \in \mathcal A_i, \forall i \in I$. Thus we have $\bigcup_{m=1}^{\infty} A_m \in \bigcap_{i \in I} \mathcal A_i$. It shows that $\bigcap_{i \in I} \mathcal A_i$ is closed under countable union in $X$.
+
+Therefore $\bigcap_{i \in I} \mathcal A_i$ is $\sigma$-algebra of subsets of $X$.
+
+
+\newpage
+
+$\underline{\textbf{Exercise 9:}}$
+
+Show from the definition of the outer measure $m^*$ on $\mathbb R$ that for any two subsets $A$ and $B$ of $\mathbb R$, $m^{*} (A \cup B) \leq  m^{*} (A) + m^{*} (B)$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+By the definition of outer measure, let $\epsilon > 0$ be given, there exist a countable union of open interval sequence $\{I_n\}_n$ and a countable union of open interval sequence $\{J_n\}_n$ such that
+$A \subset \bigcup_{n=1}^{\infty} I_n$, $B \subset \bigcup_{n=1}^{\infty} J_n$ and
+$$\sum_{n=1}^{\infty} \ell (I_n) \leq m^{*}(A) + \frac{\epsilon}{2}$$
+$$\sum_{n=1}^{\infty} \ell (J_n) \leq m^{*}(B) + \frac{\epsilon}{2}.$$
+We denote $I_n'$ is one of the open interval $I_n$ or $J_n$, then 
+$$\Big{(} \bigcup_{n=1}^{\infty} I_n \Big{)} \bigcup \Big{(} \bigcup_{n=1}^{\infty} J_n \Big{)} \subset \bigcup_{n=1}^{\infty} I_n' .$$
+It follows that $A \cup B \subset \bigcup_{n=1}^{\infty} I_n'$. And by the definition of outer measure,
+\begin{eqnarray*}
+ m^{*}(A \cup B) &\leq& \sum_{n=1}^{\infty} \ell (I_n') \\
+& \leq & \sum_{n=1}^{\infty} \ell (I_n) + \sum_{n=1}^{\infty} \ell (J_n) \\
+& \leq & m^{*}(A) + m^{*}(B) + \epsilon.
+\end{eqnarray*}
+By the arbitrary of $\epsilon$, we have
+$$m^{*}(A \cup B) \leq m^{*}(A) + m^{*}(B).$$
+
+
+\newpage
+
+$\underline{\textbf{Exercise 10:}}$
+
+(i) Let $(X, \mathcal A, \mu)$ be a measure space, $B_n$ a decreasing sequence of $\mathcal A$ such that $\mu(B_1) < \infty$. Show that $\lim_{n \to \infty} \mu(B_n) = \mu(\bigcap_{n=1}^{\infty} B_n)$.
+
+(ii) Find a measure space $(X, \mathcal A, \mu)$ and a deceasing sequence $B_n$ of $\mathcal A$ such that $\lim_{n \to \infty} \mu(B_n) \neq \mu(\bigcap_{n=1}^{\infty} B_n)$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) Since $B_n$ is a decreasing sequence of $\mathcal A$, $B_1 \setminus B_n$ is a increasing sequence of $\mathcal A$. By the increasing set property,
+$$\lim_{n \to \infty} \mu(B_1 \setminus B_n) = \mu \Big{(} \bigcup_{n=1}^{\infty} (B_1 \setminus B_n) \Big{)} = \mu \Big{(} \bigcup_{n=1}^{\infty} (B_1 \bigcap B_n^c) \Big{)}.$$
+Since 
+$$\bigcup_{n=1}^{\infty} (B_1 \bigcap B_n^c) = B_1 \bigcap \Big{(} \bigcup_{n=1}^{\infty}  B_n^c \Big{)} = B_1 \bigcap \Big{(} \bigcap_{n=1}^{\infty}  B_n \Big{)}^c = B_1 \setminus \Big{(} \bigcap_{n=1}^{\infty}  B_n \Big{)},$$
+we have
+$$\mu \Big{(} \bigcup_{n=1}^{\infty} (B_1 \bigcap B_n^c) \Big{)} = \mu(B_1) - \mu\Big{(} \bigcap_{n=1}^{\infty}  B_n \Big{)}. $$
+And since $\mu(B_1 \setminus B_n) = \mu(B_1) - \mu(B_n)$,
+$$\lim_{n \to \infty} (\mu(B_1) - \mu(B_n)) = \mu(B_1) - \mu\Big{(} \bigcap_{n=1}^{\infty}  B_n \Big{)}.$$
+Since $\mu(B_1) < \infty$, we know that
+$$\lim_{n \to \infty} \mu(B_n) = \mu\Big{(} \bigcap_{n=1}^{\infty}  B_n \Big{)}.$$
+
+(ii) Set $X = \mathbb R$ and $b_n = [n, \infty)$, then $B_{n+1} \subset B_n$ for each $n \in \mathbb N$. Since $\mu(B_n) = \infty$ for each $n \in \mathbb N$, $\lim_{n \to \infty} \mu(B_n) = \infty$. But as $\bigcap_{n=1}^{\infty}  B_n = \emptyset$, we have $\mu\Big{(} \bigcap_{n=1}^{\infty}  B_n \Big{)} = 0$.
+
+
+
+\end{document}
+
+\newpage
+
+$\underline{\textbf{Exercise 11:}}$
+
+Let $S$ be the subset of $[0,1]$ defined by all the sums of the series $\sum_{n=1}^{\infty} \frac{a_n}{10^n}$ where $a_n$ is in the set $\{0, 2, 4, 6, 8\}$.
+
+(i) Assume that $\sum_{n=1}^{\infty} \frac{a_n}{10^n} = \sum_{n=1}^{\infty} \frac{b_n}{10^n}$ where $a_n$ and $b_n$ are in $\{0, 2, 4, 6, 8\}$. Show that $a_n = b_n$ for all integer $n \geq 1$.
+
+(ii) Show that $S$ is uncountable.
+
+(iii) Show that $S$ has Lebesgue measure zero.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) By the conditions that $\sum_{n=1}^{\infty} \frac{a_n}{10^n} = \sum_{n=1}^{\infty} \frac{b_n}{10^n}$ where $a_n$ and $b_n$ are in $\{0, 2, 4, 6, 8\}$, for each $p \in \mathbb N$,
+\begin{eqnarray*}
+ \Big{|} \sum_{n = 1}^{p} \frac{a_n}{10^n} - \sum_{n = 1}^{p} \frac{b_n}{10^n} \Big{|}  & = & \Big{|}  \sum_{n= p+1}^{\infty} \frac{a_n - b_n}{10^n} \Big{|} \leq \sum_{n= p+1}^{\infty} \frac{8}{10^n} \\
+& = & \frac{8}{10^{p+1}} \sum_{n= 0}^{\infty} \frac{1}{10^n}  =  \frac{8}{10^{p+1}}  \frac{1}{1 - \frac{1}{10}} \\
+& = & \frac{8}{9} \frac{1}{10^p},
+\end{eqnarray*}
+thus
+$$|\sum_{n=1}^{p} (a_n - b_n) 10^{p-n}| \leq \frac{8}{9}.$$
+But $|\sum_{n=1}^{p} (a_n - b_n) 10^{p-n}|$ is an integer, it has to be zero. Thus for any $p \in \mathbb N$, we have $\sum_{n=1}^{p} (a_n - b_n) = 0$, it follows that $a_n = b_n, \forall n \in \mathbb N$.
+
+\vspace{6pt} 
+
+(ii) Let $A \subset \mathbb N$, for any integer $n \geq 1$, set
+\begin{equation*}
+\left\{
+             \begin{array}{cl}
+             a_n = 2, & n \in A \\
+             a_n = 0, & n \notin A
+             \end{array}
+\right.
+\end{equation*}
+Set $x = \sum_{n=1}^{\infty} \frac{a_n}{10^n}$. By construction, $f(x) = A$. We have $f$ is a surjective: $f(S) = \mathcal P(\mathcal N)$. As $\mathcal P(\mathcal N)$ is unconutable, $S$ is uncountable.
+
+(iii) Let $x$ be in $S$, set $x = \sum_{n=1}^{\infty} \frac{a_n}{10^n}$, where $a_n \in \{0, 2, 4, 6, 8\}$. Then
+$$x =\sum_{n=1}^{p} \frac{a_n}{10^n} + \sum_{n=p+1}^{\infty} \frac{a_n}{10^n}.$$
+Set $x_p = \sum_{n=1}^{p} \frac{a_n}{10^n}  \in S_p$, then
+$$|x- x_p| = \sum_{n=p+1}^{\infty} \frac{a_n}{10^n} \leq \frac{8}{9} \frac{1}{10^p}.$$
+And set that
+$$T_p = \bigcup_{y \in S_p} \Big{[} y - \frac{8}{9} \frac{1}{10^p} , y + \frac{8}{9} \frac{1}{10^p} \Big{]},$$
+then $S \subset T_p$. But $S_p$ has $5^p$ elements, then
+$$\mu(T_p) \leq 5^p \cdot 2 \cdot \frac{8}{9} \frac{1}{10^p} = \frac{2^{4-p}}{9}.$$
+Note that $T_p$ is closed, then $T = \bigcap_{p=1}^{\infty} T_p$ is closed and is hence Borel measurable. Clearly that
+$$\mu(T) \leq \mu(T_p) = \frac{2^{4-p}}{9}.$$
+So as $p \to \infty$, we obtain $\mu(T) = 0$. As $S \subset T$, $S$ is Lebesgue measurable and $\mu(S) = 0$.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+% \end{document}
