@@ -1,0 +1,176 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ GCE August, 2018}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\underline{\textbf{Exercise 1:}}$
+
+Let $X$ and $Y$ be two metric spaces and $f$ a mapping from $X$ to $Y$.
+
+(i) Show that $f$ is continuous if and only if for every subset $A$ of $X$, $f(\overline{A}) \subset  \overline{f(A)}$.
+
+(ii) Prove or disprove: assume that $f$ is injective. Then $f$ is continuous if and only if for every subset $A$ of $X$, $f(\overline{A}) = \overline{f(A)}$. 
+
+(iii) Prove or disprove: assume that $X$ is compact. Then $f$ is continuous if and only if for every subset $A$ of $X$, $f(\overline{A}) = \overline{f(A)}$. 
+
+\vspace{8pt}
+
+$\textbf{Solution:}$
+
+(i) Firstly, we want to prove that if $f$ is continuous, then for every subset $A$ of $X$, $f(\overline{A}) \subset  \overline{f(A)}$. Since $\overline{f(A)}$ is closed, $f^{-1}(\overline{f(A)})$ is closed as $f$ is continuous, where $f^{-1}(\overline{f(A)})$ is the inverse image of $\overline{f(A)}$. Since $A \subset f^{-1} (f(A))$, we have $A \subset f^{-1}( \overline{f(A)})$. Since the closure of $A$ is contained in any closed set containing $A$, we can get that $\overline{A} \subset f^{-1} (\overline{f(A)})$. Thus we know that for any $x \in \overline{A}$, we have $f(x) \in \overline{f(A)}$, then we have $f(\overline{A}) \subset  \overline{f(A)}$.
+
+Secondly, we want to show that if for every subset $A$ of $X$, $f(\overline{A}) \subset  \overline{f(A)}$, then $f$ is continuous. To verify that $f$ is continuous, we just need to show that for any closed set $C \subset Y$, the inverse image of the $C$ under the function $f$ is also a closed set. We denote $D = f^{-1}(C)$, then we need to show $D$ is closed in $X$. Since $f(\overline{D}) \subset \overline{f(D)} = \overline{f(f^{-1}(C))} = \overline{C} = C$, we know that $f(\overline{D}) \subset C$
+. Thus we have $\overline{D} \subset f^{-1}(C) = D$, then we know that $D$ is a closed subset of $X$. So, $f$ is continuous.
+
+(ii) The statement is not true. We can give a counter example as following. We suppose $X = \mathbb{R}^{+}, Y = \mathbb{R}$ and $\forall x \in X, f(x) = \frac{1}{x}$. Then $f(x)$ is continuous in $X$. Let $A = [1, + \infty)$, and we have $A \subset X$. So, $\overline{A} = [1, + \infty) = A$, and we know that $f(\overline{A}) = (0, 1]$. Since $f(A) = (0, 1]$, we have $\overline{f(A)} = [0, 1]$. Thus $f(\overline{A}) \subsetneqq \overline{f(A)}$, and we can not say $f(\overline{A}) = \overline{f(A)}$.
+
+Another counter example is as follows. Let $X = [0, \infty), Y = \mathbb R$, and let $f(x) = e^{-x}$, $A = [0, \infty)$. $f$ is a continuous function on $X$ and $f$ is injective. $A = \bar A = [0, \infty)$, thus $f(A) = f(\bar A) = (0, 1]$, which is not a closed subset of $Y$. And there are plenty of examples can show that $f(\overline{A}) \subsetneqq \overline{f(\overline{A})}$.
+
+Note that the continuous function do not necessarily mapping closed sets to closed sets. This is the key point of (ii).
+
+(iii) From the question (i), we know that if for every subset $A$ of $X$, $f(\overline{A}) \subset  \overline{f(A)}$, we have $f$ is continuous. Then, if for every subset $A$ of $X$, $f(\overline{A}) = \overline{f(A)}$, we have $f$ is continuous. 
+
+Next we want to show if $f$ is continuous, then for every subset $A$ of $X$, $f(\overline{A}) = \overline{f(A)}$. By the result we get from question (i), we know that if $f$ is continuous, then for every subset $A$ of $X$, $f(\overline{A}) \subset  \overline{f(A)}$. We just need to verify $\overline{f(A)} \subset  f(\overline{A})$. Since $A \subset \overline{A}$, then $f(A) \subset f(\overline{A})$ and $\overline{f(A)} \subset \overline{f(\overline{A})}$. As $A \subset X$ and $X$ is compact, then $\overline{A}$ is compact. As $f$ is continuous, we have $\overline{f(\overline{A})} = f(\overline{A})$. So we can get $\overline{f(A)} \subset  f(\overline{A})$. In summary, when $f$ is continuous, we have $f(\overline{A}) \subset  \overline{f(A)}$ and $\overline{f(A)} \subset  f(\overline{A})$. Thus if $f$ is continuous, for every subset $A$ of $X$, we have $f(\overline{A}) = \overline{f(A)}$.
+
+Note that continuous image of compact sets are compact, that why $\overline{f(\overline{A})} = f(\overline{A})$. In (ii), we only can get the conclusion that $f(\overline{A}) \subsetneqq \overline{f(\overline{A})}$.
+
+
+
+\newpage
+
+$\underline{\textbf{Exercise 2:}}$
+
+Let $K \subset \mathbb{R}$ have finite measure and let $f \in L^{\infty} (\mathbb{R})$. Show that the function $F$ defined by 
+\begin{equation*}
+   F(x):= \int_{K}^{} f(x + t) \, d t
+\end{equation*}
+is uniformly continuous on $\mathbb{R}$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+We want to show that $\forall \epsilon > 0$, there exists a $\delta > 0$, such that when $|x - y| < \delta$, we have $|F(x) - F(y)| < \epsilon$. We verify the result by definition. Since
+\begin{equation*}
+   |F(x) - F(y)|  =  \Big{|} \int_{K}^{} f(x + t) \, d t - \int_{K}^{} f(y + t) \, d t \Big{|},
+\end{equation*}
+by changing the variable and denoting $K_{1} = \{k + x| k \in K \}$ and $K_{2} = \{ k + y| k \in K \}$, we have
+\begin{equation*}
+   |F(x) - F(y)|  =  \Big{|} \int_{K_{1}}^{} f(t) \, d t - \int_{K_{2}}^{} f(t) \, d t \Big{|}.
+\end{equation*}
+Denote $\text{ess} \sup_{x \in \mathbb{R}} |f(x)| = C$. Since $f \in L^{\infty} (\mathbb{R})$, then $\forall \epsilon > 0$, there exist a positive number $M$ such that
+\begin{equation*}
+    \int_{K_{1} \bigcap [-M, M]^{c}}^{} |f(t)| \, d t < \epsilon.
+\end{equation*}
+Otherwise, $\exists \epsilon > 0$, and $\forall M > 0$, we have $\int_{K_{1} \bigcap [-M, M]^{c}}^{} |f(t)| \, d t \geq \epsilon$. We set $M \to + \infty$, then $\int_{K_{1} \bigcap [-M, M]^{c}}^{} f(t) \, d t  < C \mu \{K_{1} \bigcap [-M, M]^{c} \} \to 0$. It is contradiction. So, for all $\epsilon > 0$, there exist a $M$, such that
+\begin{eqnarray*}
+|F(x) - F(y)| & = & \Big{|} \int_{K_{1}}^{} f(t) \, d t - \int_{K_{2}}^{} f(t) \, d t \Big{|} \\
+& = & \Big{|} \int_{K_{1} \bigcap [-M, M]}^{} f(t) \, d t  + \int_{K_{1} \bigcap [-M, M]^{c}}^{} f(t) \, d t  \\
+& & - \int_{K_{2} \bigcap [-M, M]}^{} f(t) \, d t - \int_{K_{2} \bigcap [-M, M]^{c}}^{} f(t) \, d t \Big{|}   \\
+&\leq&  \Big{|} \int_{K_{1} \bigcap [-M, M]}^{} f(t) \, d t - \int_{K_{2} \bigcap [-M, M]}^{} f(t) \, d t \Big{|} + 2 \epsilon.
+\end{eqnarray*}
+We denote $S = (K_{1} \bigcap [-M, M]) \Delta (K_{2} \bigcap [-M, M])$, then we have
+\begin{equation*}
+    |F(x) - F(y)|  \leq  \int_{S}^{} |f(t)| \, d t + 2 \epsilon \leq C \mu \{S \} + 2 \epsilon.
+\end{equation*}
+As $K_{1} \bigcap [-M, M]$ and $K_{2} \bigcap [-M, M]$ are finite, and $K_{1} = \{k + x| k \in K \}$, $K_{2} = \{ k + y| k \in K \}$, we can cover the set $S$ by several open sets whose measure is $|y -x|$, then we have
+\begin{equation*}
+    |F(x) - F(y)| \leq C m |y - x| + 2 \epsilon,
+\end{equation*}
+where C is a positive number. We set $\delta = \frac{\epsilon}{Cm}$, then we have
+\begin{equation*}
+    |F(x) - F(y)| \leq  3 \epsilon,
+\end{equation*}
+so, $F(x)$ is uniformly continuous on $\mathbb{R}$.
+
+\newpage
+
+$\underline{\textbf{Exercise 3:}}$
+
+
+Let $\{f_{n}\}$ be a sequence in $L^{1}(\mathbb{R})$ such that $f_{n} \to 0$ a.e.
+
+(i) Show that if $\{f_{2n}\}$ is increasing and $\{f_{2n + 1} \}$ is decreasing, then
+\begin{equation*}
+    \int_{}^{} f_{n} \to 0.
+\end{equation*}
+
+(ii) Prove or disprove: if $\{f_{kn} \}$ is decreasing for every prime number $k$, then 
+\begin{equation*}
+    \int_{}^{} f_{n} \to 0.
+\end{equation*}
+(Note on notation: e.g., if $k = 2$, then $\{f_{kn}\} = \{f_{2n}\}$. Note also that 1 is not prime).
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) Firstly, we consider the sequence $\{f_{2n} - f_{2}\}$. Since $\{f_{2n}\}$ is increasing, $f_{2n} \to 0$ and $\{f_{n}\} \in L^{1}(\mathbb{R})$ for all n, then $\{f_{2n} - f_{2}\}$ is increasing and $f_{2n} - f_{2} \to -f_{2}$ a.e., then by the monotone convergence theorem, we have
+\begin{equation*}
+    \lim_{n \to + \infty} \int_{}^{} (f_{2n} - f_{2}) =  \int_{}^{} \lim_{n \to + \infty} (f_{2n} - f_{2}) = \int_{}^{}  - f_{2},
+\end{equation*}
+thus
+\begin{equation*}
+    \lim_{n \to + \infty} \int_{}^{} f_{2n} =  0.
+\end{equation*}
+Similarly, as $\{f_{2n + 1} \}$ is decreasing, we know that  $\{f_{1} - f_{2n -1} \}$ is an increasing sequence and $f_{1} - f_{2n-1} \to f_{1}$ a.e., by the monotone convergence theorem, we have
+\begin{equation*}
+    \lim_{n \to + \infty} \int_{}^{} (f_{1} - f_{2n-1}) =  \int_{}^{} \lim_{n \to + \infty} (f_{1} - f_{2n-1}) = \int_{}^{}  f_{1},
+\end{equation*}
+thus
+\begin{equation*}
+    \lim_{n \to + \infty} \int_{}^{} f_{2n-1} =  0.
+\end{equation*}
+Then we show that any subsequence of $\{\int f_{n}\}$, which denoted as $\{\int f_{n_{k}}\}$, has a convergent subsequence $\{f_{n_{k_{l}}}\}$ as follows
+\begin{equation*}
+    \lim_{n \to + \infty} \int_{}^{} f_{n_{k_{l}}} =  0.
+\end{equation*}
+For the subsequence $\{\int f_{n_{k}}\}$, we take the even number in the indicator set ${n_{k}}$ if it is infinite, or we can take the odd number in the indicator set ${n_{k}}$ if it is infinite, then we can get the subsequence of $\{\int f_{n_{k}}\}$, which is denoted as $\{\int f_{n_{k_{l}}}\}$. Since we have showed that $\lim_{n \to + \infty} \int_{}^{} f_{2n} =  0$ and $\lim_{n \to + \infty} \int_{}^{} f_{2n-1} =  0$, then we know that $\lim_{n \to + \infty} \int_{}^{} f_{n_{k_{l}}} =  0$. Thus all subsequence of $\{\int f_{n}\}$, which denoted as $\{\int f_{n_{k}}\}$, converges to $0$. Therefore we know that
+\begin{equation*}
+    \int_{}^{} f_{n} \to 0.
+\end{equation*}
+
+(ii) The statement is not true. We can find a counter example as follows. Let
+\begin{equation*}
+    f_{p} (x) = p \, \mathbb{I}_{[0, \frac{1}{p}]} (x),
+\end{equation*}
+where $p$ is a prime number and
+\begin{equation*}
+    f_{m} (x) = 2 \, \mathbb{I}_{[0, \frac{1}{m}]} (x),
+\end{equation*}
+where $m$ is a not prime number. Then we know that $\{f_{np}\}$ is decreasing for every prime number $p$. But we can find a subsequence of $\{f_{n}\}$, which is denoted as $\{f_{p}\}$, $p$ is the prime number, and $\lim_{n \to + \infty} \int_{}^{} f_{p} \neq 0$ as
+\begin{equation*}
+    \lim_{p \to + \infty} \int_{}^{} f_{p} = \lim_{p \to + \infty} \int_{}^{} p \, \mathbb{I}_{[0, \frac{1}{p}]} (x) \, d x = 1.
+\end{equation*}
+
+
+
+
+\end{document}
