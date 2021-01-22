@@ -7,7 +7,7 @@
 - [January 2019](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2019%20January.pdf)
 - [August 2018](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2018%20August.pdf)
 - [May 2018](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2018%20May.pdf)
-- [August 2017](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_August2017.pdf)
+- [August 2017](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2017%20August.pdf)
 - [May 2017](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_May2017.pdf)
 - [January 2017](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_January2017.pdf)
 - [August 2016](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_August2016.pdf)
