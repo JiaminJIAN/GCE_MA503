@@ -1,0 +1,307 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ GCE August, 2016}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\underline{\textbf{Exercise 1:}}$
+
+Suppose that $u$ is a real-valued function defined on $[0, 1]$, that $u \geq 0$ and that $u \in L^{1}([0, 1])$. Define $E_{n} : = \{x \in [0, 1]: n - 1 \leq u(x) \leq n \}$ for each positive integer $n$. Show that
+\begin{equation*}
+    \sum_{n = 1}^{\infty} n |E_{n}| < + \infty.
+\end{equation*}
+
+\vspace{8pt}
+
+$\textbf{Solution:}$
+
+As $u \in L^{1}([0, 1])$ and $u(x) \geq 0$, we have
+\begin{equation*}
+    \int_{0}^{1} |u (x)| \, d x = \int_{0}^{1} u (x) \, d x < + \infty.
+\end{equation*}
+Let $A_n = \{x \in [0,1]: n-1 \leq u(x) < n \}$, $\forall n \in \mathbb N$, then we have $E_n \subset A_n \cup A_{n+1}$ and $|E_n| \leq |A_n| + |A_{n+1}|$. Thus
+$$\sum_{n = 1}^{\infty} n |E_n| \leq \sum_{n = 1}^{\infty} n |A_n| + \sum_{n = 1}^{\infty} n |A_{n+1}|.$$
+We want to show that $\sum_{n = 1}^{\infty} n |A_{n}| < \infty$ and $\sum_{n = 1}^{\infty} n |A_{n+1}| < \infty$. Note that
+$$A_n = \{x \in [0,1]: n-1 \leq u(x) < n \} = \{x \in [0,1]: n \leq u(x) + 1 < n+1 \},$$
+then we have
+\begin{eqnarray*}
+\sum_{n = 1}^{\infty} n |A_{n}| & = &  \sum_{n = 1}^{\infty} \int_{A_n}^{} n \leq  \sum_{n = 1}^{\infty} \int_{A_n}^{} (u(x) + 1) \, d x \\
+& = &  \int_{\bigcup_{n=1}^{\infty} A_n} (u(x) + 1) \, d x \\
+& \leq &  \int_{0}^{1} u(x) \, d x + \int_{0}^{1} 1 \, d x \\
+& < & \infty.
+\end{eqnarray*}
+And similarly, we have
+\begin{eqnarray*}
+\sum_{n = 1}^{\infty} n |A_{n+1}| & = &  \sum_{n = 1}^{\infty} \int_{A_{n+1}}^{} n  \leq  \sum_{n = 1}^{\infty} \int_{A_{n+1}}^{} u(x) \, d x \\
+& = &  \int_{\bigcup_{n=1}^{\infty} A_{n+1}} u(x) \, d x \\
+& \leq &  \int_{0}^{1} u(x) \, d x  <  \infty.
+\end{eqnarray*}
+Thus we have $\sum_{n = 1}^{\infty} n |E_n| \leq \sum_{n = 1}^{\infty} n |A_n| + \sum_{n = 1}^{\infty} n |A_{n+1}| < + \infty$.
+
+
+
+
+
+
+
+\newpage
+
+$\underline{\textbf{Exercise 2:}}$
+
+Show that a subset $E$ of a metric space $X$ is open if and only if there is a continuous real-valued function $f$ on $X$ such that $E = \{x \in X : f(x) > 0 \}$.
+ 
+\vspace{8pt}
+$\textbf{Solution:}$
+
+If there is a continuous real-valued function $f$ on $X$ such that $E = \{x \in X : f(x) > 0 \}$, we want to show that $E$ is an open set. Since $(0, + \infty)$ is an open subset of $\mathbb R$, $E = \{x \in X : f(x) > 0 \} = f^{-1} ((0, + \infty))$ is also an open set as $f$ is continuous on $X$. We can also verify the statement by definition. Suppose $y \in E$, since $E = \{x \in X : f(x) > 0 \}$, we have $f(y) > 0$. Since $f$ in continuous on $X$, we know that there exists a $\delta$ such that when $d(x,y) < \delta$, then $|f(x) - f(y)| < f(y)$, which implies $- f(y) < f(x) - f(y) < f(y)$, hence we have $f(x) > 0$. Then we know that there exists a $\delta > 0$, when $x \in B_{\delta} (y)$, we have $f(x) > 0$. Thus for any $y \in E$, there exists a $\delta > 0$ such that $B_{\delta} (y) \subset E$. So we know that $E$ is an open set.
+
+On the other direction, we want to show that if $E \subset X$ is open, there exists a continuous function $f$ on $X$ such that $E = \{x \in X : f(x) > 0 \}$. For $E \subset X$, let
+\begin{equation*}
+    f(x) = d(x, E^{c}) = \min \{d(x, y): y \in E^{c} \},
+\end{equation*}
+where $E^c$ is the complementary set of $E$. Then we have when $x \in E^{c}$, $f(x) = 0$ and when $x \in E$, $f(x) > 0$, so we have $E = \{x \in x : f(x) > 0 \}$. Next we need to show $f$ is continuous on $X$ . Let $x, y \in X$ and $p$ is the any point in $E^{c}$, then
+\begin{equation*}
+    d(x, p) \leq d(x, y) + d(y, p),
+\end{equation*}
+and so
+\begin{equation*}
+    d(x, E^{c}) \leq d(x, y) + d(y, p)
+\end{equation*}
+as $d(x, E^c)$ is the minimum. Then we have $d(y, p) \geq d(x, E^{c}) - d(x, y)$ for all $p \in E^{c}$, thus we can get that $d(y, E^{c}) \geq d(x, E^{c}) - d(x, y)$, which is equivalent to
+\begin{equation*}
+    d(x, E^{c}) - d(y, E^{c}) \leq d(x, y).
+\end{equation*}
+Similarly, we can change the position of $x$ and $y$ and get the inequality
+\begin{equation*}
+    d(y, E^{c}) - d(x, E^{c}) \leq d(x, y).
+\end{equation*}
+Thus we have for any $x, y \in X$,
+\begin{equation*}
+    | d(x, E^{c}) - d(y, E^{c})| \leq d(x, y).
+\end{equation*}
+Let $\epsilon > 0$ be given, we can choose $\delta = \epsilon$ such that $|d(x, E^{c}) - d(y, E^{c})| < d(x, y) = \epsilon$ whenever $d(x, y) < \delta$. Thus $f$ is a continuous function on $X$.
+
+
+\newpage
+
+
+$\underline{\textbf{Exercise 3:}}$
+
+Consider the sequence of functions $\{f_{n}\}$ defined on the non-negative reals: $[0, + \infty)$ where $f_{n}(x) = 2 n x e^{-n x^{2}}$. Let $g$ be a continuous and bounded function on $[0, + \infty)$ valued in $\mathbb{R}$.
+
+(i) Find with proof
+\begin{equation*}
+   \lim_{n \to \infty} \int_{0}^{\infty} f_{n}(t) g(t) \, d t.
+\end{equation*}
+
+(ii) Define for $x$ in $[0, + \infty)$,
+\begin{equation*}
+   g_{n}(x) = \int_{0}^{\infty} f_{n} (t) g(x + t) \, d t.
+\end{equation*}
+Assuming $g$ is zero outside the interval $[0, M]$, where $M > 0$, does the sequence $g_{n}$ have a limit in $L^{1}([0, + \infty))$?
+
+(iii) If $h$ is in $L^{1}([0, + \infty))$, define for $x$ in $[0, + \infty)$,
+\begin{equation*}
+   h_{n}(x) = \int_{0}^{\infty} f_{n} (t) h(x + t) \, d t.
+\end{equation*}
+Show that $h_{n}$ is measurable on $[0, + \infty)$ and is in $L^{1} ([0, + \infty))$.
+
+(iv) Find, if it exists, with proof, the limit of $h_{n}$ in $L^{1} ([0, + \infty))$.
+
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+(i) Denote $y = n t^{2}$, we have
+\begin{equation*}
+    \int_{0}^{\infty} 2 n t e^{- n t^{2}} g(t) \, d t = \int_{0}^{\infty} e^{-y} g \Big{(} \sqrt{\frac{y}{n}} \Big{)} \, d y.
+\end{equation*}
+Since $g(x)$ is a continuous and bounded function on $[0, + \infty)$, suppose that $| g(x) | \leq C$ for any $x \in [0, + \infty)$, then we know that $| e^{-y} g(\sqrt{\frac{y}{n}}) | \leq C e^{-y}$ and $C e^{-y} \in L^{1}([0, + \infty))$ as $\int_{0}^{\infty} | C e^{-y}| \, d y = C < + \infty$. And for any fixed $y \in [0, + \infty)$, when $n \to \infty$, $g(\sqrt{\frac{y}{n}}) \to g(0)$ and then $e^{-y} g(\sqrt{\frac{y}{n}}) \to e^{-y} g(0)$. By the dominate convergence theorem, we have
+\begin{eqnarray*}
+\lim_{n \to \infty} \int_{0}^{\infty} f_{n}(t) g(t) \, d t & = &  \int_{0}^{\infty} \lim_{n \to \infty} e^{-y} g \Big{(} \sqrt{\frac{y}{n}} \Big{)} \, d y \\
+& = &  \int_{0}^{\infty} e^{-y} g(0) \, d y  \\
+& = & g(0).
+\end{eqnarray*}
+
+\vspace{4pt}
+
+(ii) Since $f_{n} (x) = 2 n x e^{-n x^{2}}$, denote $y = n t^{2}$, we have
+\begin{equation*}
+    g_{n} (x) = \int_{0}^{\infty} f_{n} (t) g(x + t) \, d t = \int_{0}^{\infty} e^{-y} g \Big{(} x + \sqrt{\frac{y}{n}} \Big{)} \, d y.
+\end{equation*}
+Next we want to show that $g_{n}$ converges to $g$ in $L^{1}([0, + \infty))$. Since
+\begin{eqnarray*}
+\int_{0}^{\infty} |g_{n}(x) - g(x)| \, d x & = &  \int_{0}^{\infty} \Big{|} \int_{0}^{\infty}  e^{-y} g \Big{(} x + \sqrt{\frac{y}{n}} \Big{)} \, d y  - g(x) \Big{|} \, d x \\
+& = &  \int_{0}^{\infty} \Big{|} \int_{0}^{\infty}  e^{-y} g \Big{(} x + \sqrt{\frac{y}{n}} \Big{)} \, d y  - \int_{0}^{\infty} g(x) e^{-y} \, d y  \Big{|} \, d x  \\
+& = &  \int_{0}^{\infty} \Big{|} \int_{0}^{\infty}  e^{-y} \Big{(} g \Big{(} x + \sqrt{\frac{y}{n}} \Big{)}  - g(x) \Big{)} \, d y \Big{|} \, d x \\
+& \leq & \int_{0}^{\infty} \int_{0}^{\infty}  e^{-y} \Big{|} g \Big{(} x + \sqrt{\frac{y}{n}} \Big{)}  - g(x) \Big{|} \, d y \, d x,
+\end{eqnarray*}
+and by Fubini theorem,
+\begin{eqnarray*}
+\int_{0}^{\infty} \int_{0}^{\infty}  e^{-y} \Big{|} g \Big{(} x + \sqrt{\frac{y}{n}} \Big{)}  - g(x) \Big{|} \, d y \, d x & = &  \int_{0}^{\infty} \int_{0}^{M - \sqrt{\frac{y}{n}}}  e^{-y} \Big{|} g \Big{(} x + \sqrt{\frac{y}{n}} \Big{)}  - g(x) \Big{|} \, d x \, d y \\
+& + & \int_{0}^{\infty} \int_{M - \sqrt{\frac{y}{n}}}^{M}  e^{-y} | g(x) | \, d x \, d y ,
+\end{eqnarray*}
+when $n \to \infty$, we have
+\begin{equation*}
+    \int_{0}^{\infty} \int_{M - \sqrt{\frac{y}{n}}}^{M}  e^{-y} | g(x) | \, d x \, d y \to  0 ,
+\end{equation*}
+thus we know that
+\begin{eqnarray*}
+ \lim_{n \to \infty} \int_{0}^{\infty} |g_{n}(x) - g(x)| \, d x  & \leq & \lim_{n \to \infty}  \int_{0}^{\infty} \int_{0}^{M - \sqrt{\frac{y}{n}}}  e^{-y} \Big{|} g \Big{(} x + \sqrt{\frac{y}{n}} \Big{)}  - g(x) \Big{|} \, d x \, d y \\
+ & \leq & \lim_{n \to \infty}  \int_{0}^{\infty} \int_{0}^{M}  e^{-y} \Big{|} g \Big{(} x + \sqrt{\frac{y}{n}} \Big{)}  - g(x) \Big{|} \, d x \, d y.
+\end{eqnarray*}
+Since $e^{-y} | g ( x + \sqrt{\frac{y}{n}} )  - g(x) | \leq 2 C e^{-y}$ and $2 C e^{-y} \in L^{1}([0, + \infty))$,  by the dominate convergence theorem we have
+\begin{equation*}
+    \lim_{n \to \infty}  \int_{0}^{\infty} \int_{0}^{M}  e^{-y} \Big{|} g \Big{(} x + \sqrt{\frac{y}{n}} \Big{)}  - g(x) \Big{|} \, d x \, d y = 0,
+\end{equation*}
+thus 
+\begin{equation*}
+    \lim_{n \to \infty} \int_{0}^{\infty} |g_{n}(x) - g(x)| \, d x  = 0.
+\end{equation*}
+Hence $g_{n}$ converges to $g$ in $L^{1}([0, + \infty))$.
+
+\vspace{8pt}
+
+(iii) Since $C_{c}([0, + \infty))$ is dense in $L^{1}([0, + \infty))$ and $h(x) \in L^{1}([0, + \infty))$, we can find a sequence $\{h^{k}\}_{k = 1}^{\infty}$ such that $h^{k} \to h$ in $L^{1}([0, + \infty))$. We want to show $h_{n}$ is measurable by showing it is the limit of a sequence of measurable functions. By the result we got from (ii), for any $k \in \mathbb{N}$, we have $h_{n}^{k} = \int_{0}^{\infty} f_{n}(t) g(t) \, d t$ converges to $h^{k}(x)$ in $L^{1}([0, + \infty))$. Firstly we show that $h_{n}^{k} (x)$ converges to $h_{n} (x)$ almost everywhere. For any $x \in [0, + \infty)$, we have
+\begin{eqnarray*}
+|h_{n}(x) - h_{n}^{k} (x)|  & = & \Big{|} \int_{0}^{\infty} f_{n} (t) h(x + t) \, d t - \int_{0}^{\infty} f_{n} (t) h^{k}(x + t) \, d t \Big{|} \\
+ & = & \Big{|} \int_{0}^{\infty} f_{n} (t) ( h(x + t) - h^{k}(x + t)) \, d t \Big{|} \\
+ & \leq & \int_{0}^{\infty} f_{n} (t) | h(x + t) - h^{k}(x + t)| \, d t,
+\end{eqnarray*}
+we denote $z = x + t$, then
+\begin{equation*}
+    |h_{n}(x) - h_{n}^{k} (x)| \leq \int_{x}^{\infty} f_{n} (z - x) | h(z) - h^{k}(z)| \, d z.
+\end{equation*}
+Since $f_{n}(x) = 2 n x e^{-n x^{2}}$, when $x = \frac{1}{\sqrt{2n}}$, the $f_{n}(x)$ gets the maximum value as $\sqrt{2n} e^{-\frac{1}{2}}$, thus we have
+\begin{eqnarray*}
+|h_{n}(x) - h_{n}^{k} (x)|  & \leq & \int_{x}^{\infty} f_{n} (z - x) | h(z) - h^{k}(z)| \, d z \\
+ & \leq  & \|f_{n}\|_{\infty} \int_{x}^{\infty} |h(z) - h^{k} (z)| \, d z \\
+ & \leq & \|f_{n}\|_{\infty} \int_{0}^{\infty} |h(z) - h^{k} (z)| \, d z \\
+ & = & \|f_{n}\|_{\infty}  \|h - h^{k}\|_{1} \to 0
+\end{eqnarray*}
+as $k \to + \infty$. Then we show that $h_{n}^{k}$ is continuous. This means we want to show that for $x \in [0, + \infty)$, let $x_{j} \to x$, then $h_{n}^{k} (x_{j}) \to h_{n}^{k} (x)$. By the definition of $h_{n}^{k} (x_{j})$, we have
+\begin{equation*}
+    h_{n}^{k} (x_{j}) = \int_{0}^{\infty} f_{n}(t) h^{k}(x_{j} + t) \, d t = \int_{0}^{\infty} e^{-y} h^{k} \Big{(} x_{j} + \sqrt{\frac{y}{n}} \Big{)} \, d y.
+\end{equation*}
+And since $h^{k} \in C_{c}([0, + \infty))$, $| e^{-y} h^{k} ( x_{j} + \sqrt{\frac{y}{n}} | \leq \|h^{k}\|_{\infty} e^{-y} \in L^{1}([0, + \infty))$, by the dominate convergence theorem, we have
+\begin{equation*}
+    \lim_{j \to \infty} h_{n}^{k} (x_{j}) = \int_{0}^{\infty} \lim_{j \to \infty} e^{-y} h^{k} \Big{(} x_{j} + \sqrt{\frac{y}{n}} \Big{)} \, d y = \int_{0}^{\infty} e^{-y} h^{k} \Big{(} x + \sqrt{\frac{y}{n}} \Big{)} \, d y = h_{n}^{k} (x),
+\end{equation*}
+thus we know that $h_{n}^{k}$ is uniformly continuous. From above, we have $h_{n}^{k} \to h_{n}$ almost everywhere and $h_{n}^{k}$ is uniformly continuous, then we have $h_{n}$ is the limit of a sequence of measurable functions. So, we get that $h_{n}$ is measurable on $[0, + \infty)$.
+
+Next we show that $h_{n}$ is in $L^{1}([0, + \infty))$. Since
+\begin{eqnarray*}
+\|h_{n}\|_{1}  & = & \int_{0}^{\infty} |h_{n} (x)| \, d x  \\
+ & = & \int_{0}^{\infty} \Big{|} \int_{0}^{\infty} f_{n} (t) h(x + t) \, d t  \Big{|} \, d x \\
+ & \leq & \int_{0}^{\infty} \int_{0}^{\infty} | f_{n} (t) h(x + t) | \, d t \, d x, 
+\end{eqnarray*}
+by Fubini theorem, we have
+\begin{eqnarray*}
+\|h_{n}\|_{1}  & \leq & \int_{0}^{\infty} \int_{0}^{\infty} | f_{n} (t) h(x + t) | \, d x \, d t \\
+& = & \int_{0}^{\infty} f_{n} (t) \Big{(} \int_{0}^{\infty}  | h(x + t) | \, d x \Big{)} \, d t \\
+& = & \int_{0}^{\infty} f_{n} (t) \Big{(} \int_{t}^{\infty}  | h(z) | \, d z \Big{)} \, d t \\
+& \leq & \int_{0}^{\infty} f_{n} (t) \Big{(} \int_{0}^{\infty}  | h(z) | \, d z \Big{)} \, d t \\
+& = & \|h\|_{1} \int_{0}^{\infty} f_{n} (t) \, d t \\ 
+& = & \|h\|_{1} < + \infty.
+\end{eqnarray*}
+Thus we know that $h_{n}$ is in $L^{1}([0, + \infty))$.
+
+(iv) We want to show that $h_{n}$ converges to $h$ in $L^{1}([0, + \infty))$. Let $\epsilon > 0$ be given, since $C_{c}([0, + \infty))$ is dense in $L^{1}([0, + \infty))$,  there exists a $g \in C_{c} ([0, + \infty))$ such that $\|h - g\|_{1} < \epsilon$. By triangle inequality of the $L^1$ norm,
+\begin{eqnarray*}
+\|h_{n} - h \|_{1}  & = & \| h_{n} - g_{n} + g_{n} - g + g - f \|_{1} \\
+& \leq & \|h_{n} - g_{n}\|_{1} + \|g_{n} - g\|_{1} + \| g - f \|_{1},
+\end{eqnarray*}
+where the definition of $g_{n}$ is as question (ii). By the result we get form (ii), for the above $\epsilon$, there exists a $N \in \mathbb N$ such that $\|g_{n} - g\| < \epsilon$ whenever $n \geq N$, then we know that
+\begin{equation*}
+    \|h_{n} - h \|_{1} < \|h_{n} - g_{n}\|_{1} + 2 \epsilon, \quad n \geq N.
+\end{equation*}
+Next we need to deal with $\|h_{n} - g_{n}\|_{1}$. Since
+\begin{eqnarray*}
+\|h_{n} - g_{n}\|_{1} & = & \int_{0}^{\infty} |h_{n} (x)- g_{n} (x)| \, d x \\
+& \leq & \int_{0}^{\infty} \int_{0}^{\infty} f_{n} (t) |h(x + t) - g(x + t)| \, d t \, d x,
+\end{eqnarray*}
+we denote $z = x + t$ and by Fubini theorem we have
+\begin{eqnarray*}
+\|h_{n} - g_{n}\|_{1}  & \leq & \int_{0}^{\infty} \int_{0}^{\infty} f_{n} (t) |h(x + t) - g(x + t)| \, d t \, d x \\
+& = & \int_{0}^{\infty}  f_{n} (t) \int_{t}^{\infty} |h(z) - g(z)| \, d z \, d t \\
+& \leq & \int_{0}^{\infty}  f_{n} (t) \int_{0}^{\infty} |h(z) - g(z)| \, d z \, d t \\
+& = & \int_{0}^{\infty}  f_{n} (t) \|h - g\|_{1} d t \\
+& = & \|h - g\|_{1} \int_{0}^{\infty} f_{n} (t) d t \\
+& = & \|h - g\|_{1} < \epsilon.
+\end{eqnarray*}
+Thus we know that for all $\epsilon > 0$, there exists $N \in \mathbb N$ such that
+\begin{equation*}
+    \|h_{n} - h\|_{1} < \|h_{n} - g_{n}\|_{1} + 2 \epsilon < 3 \epsilon, \quad \forall n \geq N.
+\end{equation*}
+Hence we have $h_{n}$ converges to $h$ in $L^{1}([0, + \infty))$.
+
+\newpage
+
+
+
+$\underline{\textbf{Exercise 4:}}$
+
+Show that a set $E \subset \mathbb{R}$ is Lebesgue measurable if and only if $E = H \cup Z$ where $H$ is a countable union of closed sets and $Z$ has measure zero. You may use the following property: for any Lebesgue measurable subset $A$ of $\mathbb{R}$ and any $\epsilon > 0$, there is a closed subset $F$ of $\mathbb{R}$ such that $F \subset A$ and the measure of $A \setminus F$ is less than $\epsilon$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+If $E \subset \mathbb{R}$ is Lebesgue measurable, we know that $\forall \epsilon > 0$, there is a closed subset $F$ of $\mathbb{R}$ such that $F \subset E$ and the measure of $E \setminus F$ is less than $\epsilon$. Thus for each $n \in \mathbb N$, there exists a closed subset $H_n$ of $\mathbb R$ such that $F \subset H_n$ and the measure of $E \setminus H_n$ is less than $1/n$. Let $H = \bigcup_{n=1}^{\infty} H_n$, $H$ is a countable union of closed sets and we have $H \subset E$. And let $Z = E \setminus H$, then
+$$m(Z) = m(E) - m(H) = m(E) - m \Big{(} \bigcup_{n=1}^{\infty} H_n \Big{)} \leq m(E) - m(H_n) < \frac{1}{n}$$
+for all $n \in \mathbb N$. Thus we have $m(Z) = 0$ and $E = H \cup Z$.
+
+Since $H$ is a countable union of closed sets, then $H$ is a $\mathcal{F}_{\sigma}$ set and it is Lebesgue measurable. And as $Z$ is a zero measure set, it is also Lebesgue measurable. The collection of Lebesgue measurable set is a $\sigma$-algebra, thus we know that $E = H \cup Z$ is Lebesgue measurable.
+
+\newpage
+
+$\underline{\textbf{Exercise 5:}}$
+
+Give an example of a sequence $f_{n}$ in $L^{1} ((0, 1))$ such that $f_{n} \to 0$ in $L^{1}((0, 1))$ but $f_{n}$ does not converge to zero almost everywhere.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+For each $n \in \mathbb N$, let
+\begin{equation*}
+    f_{n} (x) = \mathbb{I}_{[\frac{n - 2^{k}}{2^{k}}, \frac{n - 2^{k} + 1}{2^{k}}]} (x),
+\end{equation*}
+whenever $k \geq 0, 2^{k} \leq n < 2^{k + 1}$, $k \in \mathbb N$. For any $n \in \mathbb{N}$, we have
+\begin{equation*}
+    \int_{0}^{1} | f_{n} (x) | \, d x = \int_{0}^{1} \mathbb{I}_{[\frac{n - 2^{k}}{2^{k}}, \frac{n - 2^{k} + 1}{2^{k}}]} (x) \, d x  = \frac{1}{2^{k}} < \frac{2}{n},
+\end{equation*}
+thus $f_{n} \in L^{1}((0, 1))$. And similarly we have
+\begin{equation*}
+    \int_{0}^{1} | f_{n} (x) - 0 | \, d x = \int_{0}^{1} \mathbb{I}_{[\frac{n - 2^{k}}{2^{k}}, \frac{n - 2^{k} + 1}{2^{k}}]} (x) \, d x  = \frac{1}{2^{k}} < \frac{2}{n},
+\end{equation*}
+then when $n \to + \infty$, $\int_{0}^{1} | f_{n} (x) - 0 | \, d x \to 0$, thus we have $f_{n} \to 0$ in $L^{1}((0, 1))$. But for all $x \in (0, 1)$, and for all $N \in \mathbb{N}$, we can find a $n > N$ such that $f_{n} (x) = 1$. Therefore $f_{n}$ can not converges to $0$ anywhere for $x \in (0, 1)$.
+
+
+\end{document}
