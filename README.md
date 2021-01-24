@@ -13,7 +13,7 @@
 - [August 2016](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2016%20August.pdf)
 - [May 2016](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2016%20May.pdf)
 - [January 2016](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2016%20January.pdf)
-- [August 2015](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_August2015.pdf)
+- [August 2015](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2015%20August.pdf)
 - [May 2015](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_May2015.pdf)
 - [January 2015](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_January2015.pdf)
 - [August 2014](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_August2014.pdf)
