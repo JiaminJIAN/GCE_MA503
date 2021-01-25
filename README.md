@@ -16,7 +16,7 @@
 - [August 2015](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2015%20August.pdf)
 - [May 2015](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2015%20May.pdf)
 - [January 2015](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2015%20January.pdf)
-- [August 2014](https://github.com/JiaminJIAN/GCE_MA503/blob/master/GCE_August2014.pdf)
+- [August 2014](https://github.com/JiaminJIAN/GCE_MA503/blob/master/Solutions/GCE_2014%20August.pdf)
 
 ## 2019 Fall
 
