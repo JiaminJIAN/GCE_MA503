@@ -1,0 +1,293 @@
+%GCE of WPI
+%by Jiamin JIAN
+
+\documentclass[12pt,a4paper]{ctexart}
+\usepackage{CJK}
+\usepackage{lipsum}
+\usepackage{amsmath}
+\usepackage{geometry}
+\usepackage{titlesec}
+\usepackage{amssymb}
+\usepackage{epsfig}
+\usepackage{float}
+\usepackage{graphicx}
+\usepackage{tabularx}
+\usepackage{longtable}
+\usepackage{amstext}
+\usepackage{blkarray}
+\usepackage{amsfonts}
+\usepackage{bbm}
+\usepackage{listings}
+\geometry{left=2.5cm,right=2.5cm,top=2.5cm,bottom=2.5cm}
+
+\begin{document}
+
+
+\begin{center}
+\textbf{ GCE August, 2014}
+\vspace{8pt}
+
+Jiamin JIAN
+\end{center}
+
+\vspace{12pt}
+
+$\underline{\textbf{Exercise 1:}}$
+
+(i) Suppose that $f: \mathbb{R} \to \mathbb{R}$ is bounded. Given an example, with proof, of such a function $f$ whose improper Riemann integral on $(-\infty, \infty)$ exists and finite, but which is not in $L^{1}(\mathbb{R})$.
+
+\vspace{4pt}
+
+(ii) Suppose $- \infty < a < b < \infty$. Prove that if the proper Riemann integral of a function $g$ on $[a, b]$ exists, then the Lebesgue integral of $g$ on $[a, b]$ exists and equals the value of the proper Riemann integral.
+
+\vspace{8pt}
+
+$\textbf{Solution:}$
+
+(i) Let
+\begin{equation*}
+    f(x) = \frac{\sin x}{x} \mathbb{I}_{[0, \infty)} (x),
+\end{equation*}
+and we want to show the integral of $f(x)$ on $\mathbb{R}$ is exists by the Cauchy convergence theorem for the improper Riemann integral. For any $A_{2} > A_{1} > 0$, we have
+\begin{equation*}
+    \int_{A_{1}}^{A_{2}} \frac{\sin x}{x} \, d x = \frac{\cos A_{1}}{A_{1}} - \frac{\cos A_{2}}{A_{2}} - \int_{A_{1}}^{A_{2}} \frac{\cos x}{x^{2}} \, d x,
+\end{equation*}
+then we know that
+\begin{equation*}
+    \Big{|} \int_{A_{1}}^{A_{2}} \frac{\sin x}{x} \, d x \Big{|} \leq \frac{1}{A_{1}} + \frac{1}{A_{2}} + \int_{A_{1}}^{A_{2}} \frac{1}{x^{2}} \, d x = \frac{2}{A_{1}}.
+\end{equation*}
+For any $\epsilon > 0$, choose $A = \frac{2}{\epsilon}$, when $A_{2} > A_{1} > A$, we have
+\begin{equation*}
+    \Big{|} \int_{A_{1}}^{A_{2}} \frac{\sin x}{x} \, d x \Big{|} \leq \frac{2}{A_{1}} < \frac{2}{A} < \epsilon,
+\end{equation*} 
+thus we know that $\int_{0}^{\infty} \frac{\sin x}{x} \, d x$ exists. Next we show that $\int_{0}^{\infty} \frac{\sin x}{x} \, d x = \frac{\pi}{2}$. Note that
+\begin{eqnarray*}
+    \lim_{a \to \infty} \int_{0}^{a} \frac{\sin t}{t} \, d t & = & \lim_{a \to \infty} \int_{0}^{a} \int_{0}^{\infty} e^{- t x} \sin x \, d x \, d t \\
+    & = & \int_{0}^{\infty} \int_{0}^{\infty} e^{- t x} \sin x \, d x \, d t  \\
+    & =: & \int_{0}^{\infty} I(t) \, d t.
+\end{eqnarray*}
+Since
+\begin{equation*}
+    I(t) = \int_{0}^{\infty} e^{- t x} \sin x \, d x = 1 - t^{2} I(t),
+\end{equation*}
+we know that $I(t) = \frac{1}{1+ t^{2}}$ and
+\begin{equation*}
+    \lim_{a \to \infty} \int_{0}^{a} \frac{\sin t}{t} \, d t = \int_{0}^{\infty} \frac{1}{1+ t^{2}} \, d t = \frac{\pi}{2}.
+\end{equation*}
+Next we need to show that $f(x)$ is not in $L^{1}(\mathbb{R})$. Let $N \in \mathbb{N}$ and $N > 1$, we have
+\begin{eqnarray*}
+    \int_{0}^{2 \pi N} \Big{|} \frac{\sin x}{x} \Big{|} \, d x & = & \sum_{n=0}^{N-1} \int_{2n \pi}^{2 \pi (n+1)} \Big{|} \frac{\sin x}{x} \Big{|} \, d x  \\
+    & \geq & \sum_{n=0}^{N-1} \frac{1}{2(n+1) \pi} \int_{2n \pi}^{2 \pi (n+1)} |\sin x| \, d x \\
+    & = & \sum_{n=0}^{N-1} \frac{1}{2(n+1) \pi} \int_{0}^{2 \pi} |\sin x| \, d x \\
+    & = & \sum_{n=0}^{N-1} \frac{2}{(n+1) \pi}.
+\end{eqnarray*}
+Let $N \to \infty$, we know that $\int_{0}^{\infty} |\frac{\sin x}{x}| \, d x $ diverges, so $f(x)$ is not in $L^{1}(\mathbb{R})$ but improper Riemann integral of $f(x)$ on $(-\infty, \infty)$ exists and $f(x)$ is finite.
+
+\vspace{8pt}
+
+(ii) Riemann integral is defined for functions $g$ on a closed and bounded interval $[a, b]$ as follows: for any partition $P = \{ a = x_{0} < x_{1} < \dots < x_{n} = b\}$, the corresponding lower sum $L(g, P)$ and upper sum $U(g, P)$ are defined by
+\begin{equation*}
+    L(g, P) = \sum_{i = 1}^{n} \inf_{x \in [x_{i-1}, x_{i}]} g(x) (x_{i} - x_{i-1})
+\end{equation*}
+\begin{equation*}
+    U(g, P) = \sum_{i = 1}^{n} \sup_{x \in [x_{i-1}, x_{i}]} g(x) (x_{i} - x_{i-1})
+\end{equation*}
+Function $g$ is Riemann integrable if $\sup_{P} L(g, P) = \inf_{P} U(g, P)$, and the integral $\int_{a}^{b} f(x) \, d x$ then equals to this common value. For every partition $P$ , define the functions
+\begin{equation*}
+    \phi_{g, P} = \sum_{i = 1}^{n} \inf_{x \in [x_{i-1}, x_{i}]} g(x), \quad \text{if} \, \,   x \in (x_{i-1}, x_{i})
+\end{equation*}
+\begin{equation*}
+    \psi_{g, P} = \sum_{i = 1}^{n} \sup_{x \in [x_{i-1}, x_{i}]} g(x), \quad \text{if} \, \,  x \in (x_{i-1}, x_{i})
+\end{equation*}
+At the nodes $x_{i}$, the functions $\phi_{g, P}$ and $\psi_{g, P}$ are equal to $0$. Then $\phi_{g, P}$ and $\psi_{g, P}$ are step functions, and by definition, the lower and upper sums are their integrals,
+\begin{equation*}
+     L(g, P) = \int \phi_{g, P} , \quad  U(g, P) = \int \psi_{g, P} , 
+\end{equation*}
+with respect to Lebesgue measure and 
+\begin{equation*}
+    \phi_{g, P} \leq g \leq \psi_{g, P}
+\end{equation*}
+except at the nodes $x_{i}$.
+
+It is known from the theory of Riemann integration that if $g$ is Riemann integrable, then there exists a sequence of partitions $P_{k}$ such that
+\begin{equation*}
+    \int_{a}^{b} f(x) \, d x = \lim_{k \to \infty} L(g, P) = \lim_{k \to \infty} U(g, P)
+\end{equation*}
+and $P_{k+1}$ is a refinement of $P_{k}$, thus
+\begin{equation*}
+    \phi_{g, P_{k}} \leq \phi_{g, P_{k+1}}  \leq g \leq \psi_{g, P_{k+1}} \leq \psi_{g, P_{k}} 
+\end{equation*}
+except at the nodes of the partitions $P_{k}$, which is a countable set. Hence
+\begin{eqnarray*}
+    \int |\phi_{g, P_{k+m}} - \phi_{g, P_{k}} | & = & \int \phi_{g, P_{k+m}} - \phi_{g, P_{k}}   \\
+    & = & \int \phi_{g, P_{k+m}} - \int \phi_{g, P_{k}}  \\
+    & = & L(g, P_{k+m}) - L(g, P_{k}) \\
+    & = & |L(g, P_{k+m}) - L(g, P_{k})|.
+\end{eqnarray*}
+Since the sequence $\{ L (g, P_{k}) \}$ converges, it is Cauchy sequence in $\mathbb{R}$, and, consequently, $\{\phi_{g, P_{k}} \}$ is $L^{1}$ Cauchy sequence of step maps. Similarly,  $\{\psi_{g, P_{k}} \}$ is $L^{1}$ Cauchy sequence of step maps. So we have $\{\phi_{g, P_{k}} \}$ and $\{\psi_{g, P_{k}} \}$ converge a.e. on [a, b], and since $\phi_{g, P} \leq g \leq \psi_{g, P}$ a.e., they converge to $f$ a.e. Thus the limits of the sequences of the integrals of the step maps $\phi_{g, P}$ and $\psi_{g, P}$ equal to the Lebesgue integral of $f$. Since the integrals of the step maps equal to the lower and upper Riemann sums, whose limit is the Riemann integral, the Riemann integral equals to the Lebesgue integral.
+
+
+\newpage
+
+$\underline{\textbf{Exercise 2:}}$
+
+Let $f_{n}$ be a sequence of measurable functions from $[0, 1]$ to $\mathbb{R}$. Assume that each function $f_{n}$ is finite almost everywhere. Show that $f_{n}$ converges in measure to zero if and only if 
+\begin{equation*}
+    \lim_{n \to \infty} \int_{0}^{1} \frac{|f_{n}|}{1 + |f_{n}|} = 0
+\end{equation*}
+
+\textbf{Hint:} Recall that by definition $f_{n}$ converges in measure to $f$ if and only if, given any $\epsilon > 0$,
+\begin{equation*}
+    \lim_{n \to \infty} |\{ |f_{n} - f| > \epsilon \}| = 0.
+\end{equation*}
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Firstly suppose that $f_{n} \to 0$ in measure, for any fixed $\epsilon > 0$, we have
+\begin{eqnarray*}
+    \int_{0}^{1} \frac{|f_{n}|}{1 + |f_{n}|} \, d \mu & = & \int_{\{|f_{n}| \geq \epsilon\} \cap [0, 1]}^{} \frac{|f_{n}|}{1 + |f_{n}|} \, d \mu + \int_{\{|f_{n}| < \epsilon\} \cap [0, 1]}^{} \frac{|f_{n}|}{1 + |f_{n}|} \, d \mu \\
+    & \leq & \mu({|f_{n}| \geq \epsilon}) + \epsilon \mu(\{|f_{n}| \leq \epsilon\} \cap [0, 1]) \\
+    & \leq & \mu({|f_{n}| \geq \epsilon}) + \epsilon,
+\end{eqnarray*}
+thus we know that $\limsup_{n \to \infty} \int_{0}^{1} \frac{|f_{n}|}{1 + |f_{n}|} \, d \mu \leq \epsilon $. Let $\epsilon \to 0$, we have $\lim_{n \to \infty} \int_{0}^{1} \frac{|f_{n}|}{1 + |f_{n}|} \, d \mu = 0$.
+
+On the other hand, suppose $\lim_{n \to \infty} \int_{0}^{1} \frac{|f_{n}|}{1 + |f_{n}|} \, d \mu = 0$, for any $\epsilon > 0$, we have
+\begin{eqnarray*}
+     \mu(|f_{n}| \geq \epsilon) & = & \int_{|f_{n}| \geq \epsilon}^{} 1 \, d \mu  \\
+     & = & \frac{1 + \epsilon}{\epsilon} \int_{|f_{n}| \geq \epsilon}^{} \frac{\epsilon}{1 + \epsilon} \, d \mu \\
+    & \leq & \frac{1 + \epsilon}{\epsilon} \int_{0}^{1} \frac{|f_{n}|}{1 + |f_{n}|} \, d \mu,
+\end{eqnarray*}
+thus when $n \to \infty$,
+\begin{equation*}
+    \lim_{n \to \infty} \mu(|f_{n}| \geq \epsilon) \leq  \lim_{n \to \infty} \frac{1 + \epsilon}{\epsilon} \int_{0}^{1} \frac{|f_{n}|}{1 + |f_{n}|} \, d \mu = 0.
+\end{equation*}
+Hence $\lim_{n \to \infty} \mu(|f_{n}| \geq \epsilon) = 0$ and $f_{n}$ converges in measure to $0$.
+
+
+\newpage
+
+$\underline{\textbf{Exercise 3:}}$
+
+(i) Let $(X, \mathcal{A}, \mu)$ be a measure space, and $f_{n}$ a converging sequence in $L^{1}(X)$. Show that $f_{n}$ has a sub-sequence which is convergent almost everywhere.
+\vspace{8pt}
+
+(ii) Find a sequence $g_{n}$ in $L^{1}([0, 1])$ such that: $g_{n}$ converges in $L^{1}([0, 1])$ and for all $x$ in $[0, 1]$ the sequence $g_{n}(x)$ diverges.
+\vspace{8pt}
+
+(iii) In the measure space $(X, \mathcal{A}, \mu)$, let $A_{n}$ be a sequence of element of $\mathcal{A}$ such that $\lim_{n \to \infty} \mu(A_{n}) = 0$ and let $f$ be in $L^{1}(X)$. Show that $\lim_{n \to \infty} \int_{A_{n}} f = 0$. 
+
+\vspace{8pt}
+
+$\textbf{Solution:}$
+
+(i) Firstly we show that when $f_{n}$ converges to $f$ in $L^{1}(X)$, then $f_{n}$ converges to $f$ in measure. For $n \geq 1$ and $\epsilon > 0$, let $A = \{|f_{n} - f| > \epsilon \}$. Note that
+\begin{equation*}
+    |f_{n} - f| \geq 1_{A}  |f_{n} - f| \geq \epsilon 1_{A},
+\end{equation*}
+integrating across the inequality yields
+\begin{equation*}
+    \int_{X} |f_{n} - f| \, d \mu \geq \epsilon \mu(A) .
+\end{equation*}
+That is
+\begin{equation*}
+    \mu(|f_{n} - f| \geq \epsilon) \leq \frac{1}{\epsilon} \int_{X} |f_{n} - f| \, d \mu.
+\end{equation*}
+Since the right hand side converges to $0$ as $n \to \infty$, we have
+\begin{equation*}
+    \lim_{n \to \infty} \mu(|f_{n} - f| \geq \epsilon) = 0.
+\end{equation*}
+Therefore we know that $f_{n}$ converges to $f$ in measure. 
+
+Next we show that if $f_{n}$ converges to $f$ in measure, then there exists a sub-sequence $\{f_{n_{k}}\}$ such that $f_{n_{k}} \to f$ pointwise almost everywhere. Since $f_{n}$ converges to $f$ in measure, we can find $n_{1} < n_{2} < \cdots$ such that 
+\begin{equation*}
+    \mu(|f - f_{n_{k}}| > \frac{1}{k}) \leq \frac{1}{2^{k}}, \quad \forall n \geq n_{k}.
+\end{equation*}
+Define $E_{k} = \{|f - f_{n_{k}}| > \frac{1}{k}\}$ and $H_{m} = \bigcup_{k = m}^{\infty} E_{k}$, then we have
+\begin{equation*}
+    \mu(E_{k}) \leq \frac{1}{2^{k}}, \quad \mu(H_{m}) \leq \sum_{k = m}^{\infty} \frac{1}{2^{k}} = \frac{1}{2^{m-1}}.
+\end{equation*}
+Set $Z = \bigcap_{m = 1}^{\infty} H_{m}$, then
+\begin{equation*}
+    \mu(Z) \leq \mu(H_{m}) \leq \frac{1}{2^{m-1}}.
+\end{equation*}
+So we have $\mu(Z) = 0$. If $x \in Z$, then $x \notin H_{m}$ for some $m$, hence $x \notin E_{k}$ for all $k \geq m$, which implies
+\begin{equation*}
+    |f(x) - f_{n_{k}}| \leq \frac{1}{k}.
+\end{equation*}
+Thus $f_{n_{k}} \to f(x)$ for all $x \notin Z$. Since $Z$ has zero measure, we therefore have pointwise convergence of $f_{n_{k}}$ to $f$ almost everywhere. 
+
+Thus we know that when $f_{n}$ converges to $f$ in $L^{1}(X)$, then $f_{n}$ converges to $f$ in measure, and then there exists a sub-sequence $\{f_{n_{k}}\}$ such that $f_{n_{k}} \to f$ pointwise almost everywhere.
+
+\vspace{8pt}
+
+(ii) For each $n \in \mathbb N$, let
+\begin{equation*}
+    g_{n} (x) = \mathbb{I}_{[\frac{n - 2^{k}}{2^{k}}, \frac{n - 2^{k} + 1}{2^{k}}]} (x),
+\end{equation*}
+whenever $k \in \mathbb N, 2^{k} \leq n < 2^{k + 1}$. For any $n \in \mathbb{N}$, we have
+\begin{equation*}
+    \int_{0}^{1} | g_{n} (x) | \, d x = \int_{0}^{1} \mathbb{I}_{[\frac{n - 2^{k}}{2^{k}}, \frac{n - 2^{k} + 1}{2^{k}}]} (x) \, d x  = \frac{1}{2^{k}} < +\infty,
+\end{equation*}
+so we know that $g_{n} \in L^{1}((0, 1))$. And similarly we have
+\begin{equation*}
+    \int_{0}^{1} | g_{n} (x) - 0 | \, d x = \int_{0}^{1} \mathbb{I}_{[\frac{n - 2^{k}}{2^{k}}, \frac{n - 2^{k} + 1}{2^{k}}]} (x) \, d x  = \frac{1}{2^{k}} < \frac{2}{n},
+\end{equation*}
+then when $n \to + \infty$, $\int_{0}^{1} | g_{n} (x) - 0 | \, d x \to 0$, thus we get $g_{n} \to 0$ in $L^{1}([0, 1])$. But for any $x \in [0, 1]$, and for any $N \in \mathbb{N}$, we can find a $n > N$ with $f_{n} (x) = 1$. Thus $f_{n}$ can not converges to $0$ anywhere for $x \in (0, 1)$. Then $g_{n}(x)$ is a sequence of indicator functions of intervals of decreasing length, marching across the unit interval $[0,1]$ over and over again, thus we know that $g_{n}(x)$ diverges.
+
+\vspace{8pt}
+
+(iii) We denote
+\begin{equation*}
+   f_{n}(x) = f(x) \mathbb{I}_{A_{n}} (x),
+\end{equation*}
+where $\mathbb{I}_{A_{n}} (\cdot)$ is a indicator function on $A_{n}$. Since $A_{n}$ is a sequence in $\mathcal{A}$ such that $\mu(A_{n}) \to 0$ as $n \to + \infty$, then we know that $f_{n}(x)$ converges to $0$ almost everywhere. As
+\begin{equation*}
+   |f_{n}(x)| = |f(x) \mathbb{I}_{A_{n}} (x)| \leq |f(x)|
+\end{equation*}
+and $f \in L^{1}(X)$, we know that $f$ is a dominate function of $f_{n}$. By the dominate convergence theorem, we have
+\begin{equation*}
+   \lim_{n \to \infty} \int_{X}^{} f_{n}(x) \, d \mu = \int_{X}^{} 0 \, d \mu = 0,
+\end{equation*}
+thus
+\begin{equation*}
+   \lim_{n \to \infty} \int_{X}^{} f_{n}(x) \, d \mu = \lim_{n \to \infty} \int_{A_{n}}^{} f \, d \mu = 0.
+\end{equation*}
+So, we know that $\int_{A_{n}}^{} f$ converges to zero.
+
+
+
+\newpage
+
+$\underline{\textbf{Exercise 4:}}$
+
+Suppose $f \in L^{1}(\mathbb{R})$ is such that $f > 0$, almost everywhere. Show that $\int f > 0$.
+
+\vspace{8pt}
+$\textbf{Solution:}$
+
+Since $f > 0$, we have
+\begin{equation*}
+    \int f \, d \mu > \int_{\{x \in \mathbb R: f \geq \frac{1}{n}\}} f \, d \mu \geq \frac{1}{n} \mu \Big{(} \Big{\{ } x \in \mathbb R: f \geq \frac{1}{n} \Big{\}} \Big{)}.
+\end{equation*}
+Let's argue by contraction. Suppose that $\mu(\{x \in \mathbb R: f \geq \frac{1}{n}\}) = 0$ for all $n$, since $\{x \in \mathbb R: f > 0\} = \bigcup_{n=1}^{\infty} \{x \in \mathbb R: f \geq \frac{1}{n}\}$, we have
+\begin{equation*}
+    \mu(\{x \in \mathbb R: f > 0\}) = \mu \Big{(} \bigcup_{n=1}^{\infty} \Big{\{} x \in \mathbb R: f \geq \frac{1}{n} \Big{\}} \Big{)} \leq \sum_{n = 1}^{\infty} \mu \Big{(} \Big{\{} x \in \mathbb R: f \geq \frac{1}{n} \Big{\}} \Big{)} = 0,
+\end{equation*}
+which is contradictory with the condition $f > 0$ almost everywhere. So there exists $n \in \mathbb{N}$ such that $\mu(\{x \in \mathbb R: f \geq \frac{1}{n}\}) > 0$. Thus we know that
+\begin{equation*}
+    \int f \, d \mu \geq  \frac{1}{n} \mu \Big{(} \Big{\{ } x \in \mathbb R: f \geq \frac{1}{n} \Big{\}} \Big{)} > 0.
+\end{equation*}
+
+
+
+
+
+
+
+
+
+
+
+
+\end{document}
